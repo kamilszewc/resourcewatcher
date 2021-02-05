@@ -1,0 +1,20 @@
+plugins {
+    id 'groovy'
+}
+
+group 'pl.integrable.pl'
+version 'v0.1-alpha'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:3.0.7'
+    //testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'org.spockframework:spock-core:2.0-M4-groovy-3.0'
+}
+
+test {
+    useJUnitPlatform()
+}
