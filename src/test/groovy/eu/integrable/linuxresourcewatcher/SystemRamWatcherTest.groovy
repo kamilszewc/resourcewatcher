@@ -1,8 +1,10 @@
+package eu.integrable.linuxresourcewatcher
+
 import spock.lang.*
 
 class SystemRamWatcherTest extends Specification {
 
-    def "gives non zero total memory"() {
+    def "gives non null total memory report"() {
         given:
         def systemRamWatcher = new SystemRamWatcher()
 
@@ -13,7 +15,7 @@ class SystemRamWatcherTest extends Specification {
         totalMemory != null && totalMemory != 0
     }
 
-    def "gives non zero free memory"() {
+    def "gives non null free memory report"() {
         given:
         def systemRamWatcher = new SystemRamWatcher()
 
@@ -24,7 +26,7 @@ class SystemRamWatcherTest extends Specification {
         freeMemory != null && freeMemory != 0
     }
 
-    def "gives non zero available memory"() {
+    def "gives non null available memory report"() {
         given:
         def systemRamWatcher = new SystemRamWatcher()
 
@@ -35,7 +37,7 @@ class SystemRamWatcherTest extends Specification {
         availableMemory != null && availableMemory != 0
     }
 
-    def "gives non zero cached"() {
+    def "gives non null cached report"() {
         given:
         def systemRamWatcher = new SystemRamWatcher()
 
@@ -46,7 +48,7 @@ class SystemRamWatcherTest extends Specification {
         buffers != null && buffers != 0
     }
 
-    def "gives non zero buffers"() {
+    def "gives non null buffers report"() {
         given:
         def systemRamWatcher = new SystemRamWatcher()
 

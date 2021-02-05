@@ -1,8 +1,10 @@
+package eu.integrable.linuxresourcewatcher
+
 import java.time.LocalDateTime
 
-class Report {
+class Report<T> {
     LocalDateTime localDateTime
-    def value
+    T value
 
     Report(value) {
         localDateTime = LocalDateTime.now()

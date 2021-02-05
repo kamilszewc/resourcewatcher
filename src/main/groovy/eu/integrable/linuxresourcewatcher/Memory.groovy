@@ -1,3 +1,5 @@
+package eu.integrable.linuxresourcewatcher
+
 class Memory {
     long value
 
@@ -21,7 +23,7 @@ class Memory {
         TB() / 1024
     }
 
-    Memory(value) {
+    Memory(Long value) {
         this.value = value
     }
 }

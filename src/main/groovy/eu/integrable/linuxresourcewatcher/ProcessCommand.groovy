@@ -1,3 +1,4 @@
+package eu.integrable.linuxresourcewatcher
 
 class ProcessCommand {
 

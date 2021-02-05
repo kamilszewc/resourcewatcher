@@ -1,7 +1,8 @@
+package eu.integrable.linuxresourcewatcher
 
 class SystemRamWatcher {
 
-    Report getTotalMemory() {
+    Report<Memory> getTotalMemory() {
         def value = new ProcessCommand("cat /proc/meminfo").by {
             def lines = it.split("\n")
             for (def line : lines) {
@@ -13,7 +14,7 @@ class SystemRamWatcher {
         return new Report(new Memory(value))
     }
 
-    Report getFreeMemory() {
+    Report<Memory> getFreeMemory() {
         def value = new ProcessCommand("cat /proc/meminfo").by {
             def lines = it.split("\n")
             for (def line : lines) {
@@ -25,7 +26,7 @@ class SystemRamWatcher {
         return new Report(new Memory(value))
     }
 
-    Report getAvailableMemory() {
+    Report<Memory> getAvailableMemory() {
         def value = new ProcessCommand("cat /proc/meminfo").by {
             def lines = it.split("\n")
             for (def line : lines) {
@@ -37,7 +38,7 @@ class SystemRamWatcher {
         return new Report(new Memory(value))
     }
 
-    Report getBuffers() {
+    Report<Memory> getBuffers() {
         def value = new ProcessCommand("cat /proc/meminfo").by {
             def lines = it.split("\n")
             for (def line : lines) {
@@ -49,7 +50,7 @@ class SystemRamWatcher {
         return new Report(new Memory(value))
     }
 
-    Report getCached() {
+    Report<Memory> getCached() {
         def value = new ProcessCommand("cat /proc/meminfo").by {
             def lines = it.split("\n")
             for (def line : lines) {
