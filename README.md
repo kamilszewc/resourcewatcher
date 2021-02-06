@@ -5,4 +5,4 @@ Simple to use JVM library for watching linux resources like memory, disk space, 
 The library is written in Groovy and tested with Spock framework.
 
 It was tested with:
-- Ubuntu 20.04
+- Ubuntu 18.04, 20.04
