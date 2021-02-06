@@ -1,9 +1,8 @@
 package eu.integrable.linuxresourcewatcher
 
 import eu.integrable.linuxresourcewatcher.exceptions.NoProcessFoundException
+import eu.integrable.linuxresourcewatcher.watchers.ProcessWatcher
 import spock.lang.Specification
-
-import java.time.Duration
 
 class ProcessWatcherTest extends Specification {
 

@@ -1,5 +1,6 @@
 package eu.integrable.linuxresourcewatcher
 
+import eu.integrable.linuxresourcewatcher.watchers.SystemRamWatcher
 import spock.lang.*
 
 class SystemRamWatcherTest extends Specification {

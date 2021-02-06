@@ -1,6 +1,7 @@
 package eu.integrable.linuxresourcewatcher
 
-import eu.integrable.linuxresourcewatcher.exceptions.NoProcessFoundException
+
+import eu.integrable.linuxresourcewatcher.watchers.NvidiaCudaWatcher
 import spock.lang.Specification
 
 class NvidiaCudaWatcherTest extends Specification {

@@ -1,5 +1,6 @@
 package eu.integrable.linuxresourcewatcher
 
+import eu.integrable.linuxresourcewatcher.watchers.SystemProcessesWatcher
 import spock.lang.Specification
 
 class SystemProcessesWatcherTest extends Specification {

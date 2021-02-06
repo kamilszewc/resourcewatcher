@@ -1,4 +1,4 @@
-package eu.integrable.linuxresourcewatcher
+package eu.integrable.linuxresourcewatcher.core
 
 class Memory {
     long value

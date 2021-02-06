@@ -1,6 +1,7 @@
 package eu.integrable.linuxresourcewatcher
 
 import eu.integrable.linuxresourcewatcher.exceptions.NoPartitionException
+import eu.integrable.linuxresourcewatcher.watchers.SystemDiskWatcher
 import spock.lang.Specification
 
 class SystemDiskWatcherTest extends Specification{

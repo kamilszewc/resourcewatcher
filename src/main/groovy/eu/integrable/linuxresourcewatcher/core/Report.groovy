@@ -1,4 +1,4 @@
-package eu.integrable.linuxresourcewatcher
+package eu.integrable.linuxresourcewatcher.core
 
 import java.time.LocalDateTime
 

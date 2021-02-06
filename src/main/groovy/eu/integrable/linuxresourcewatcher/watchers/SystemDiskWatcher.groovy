@@ -1,5 +1,8 @@
-package eu.integrable.linuxresourcewatcher
+package eu.integrable.linuxresourcewatcher.watchers
 
+import eu.integrable.linuxresourcewatcher.core.Memory
+import eu.integrable.linuxresourcewatcher.core.ProcessCommand
+import eu.integrable.linuxresourcewatcher.core.Report
 import eu.integrable.linuxresourcewatcher.exceptions.NoPartitionException
 
 class SystemDiskWatcher {
