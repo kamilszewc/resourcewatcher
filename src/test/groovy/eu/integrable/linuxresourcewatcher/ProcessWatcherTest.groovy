@@ -79,7 +79,17 @@ class ProcessWatcherTest extends Specification {
 
         when:
         def cpuTime = processWatcher.getProcessCpuTime(1)
-        println cpuTime.value
+
+        then:
+        cpuTime != null
+    }
+
+    def "getProcessCpuTimeWithChildren gives non null duration"() {
+        given:
+        def processWatcher = new ProcessWatcher()
+
+        when:
+        def cpuTime = processWatcher.getProcessCpuTime(1)
 
         then:
         cpuTime != null

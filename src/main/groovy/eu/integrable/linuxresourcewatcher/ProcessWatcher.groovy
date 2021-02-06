@@ -86,4 +86,14 @@ class ProcessWatcher {
         return new Report(value)
     }
 
+    Report<Memory> getProcessCpuTimeWithChildren(Long processId) {
+        def childrenProcesses = getChildrenTree(processId).value
+        def value = childrenProcesses.inject(Duration.between(LocalTime.now(), LocalTime.now())) { result, i ->
+            try {
+                result.plus(getProcessVirtualMemory(i).value.KB())
+            } catch (NoProcessFoundException ex) {}
+        }
+        return new Report(value)
+    }
+
 }
