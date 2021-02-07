@@ -5,7 +5,9 @@ plugins {
 }
 
 group 'eu.integrable'
-version 'v0.5'
+version 'v0.6'
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 repositories {
     mavenCentral()
