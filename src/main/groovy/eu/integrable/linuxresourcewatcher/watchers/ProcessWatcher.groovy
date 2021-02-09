@@ -31,7 +31,7 @@ class ProcessWatcher {
                 throw new NoProcessFoundException()
             }
         }
-        return new Report(new Memory(value))
+        return new Report<>(new Memory(value))
     }
 
     Report<List<Long>> getChildrenTree(Long processId) {
@@ -52,7 +52,7 @@ class ProcessWatcher {
             }
             processIds
         }
-        return new Report(value)
+        return new Report<>(value)
     }
 
     Report<Memory> getProcessResidentSetSizeWithChildrenMemory(Long processId) {
@@ -62,7 +62,7 @@ class ProcessWatcher {
                 result + getProcessResidentSetSizeMemory(i).value.KB()
             } catch (NoProcessFoundException ex) {}
         }
-        return new Report(new Memory(value))
+        return new Report<>(new Memory(value))
     }
 
 
@@ -73,7 +73,7 @@ class ProcessWatcher {
                 result + getProcessVirtualMemory(i).value.KB()
             } catch (NoProcessFoundException ex) {}
         }
-        return new Report(new Memory(value))
+        return new Report<>(new Memory(value))
     }
 
 
@@ -86,7 +86,7 @@ class ProcessWatcher {
                 throw new NoProcessFoundException()
             }
         }
-        return new Report(value)
+        return new Report<>(value)
     }
 
     Report<Memory> getProcessCpuTimeWithChildren(Long processId) {
@@ -96,7 +96,7 @@ class ProcessWatcher {
                 result.plus(getProcessVirtualMemory(i).value.KB())
             } catch (NoProcessFoundException ex) {}
         }
-        return new Report(value)
+        return new Report<>(value)
     }
 
 }
