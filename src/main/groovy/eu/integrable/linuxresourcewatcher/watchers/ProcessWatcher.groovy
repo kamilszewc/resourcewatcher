@@ -61,7 +61,7 @@ class ProcessWatcher {
             try {
                 result + getProcessResidentSetSizeMemory(i).value.KB()
             } catch (NoProcessFoundException ex) {
-                0L
+                result
             }
         }
         return new Report(new Memory(value))
@@ -74,7 +74,7 @@ class ProcessWatcher {
             try {
                 result + getProcessVirtualMemory(i).value.KB()
             } catch (NoProcessFoundException ex) {
-                0L
+                result
             }
         }
         return new Report(new Memory(value))
