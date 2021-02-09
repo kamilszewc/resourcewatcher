@@ -60,7 +60,9 @@ class ProcessWatcher {
         def value = childrenProcesses.inject(0) { result, i ->
             try {
                 result + getProcessResidentSetSizeMemory(i).value.KB()
-            } catch (NoProcessFoundException ex) {}
+            } catch (NoProcessFoundException ex) {
+                0L
+            }
         }
         return new Report(new Memory(value))
     }
@@ -71,7 +73,9 @@ class ProcessWatcher {
         def value = childrenProcesses.inject(0) { result, i ->
             try {
                 result + getProcessVirtualMemory(i).value.KB()
-            } catch (NoProcessFoundException ex) {}
+            } catch (NoProcessFoundException ex) {
+                0L
+            }
         }
         return new Report(new Memory(value))
     }
