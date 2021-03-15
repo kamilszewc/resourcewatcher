@@ -1,14 +1,14 @@
-package eu.integrable.linuxresourcewatcher
+package eu.integrable.linuxresourcewatcher.linux
 
 import eu.integrable.linuxresourcewatcher.exceptions.NoProcessFoundException
-import eu.integrable.linuxresourcewatcher.watchers.ProcessWatcher
+import eu.integrable.linuxresourcewatcher.watchers.linux.ProcessWatcherLinux
 import spock.lang.Specification
 
-class ProcessWatcherTest extends Specification {
+class ProcessWatcherLinuxTest extends Specification {
 
     def "gives non null process rss memory report"() {
         given:
-        def processWatcher = new ProcessWatcher()
+        def processWatcher = new ProcessWatcherLinux()
 
         when:
         def processMemory = processWatcher.getProcessResidentSetSizeMemory(1)
@@ -19,7 +19,7 @@ class ProcessWatcherTest extends Specification {
 
     def "getProcessResidentSetSizeMemory rise exception when process does not exist"() {
         given:
-        def processWatcher = new ProcessWatcher()
+        def processWatcher = new ProcessWatcherLinux()
 
         when:
         def processMemory = processWatcher.getProcessResidentSetSizeMemory(1342342324)
@@ -30,7 +30,7 @@ class ProcessWatcherTest extends Specification {
 
     def "gives non null process with children rss memory report"() {
         given:
-        def processWatcher = new ProcessWatcher()
+        def processWatcher = new ProcessWatcherLinux()
 
         when:
         def processMemory = processWatcher.getProcessResidentSetSizeWithChildrenMemory(1)
@@ -41,7 +41,7 @@ class ProcessWatcherTest extends Specification {
 
     def "gives non null process vsz memory report"() {
         given:
-        def processWatcher = new ProcessWatcher()
+        def processWatcher = new ProcessWatcherLinux()
 
         when:
         def processMemory = processWatcher.getProcessVirtualMemory(1)
@@ -52,7 +52,7 @@ class ProcessWatcherTest extends Specification {
 
     def "gives non null process with children vsz memory report"() {
         given:
-        def processWatcher = new ProcessWatcher()
+        def processWatcher = new ProcessWatcherLinux()
 
         when:
         def processMemory = processWatcher.getProcessVirtualWithChildrenMemory(1)
@@ -63,7 +63,7 @@ class ProcessWatcherTest extends Specification {
 
     def "gives non null children tree report"() {
         given:
-        def processWatcher = new ProcessWatcher()
+        def processWatcher = new ProcessWatcherLinux()
 
         when:
         def childrenTree = processWatcher.getChildrenTree(1)
@@ -74,7 +74,7 @@ class ProcessWatcherTest extends Specification {
 
     def "getProcessCpuTime gives non null duration"() {
         given:
-        def processWatcher = new ProcessWatcher()
+        def processWatcher = new ProcessWatcherLinux()
 
         when:
         def cpuTime = processWatcher.getProcessCpuTime(1)
@@ -85,7 +85,7 @@ class ProcessWatcherTest extends Specification {
 
     def "getProcessCpuTimeWithChildren gives non null duration"() {
         given:
-        def processWatcher = new ProcessWatcher()
+        def processWatcher = new ProcessWatcherLinux()
 
         when:
         def cpuTime = processWatcher.getProcessCpuTime(1)

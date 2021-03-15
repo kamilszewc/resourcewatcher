@@ -1,14 +1,14 @@
-package eu.integrable.linuxresourcewatcher
+package eu.integrable.linuxresourcewatcher.linux
 
 
-import eu.integrable.linuxresourcewatcher.watchers.NvidiaCudaWatcher
+import eu.integrable.linuxresourcewatcher.watchers.linux.NvidiaCudaWatcherLinux
 import spock.lang.Specification
 
-class NvidiaCudaWatcherTest extends Specification {
+class NvidiaCudaWatcherLinuxTest extends Specification {
 
     def "isNvidiaSmiAvailable gives false if nvidia-smi is not available"() {
         given:
-        def cudaWatcher = new NvidiaCudaWatcher()
+        def cudaWatcher = new NvidiaCudaWatcherLinux()
 
         when:
         def isAvailable = cudaWatcher.isNvidiaSmiAvailable()

@@ -1,13 +1,13 @@
-package eu.integrable.linuxresourcewatcher
+package eu.integrable.linuxresourcewatcher.linux
 
-import eu.integrable.linuxresourcewatcher.watchers.SystemRamWatcher
+import eu.integrable.linuxresourcewatcher.watchers.linux.SystemRamWatcherLinux
 import spock.lang.*
 
-class SystemRamWatcherTest extends Specification {
+class SystemRamWatcherLinuxTest extends Specification {
 
     def "gives non null total memory report"() {
         given:
-        def systemRamWatcher = new SystemRamWatcher()
+        def systemRamWatcher = new SystemRamWatcherLinux()
 
         when:
         def totalMemory = systemRamWatcher.getTotalMemory()
@@ -18,7 +18,7 @@ class SystemRamWatcherTest extends Specification {
 
     def "gives non null free memory report"() {
         given:
-        def systemRamWatcher = new SystemRamWatcher()
+        def systemRamWatcher = new SystemRamWatcherLinux()
 
         when:
         def freeMemory = systemRamWatcher.getFreeMemory()
@@ -29,7 +29,7 @@ class SystemRamWatcherTest extends Specification {
 
     def "gives non null available memory report"() {
         given:
-        def systemRamWatcher = new SystemRamWatcher()
+        def systemRamWatcher = new SystemRamWatcherLinux()
 
         when:
         def availableMemory = systemRamWatcher.getAvailableMemory()
@@ -40,7 +40,7 @@ class SystemRamWatcherTest extends Specification {
 
     def "gives non null cached report"() {
         given:
-        def systemRamWatcher = new SystemRamWatcher()
+        def systemRamWatcher = new SystemRamWatcherLinux()
 
         when:
         def buffers = systemRamWatcher.getCached()
@@ -51,7 +51,7 @@ class SystemRamWatcherTest extends Specification {
 
     def "gives non null buffers report"() {
         given:
-        def systemRamWatcher = new SystemRamWatcher()
+        def systemRamWatcher = new SystemRamWatcherLinux()
 
         when:
         def buffers = systemRamWatcher.getBuffers()
