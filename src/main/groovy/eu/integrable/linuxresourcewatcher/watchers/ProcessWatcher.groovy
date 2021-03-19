@@ -9,18 +9,18 @@ import java.time.LocalTime
 
 interface ProcessWatcher {
 
-    Report<Memory> getProcessResidentSetSizeMemory(Long processId)
+    Report<Memory> getProcessResidentSetSizeMemory(Long processId) throws IOError, NoProcessFoundException
 
-    Report<Memory> getProcessVirtualMemory(Long processId)
+    Report<Memory> getProcessVirtualMemory(Long processId) throws IOError, NoProcessFoundException
 
-    Report<List<Long>> getChildrenTree(Long processId)
+    Report<List<Long>> getChildrenTree(Long processId) throws IOError
 
-    Report<Memory> getProcessResidentSetSizeWithChildrenMemory(Long processId)
+    Report<Memory> getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOError
 
-    Report<Memory> getProcessVirtualWithChildrenMemory(Long processId)
+    Report<Memory> getProcessVirtualWithChildrenMemory(Long processId) throws IOError
 
-    Report<Duration> getProcessCpuTime(Long processId)
+    Report<Duration> getProcessCpuTime(Long processId) throws IOError, NoProcessFoundException
 
-    Report<Memory> getProcessCpuTimeWithChildren(Long processId)
+    Report<Memory> getProcessCpuTimeWithChildren(Long processId) throws IOError
 
 }

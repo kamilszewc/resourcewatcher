@@ -7,7 +7,7 @@ import eu.integrable.linuxresourcewatcher.watchers.SystemProcessesWatcher
 class SystemProcessesWatcherWindows implements SystemProcessesWatcher {
 
     @Override
-    Report<Long> getNumberOfProcesses() {
+    Report<Long> getNumberOfProcesses() throws IOError {
         return new Report<Long>(10)
     }
 

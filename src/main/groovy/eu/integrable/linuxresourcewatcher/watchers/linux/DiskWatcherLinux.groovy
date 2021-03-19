@@ -4,12 +4,12 @@ import eu.integrable.linuxresourcewatcher.core.Memory
 import eu.integrable.linuxresourcewatcher.core.ProcessCommand
 import eu.integrable.linuxresourcewatcher.core.Report
 import eu.integrable.linuxresourcewatcher.exceptions.NoPartitionException
-import eu.integrable.linuxresourcewatcher.watchers.SystemDiskWatcher
+import eu.integrable.linuxresourcewatcher.watchers.DiskWatcher
 
-class SystemDiskWatcherLinux implements SystemDiskWatcher {
+class DiskWatcherLinux implements DiskWatcher {
 
     @Override
-    Report<Memory> getAvailablePartitionSpace(String partition) {
+    Report<Memory> getAvailablePartitionSpace(String partition) throws IOError, NoPartitionException {
         def value = new ProcessCommand("df $partition").by {
             try {
                 it.split("\n")[1].trim().replaceAll(" +", " ").split(" ")[-3] as Long
@@ -21,7 +21,7 @@ class SystemDiskWatcherLinux implements SystemDiskWatcher {
     }
 
     @Override
-    Report<Memory> getUsedPartitionSpace(String partition) {
+    Report<Memory> getUsedPartitionSpace(String partition) throws IOError, NoPartitionException {
         def value = new ProcessCommand("df $partition").by {
             try {
                 it.split("\n")[1].trim().replaceAll(" +", " ").split(" ")[-4] as Long
@@ -33,7 +33,7 @@ class SystemDiskWatcherLinux implements SystemDiskWatcher {
     }
 
     @Override
-    Report<Memory> getListOfPartitions() {
+    Report<Memory> getListOfPartitions() throws IOError {
         def value = new ProcessCommand("df").by {
             def partitions = [] as List
             def lines = it.split("\n")

@@ -12,7 +12,7 @@ import java.time.LocalTime
 class ProcessWatcherLinux implements ProcessWatcher {
 
     @Override
-    Report<Memory> getProcessResidentSetSizeMemory(Long processId) {
+    Report<Memory> getProcessResidentSetSizeMemory(Long processId) throws IOError, NoProcessFoundException {
         def value = new ProcessCommand("ps -o rss $processId").by {
             try {
                 def lines = it.split("\n")
@@ -25,7 +25,7 @@ class ProcessWatcherLinux implements ProcessWatcher {
     }
 
     @Override
-    Report<Memory> getProcessVirtualMemory(Long processId) {
+    Report<Memory> getProcessVirtualMemory(Long processId) throws IOError, NoProcessFoundException {
         def value = new ProcessCommand("ps -o vsz $processId").by {
             try {
                 def lines = it.split("\n")
@@ -38,7 +38,7 @@ class ProcessWatcherLinux implements ProcessWatcher {
     }
 
     @Override
-    Report<List<Long>> getChildrenTree(Long processId) {
+    Report<List<Long>> getChildrenTree(Long processId) throws IOError {
         def value = new ProcessCommand("pgrep -P $processId").by {
             Set processIds = [processId]
             def lines = it.split("\n")
@@ -60,7 +60,7 @@ class ProcessWatcherLinux implements ProcessWatcher {
     }
 
     @Override
-    Report<Memory> getProcessResidentSetSizeWithChildrenMemory(Long processId) {
+    Report<Memory> getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOError {
         def childrenProcesses = getChildrenTree(processId).value
         def value = childrenProcesses.inject(0) { result, i ->
             try {
@@ -73,7 +73,7 @@ class ProcessWatcherLinux implements ProcessWatcher {
     }
 
     @Override
-    Report<Memory> getProcessVirtualWithChildrenMemory(Long processId) {
+    Report<Memory> getProcessVirtualWithChildrenMemory(Long processId) throws IOError {
         def childrenProcesses = getChildrenTree(processId).value
         def value = childrenProcesses.inject(0) { result, i ->
             try {
@@ -86,7 +86,7 @@ class ProcessWatcherLinux implements ProcessWatcher {
     }
 
     @Override
-    Report<Duration> getProcessCpuTime(Long processId) {
+    Report<Duration> getProcessCpuTime(Long processId) throws IOError, NoProcessFoundException {
         def value = new ProcessCommand("ps -o time $processId").by {
             try {
                 def lines = it.split("\n")
@@ -99,7 +99,7 @@ class ProcessWatcherLinux implements ProcessWatcher {
     }
 
     @Override
-    Report<Memory> getProcessCpuTimeWithChildren(Long processId) {
+    Report<Memory> getProcessCpuTimeWithChildren(Long processId) throws IOError {
         def childrenProcesses = getChildrenTree(processId).value
         def value = childrenProcesses.inject(Duration.between(LocalTime.now(), LocalTime.now())) { result, i ->
             try {

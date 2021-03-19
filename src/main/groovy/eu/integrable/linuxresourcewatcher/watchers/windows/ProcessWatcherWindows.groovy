@@ -12,37 +12,37 @@ import java.time.LocalTime
 class ProcessWatcherWindows implements ProcessWatcher {
 
     @Override
-    Report<Memory> getProcessResidentSetSizeMemory(Long processId) {
+    Report<Memory> getProcessResidentSetSizeMemory(Long processId) throws IOError, NoProcessFoundException {
         return null
     }
 
     @Override
-    Report<Memory> getProcessVirtualMemory(Long processId) {
+    Report<Memory> getProcessVirtualMemory(Long processId) throws IOError, NoProcessFoundException {
         return null
     }
 
     @Override
-    Report<List<Long>> getChildrenTree(Long processId) {
+    Report<List<Long>> getChildrenTree(Long processId) throws IOError {
         return null
     }
 
     @Override
-    Report<Memory> getProcessResidentSetSizeWithChildrenMemory(Long processId) {
+    Report<Memory> getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOError {
         return null
     }
 
     @Override
-    Report<Memory> getProcessVirtualWithChildrenMemory(Long processId) {
+    Report<Memory> getProcessVirtualWithChildrenMemory(Long processId) throws IOError {
         return null
     }
 
     @Override
-    Report<Duration> getProcessCpuTime(Long processId) {
+    Report<Duration> getProcessCpuTime(Long processId) throws IOError, NoProcessFoundException {
         return null
     }
 
     @Override
-    Report<Memory> getProcessCpuTimeWithChildren(Long processId) {
+    Report<Memory> getProcessCpuTimeWithChildren(Long processId) throws IOError{
         return null
     }
 

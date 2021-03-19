@@ -7,7 +7,7 @@ import eu.integrable.linuxresourcewatcher.watchers.SystemProcessesWatcher
 class SystemProcessesWatcherLinux implements SystemProcessesWatcher {
 
     @Override
-    Report<Long> getNumberOfProcesses() {
+    Report<Long> getNumberOfProcesses() throws IOError {
         def value = new ProcessCommand("ps -eo nlwp").by {
             def sum = 0
             def lines = it.split("\n")

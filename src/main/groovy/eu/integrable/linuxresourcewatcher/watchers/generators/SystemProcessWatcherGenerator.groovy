@@ -1,5 +1,6 @@
-package eu.integrable.linuxresourcewatcher.watchers;
+package eu.integrable.linuxresourcewatcher.watchers.generators
 
+import eu.integrable.linuxresourcewatcher.watchers.SystemProcessesWatcher;
 import eu.integrable.linuxresourcewatcher.watchers.linux.SystemProcessesWatcherLinux;
 import eu.integrable.linuxresourcewatcher.watchers.windows.SystemProcessesWatcherWindows;
 

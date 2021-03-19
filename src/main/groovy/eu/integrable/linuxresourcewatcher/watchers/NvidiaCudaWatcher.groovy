@@ -5,19 +5,19 @@ import eu.integrable.linuxresourcewatcher.core.Report
 
 interface NvidiaCudaWatcher {
 
-    Report<Boolean> isNvidiaSmiAvailable()
+    Report<Boolean> isNvidiaSmiAvailable() throws IOError
 
-    Report<Memory> getUsedMemory(Integer gpuId)
+    Report<Memory> getUsedMemory(Integer gpuId) throws IOError
 
-    Report<Integer> getNumberOfGpus()
+    Report<Integer> getNumberOfGpus() throws IOError
 
-    Report<Memory> getFreeMemory(Integer gpuId)
+    Report<Memory> getFreeMemory(Integer gpuId) throws IOError
 
-    Report<Memory> getTotalMemory(Integer gpuId)
+    Report<Memory> getTotalMemory(Integer gpuId) throws IOError
 
-    Report<Integer> getTemperature(Integer gpuId)
+    Report<Integer> getTemperature(Integer gpuId) throws IOError
 
-    Report<Integer> getUtilization(Integer gpuId)
+    Report<Integer> getUtilization(Integer gpuId) throws IOError
 
-    Report<String> getName(Integer gpuId)
+    Report<String> getName(Integer gpuId) throws IOError
 }

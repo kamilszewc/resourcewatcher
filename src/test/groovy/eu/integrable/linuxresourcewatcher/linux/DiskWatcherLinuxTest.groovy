@@ -1,14 +1,14 @@
 package eu.integrable.linuxresourcewatcher.linux
 
 import eu.integrable.linuxresourcewatcher.exceptions.NoPartitionException
-import eu.integrable.linuxresourcewatcher.watchers.linux.SystemDiskWatcherLinux
+import eu.integrable.linuxresourcewatcher.watchers.linux.DiskWatcherLinux
 import spock.lang.Specification
 
-class SystemDiskWatcherLinuxTest extends Specification{
+class DiskWatcherLinuxTest extends Specification{
 
     def "gives non null partition available space report"() {
         given:
-        def diskWatcher = new SystemDiskWatcherLinux()
+        def diskWatcher = new DiskWatcherLinux()
 
         when:
         def partitionSize = diskWatcher.getAvailablePartitionSpace("/")
@@ -19,7 +19,7 @@ class SystemDiskWatcherLinuxTest extends Specification{
 
     def "getAvailablePartitionSpace rise an exception when partition does not exist"() {
         given:
-        def diskWatcher = new SystemDiskWatcherLinux()
+        def diskWatcher = new DiskWatcherLinux()
 
         when:
         def partitionSize = diskWatcher.getUsedPartitionSpace("dsffd")
@@ -30,7 +30,7 @@ class SystemDiskWatcherLinuxTest extends Specification{
 
     def "gives non null partition used space report"() {
         given:
-        def diskWatcher = new SystemDiskWatcherLinux()
+        def diskWatcher = new DiskWatcherLinux()
 
         when:
         def partitionSize = diskWatcher.getUsedPartitionSpace("/")
@@ -41,7 +41,7 @@ class SystemDiskWatcherLinuxTest extends Specification{
 
     def "getUsedPartitionSpace rise an exception when partition does not exist"() {
         given:
-        def diskWatcher = new SystemDiskWatcherLinux()
+        def diskWatcher = new DiskWatcherLinux()
 
         when:
         def partitionSize = diskWatcher.getUsedPartitionSpace("dsffd")
@@ -52,7 +52,7 @@ class SystemDiskWatcherLinuxTest extends Specification{
 
     def "gives non null list of partitions report"() {
         given:
-        def diskWatcher = new SystemDiskWatcherLinux()
+        def diskWatcher = new DiskWatcherLinux()
 
         when:
         def partitions = diskWatcher.getListOfPartitions()

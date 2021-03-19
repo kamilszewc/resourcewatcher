@@ -3,12 +3,12 @@ package eu.integrable.linuxresourcewatcher.watchers.linux
 import eu.integrable.linuxresourcewatcher.core.Memory
 import eu.integrable.linuxresourcewatcher.core.ProcessCommand
 import eu.integrable.linuxresourcewatcher.core.Report
-import eu.integrable.linuxresourcewatcher.watchers.SystemRamWatcher
+import eu.integrable.linuxresourcewatcher.watchers.RamWatcher
 
-class SystemRamWatcherLinux implements SystemRamWatcher {
+class RamWatcherLinux implements RamWatcher {
 
     @Override
-    Report<Memory> getTotalMemory() {
+    Report<Memory> getTotalMemory() throws IOError {
         def value = new ProcessCommand("cat /proc/meminfo").by {
             def lines = it.split("\n")
             for (def line : lines) {
@@ -21,7 +21,7 @@ class SystemRamWatcherLinux implements SystemRamWatcher {
     }
 
     @Override
-    Report<Memory> getFreeMemory() {
+    Report<Memory> getFreeMemory() throws IOError {
         def value = new ProcessCommand("cat /proc/meminfo").by {
             def lines = it.split("\n")
             for (def line : lines) {
@@ -34,7 +34,7 @@ class SystemRamWatcherLinux implements SystemRamWatcher {
     }
 
     @Override
-    Report<Memory> getAvailableMemory() {
+    Report<Memory> getAvailableMemory() throws IOError {
         def value = new ProcessCommand("cat /proc/meminfo").by {
             def lines = it.split("\n")
             for (def line : lines) {
@@ -47,7 +47,7 @@ class SystemRamWatcherLinux implements SystemRamWatcher {
     }
 
     @Override
-    Report<Memory> getBuffers() {
+    Report<Memory> getBuffers() throws IOError {
         def value = new ProcessCommand("cat /proc/meminfo").by {
             def lines = it.split("\n")
             for (def line : lines) {
@@ -60,7 +60,7 @@ class SystemRamWatcherLinux implements SystemRamWatcher {
     }
 
     @Override
-    Report<Memory> getCached() {
+    Report<Memory> getCached() throws IOError {
         def value = new ProcessCommand("cat /proc/meminfo").by {
             def lines = it.split("\n")
             for (def line : lines) {

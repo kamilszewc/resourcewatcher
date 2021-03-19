@@ -4,5 +4,5 @@ import eu.integrable.linuxresourcewatcher.core.Report
 
 interface SystemProcessesWatcher {
 
-    Report<Long> getNumberOfProcesses()
+    Report<Long> getNumberOfProcesses() throws IOError
 }
