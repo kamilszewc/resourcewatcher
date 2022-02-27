@@ -56,18 +56,18 @@ class NvidiaCudaWatcherLinux implements NvidiaCudaWatcher {
     Report<Integer> getTemperature(Integer gpuId) throws IOError {
         def value = new ProcessCommand("nvidia-smi --query-gpu=temperature.gpu --format=csv -i $gpuId").by {
             def line = it.split("\n")[1]
-            Long.valueOf(line.split(" ")[0].trim())
+            Integer.valueOf(line.split(" ")[0].trim())
         }
-        return new Report<>(value)
+        return new Report<Integer>(value)
     }
 
     @Override
     Report<Integer> getUtilization(Integer gpuId) throws IOError {
         def value = new ProcessCommand("nvidia-smi --query-gpu=utilization.gpu --format=csv -i $gpuId").by {
             def line = it.split("\n")[1]
-            Long.valueOf(line.split(" ")[0].trim())
+            Integer.valueOf(line.split(" ")[0].trim())
         }
-        return new Report<>(value)
+        return new Report<Integer>(value)
     }
 
     @Override
