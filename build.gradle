@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'com.computinglaboratory'
-version '1.5'
+version '1.6'
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
