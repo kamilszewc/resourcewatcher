@@ -4,8 +4,8 @@ plugins {
     id 'maven-publish'
 }
 
-group 'eu.integrable'
-version 'v1.4'
+group 'com.computinglaboratory'
+version 'v1.5'
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.codehaus.groovy:groovy-all:3.0.9'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.10'
     //testCompile group: 'junit', name: 'junit', version: '4.12'
     testImplementation 'org.spockframework:spock-core:2.1-groovy-3.0'
 }
@@ -27,7 +27,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/kamilszewc/linux-resource-watcher")
+            url = uri("https://maven.pkg.github.com/computinglaboratory/linux-resource-watcher")
             credentials {
                 username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
                 password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
