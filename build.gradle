@@ -1,7 +1,9 @@
 plugins {
     id 'groovy'
     id 'java'
+    id 'java-library'
     id 'maven-publish'
+    id 'signing'
 }
 
 group 'com.computinglaboratory'
@@ -23,20 +25,60 @@ test {
     useJUnitPlatform()
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
 publishing {
     repositories {
         maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/computinglaboratory/linux-resource-watcher")
+            name = "OSSRH"
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                username = "$mavenCentralUser"
+                password = "$mavenCentralPassword"
             }
         }
     }
     publications {
-        gpr(MavenPublication) {
-            from(components.java)
+
+        mavenJava(MavenPublication) {
+            artifactId = 'resourcewatcher'
+            from components.java
+            pom {
+                name = 'Resource Watcher'
+                description = 'Groovy-based Linux, Mac, Windows resources watcher (cpu, gpu, ram, disk, ...)'
+                url = 'https://github.com/computinglaboratory/resourcewatcher'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'kszewc'
+                        name = "Kamil Szewc"
+                        email = 'kamil.szewc@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/computinglaboratory/resourcewatcher.git'
+                    developerConnection = 'scm:git:https://github.com/computinglaboratory/resourcewatcher.git'
+                    url = 'https://github.com/computinglaboratory/resourcewatcher.git'
+                }
+            }
         }
     }
 }
+
+signing {
+    sign publishing.publications.mavenJava
+    sign configurations.archives
+}
+
