@@ -1,6 +1,6 @@
 package com.computinglaboratory.resourcewatcher.macos
 
-import com.computinglaboratory.resourcewatcher.ResourceWatcherBuilder
+import com.computinglaboratory.resourcewatcher.ResourceWatcherFactory
 import com.computinglaboratory.resourcewatcher.exceptions.NoPartitionException
 import spock.lang.Specification
 
@@ -8,7 +8,7 @@ class DiskWatcherMacTest extends Specification{
 
     def "gives non null partition available space report"() {
         given:
-        def diskWatcher = ResourceWatcherBuilder.build().diskWatcher
+        def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
         def partitionSize = diskWatcher.getAvailablePartitionSpace("/")
@@ -19,7 +19,7 @@ class DiskWatcherMacTest extends Specification{
 
     def "getAvailablePartitionSpace rise an exception when partition does not exist"() {
         given:
-        def diskWatcher = ResourceWatcherBuilder.build().diskWatcher
+        def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
         def partitionSize = diskWatcher.getUsedPartitionSpace("dsffd")
@@ -30,7 +30,7 @@ class DiskWatcherMacTest extends Specification{
 
     def "gives non null partition used space report"() {
         given:
-        def diskWatcher = ResourceWatcherBuilder.build().diskWatcher
+        def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
         def partitionSize = diskWatcher.getUsedPartitionSpace("/")
@@ -41,7 +41,7 @@ class DiskWatcherMacTest extends Specification{
 
     def "getUsedPartitionSpace rise an exception when partition does not exist"() {
         given:
-        def diskWatcher = ResourceWatcherBuilder.build().diskWatcher
+        def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
         def partitionSize = diskWatcher.getUsedPartitionSpace("dsffd")
@@ -52,7 +52,7 @@ class DiskWatcherMacTest extends Specification{
 
     def "gives non null list of partitions report"() {
         given:
-        def diskWatcher = ResourceWatcherBuilder.build().diskWatcher
+        def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
         def partitions = diskWatcher.getListOfPartitions()

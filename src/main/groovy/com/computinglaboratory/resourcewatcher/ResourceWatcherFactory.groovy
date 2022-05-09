@@ -7,9 +7,9 @@ import com.computinglaboratory.resourcewatcher.watchers.macos.ResourceWatcherMac
 import com.computinglaboratory.resourcewatcher.watchers.windows.ResourceWatcherWindows
 import org.apache.commons.lang3.SystemUtils
 
-class ResourceWatcherBuilder {
+class ResourceWatcherFactory {
 
-    static ResourceWatcher build() {
+    static ResourceWatcher create() {
 
         if (SystemUtils.IS_OS_LINUX) {
             return new ResourceWatcherLinux()
@@ -25,7 +25,7 @@ class ResourceWatcherBuilder {
         }
     }
 
-    static getResourceWatcher() {
-        return build()
+    static createResourceWatcher() {
+        return create()
     }
 }

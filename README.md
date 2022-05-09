@@ -19,14 +19,14 @@ Usage with maven:
 <dependency>
     <groupId>com.computinglaboratory</groupId>
     <artifactId>resourcewatcher</artifactId>
-    <version>2.0</version>
+    <version>2.1</version>
 </dependency>
 ```
 
 Usage with gradle:
 
 ```groovy
-implementation 'com.computinglaboratory:resourcewatcher:2.0'
+implementation 'com.computinglaboratory:resourcewatcher:2.1'
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ implementation 'com.computinglaboratory:resourcewatcher:2.0'
 Example in Java:
 
 ```java
-    ResourceWatcher resourceWatcher = ResourceWatcherBuilder.build();
+    ResourceWatcher resourceWatcher = ResourceWatcherFactory.create();
     DiskWatcher diskWatcher = resourceWatcher.getDiskWatcher();
     Report<Memory> report = diskWatcher.getAvailablePartitionSpace("/");
     Long sizeInMB = partitionSize.getValue().MB();
