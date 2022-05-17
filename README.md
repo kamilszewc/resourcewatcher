@@ -4,10 +4,13 @@
 
 Simple to use JVM library for watching linux/windows/mac resources like cpu-usage, memory, disk space, etc.
 
-The library is written in Groovy and tested with Spock framework.
+The library is written in Java and tested with Spock framework.
 
 It was tested with:
 - Ubuntu 18.04, 20.04, 22.04
+- MacOS 12
+
+Windows platform is still not developed
 
 ## Installation
 
@@ -19,14 +22,14 @@ Usage with maven:
 <dependency>
     <groupId>com.computinglaboratory</groupId>
     <artifactId>resourcewatcher</artifactId>
-    <version>2.1</version>
+    <version>3.0</version>
 </dependency>
 ```
 
 Usage with gradle:
 
 ```groovy
-implementation 'com.computinglaboratory:resourcewatcher:2.1'
+implementation 'com.computinglaboratory:resourcewatcher:3.0'
 ```
 
 ## Usage
@@ -36,6 +39,6 @@ Example in Java:
 ```java
     ResourceWatcher resourceWatcher = ResourceWatcherFactory.create();
     DiskWatcher diskWatcher = resourceWatcher.getDiskWatcher();
-    Report<Memory> report = diskWatcher.getAvailablePartitionSpace("/");
-    Long sizeInMB = partitionSize.getValue().MB();
+    Memory memory = diskWatcher.getFreePartitionSpace("/");
+    Long sizeInMB = memory.MB();
 ```
