@@ -5,12 +5,13 @@ import spock.lang.Specification
 
 class SystemProcessesWatcherLinuxTest extends Specification {
 
-    def "gives non null number of processes report"() {
+    def "getNumberOfProcesses is not null"() {
         given:
         def systemProcessesWatcher = ResourceWatcherFactory.create().systemProcessesWatcher
 
         when:
         def numberOfProcesses = systemProcessesWatcher.getNumberOfProcesses()
+        print numberOfProcesses
 
         then:
         numberOfProcesses != null

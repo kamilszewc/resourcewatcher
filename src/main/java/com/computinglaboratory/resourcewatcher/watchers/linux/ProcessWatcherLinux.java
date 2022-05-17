@@ -2,6 +2,7 @@ package com.computinglaboratory.resourcewatcher.watchers.linux;
 
 import com.computinglaboratory.resourcewatcher.core.Memory;
 import com.computinglaboratory.resourcewatcher.core.ProcessCommand;
+import com.computinglaboratory.resourcewatcher.exceptions.NoProcessFoundException;
 import com.computinglaboratory.resourcewatcher.watchers.interfaces.ProcessWatcher;
 
 import java.io.IOError;
@@ -11,23 +12,29 @@ import java.util.*;
 
 public class ProcessWatcherLinux implements ProcessWatcher {
     @Override
-    public Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException {
+    public Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
 
-        String result = ProcessCommand.call("ps -o rss" + processId);
+        String result = ProcessCommand.call("ps -o rss " + processId);
         String[] lines = result.split("\n");
-        Long value = Long.valueOf(lines[1].trim());
-
-        return new Memory(value);
+        try {
+            Long value = Long.valueOf(lines[1].trim());
+            return new Memory(value);
+        } catch (Exception ex) {
+            throw new NoProcessFoundException();
+        }
     }
 
     @Override
-    public Memory getProcessVirtualMemory(Long processId) throws IOError, IOException {
+    public Memory getProcessVirtualMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
 
-        String result = ProcessCommand.call("ps -o vsz" + processId);
+        String result = ProcessCommand.call("ps -o vsz " + processId);
         String[] lines = result.split("\n");
-        Long value = Long.valueOf(lines[1].trim());
-
-        return new Memory(value);
+        try {
+            Long value = Long.valueOf(lines[1].trim());
+            return new Memory(value);
+        } catch (Exception ex) {
+            throw new NoProcessFoundException();
+        }
     }
 
     @Override
@@ -40,16 +47,18 @@ public class ProcessWatcherLinux implements ProcessWatcher {
         processIds.add(processId);
 
         for (String line : lines) {
-            Long value = Long.valueOf(line.trim());
-            Set<Long> subtree = getChildrenTree(value);
-            processIds.addAll(subtree);
+            if (line.length() > 0) {
+                Integer value = Integer.valueOf(line.trim());
+                Set<Long> subtree = getChildrenTree((long)value);
+                processIds.addAll(subtree);
+            }
         }
 
         return processIds;
     }
 
     @Override
-    public Memory getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOError, IOException {
+    public Memory getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
         Set<Long> childrenProcesses = getChildrenTree(processId);
 
         Long value = 0L;
@@ -61,7 +70,7 @@ public class ProcessWatcherLinux implements ProcessWatcher {
     }
 
     @Override
-    public Memory getProcessVirtualWithChildrenMemory(Long processId) throws IOError, IOException {
+    public Memory getProcessVirtualWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
 
         Set<Long> childrenProcesses = getChildrenTree(processId);
 
@@ -78,6 +87,7 @@ public class ProcessWatcherLinux implements ProcessWatcher {
 
         String result = ProcessCommand.call("ps -o time " + processId);
         String[] lines = result.split("\n");
+        System.out.println(lines[1].trim());
         Duration duration = Duration.parse(lines[1].trim());
 
         return duration;

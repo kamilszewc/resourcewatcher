@@ -12,6 +12,7 @@ class ProcessWatcherMacTest extends Specification {
 
         when:
         def processMemory = processWatcher.getProcessResidentSetSizeMemory(1)
+        print processMemory.KB()
 
         then:
         processMemory != null
@@ -33,7 +34,8 @@ class ProcessWatcherMacTest extends Specification {
         def processWatcher = ResourceWatcherFactory.create().processWatcher
 
         when:
-        def processMemory = processWatcher.getProcessResidentSetSizeWithChildrenMemory(1)
+        def processMemory = processWatcher.getProcessResidentSetSizeWithChildrenMemory(305)
+        print processMemory.KB()
 
         then:
         processMemory != null
@@ -44,7 +46,8 @@ class ProcessWatcherMacTest extends Specification {
         def processWatcher = ResourceWatcherFactory.create().processWatcher
 
         when:
-        def processMemory = processWatcher.getProcessVirtualMemory(1)
+        def processMemory = processWatcher.getProcessVirtualMemory(305)
+        print processMemory.KB()
 
         then:
         processMemory != null
@@ -55,7 +58,8 @@ class ProcessWatcherMacTest extends Specification {
         def processWatcher = ResourceWatcherFactory.create().processWatcher
 
         when:
-        def processMemory = processWatcher.getProcessVirtualWithChildrenMemory(1)
+        def processMemory = processWatcher.getProcessVirtualWithChildrenMemory(305)
+        print processMemory.KB()
 
         then:
         processMemory != null
@@ -67,6 +71,7 @@ class ProcessWatcherMacTest extends Specification {
 
         when:
         def childrenTree = processWatcher.getChildrenTree(1)
+        print childrenTree
 
         then:
         childrenTree != null
@@ -78,6 +83,7 @@ class ProcessWatcherMacTest extends Specification {
 
         when:
         def cpuTime = processWatcher.getProcessCpuTime(1)
+        print cpuTime
 
         then:
         cpuTime != null
@@ -89,6 +95,7 @@ class ProcessWatcherMacTest extends Specification {
 
         when:
         def cpuTime = processWatcher.getProcessCpuTime(1)
+        print cpuTime
 
         then:
         cpuTime != null

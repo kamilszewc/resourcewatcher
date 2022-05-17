@@ -6,9 +6,6 @@ import com.computinglaboratory.resourcewatcher.watchers.interfaces.RamWatcher;
 
 import java.io.IOError;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class RamWatcherLinux implements RamWatcher {
     @Override

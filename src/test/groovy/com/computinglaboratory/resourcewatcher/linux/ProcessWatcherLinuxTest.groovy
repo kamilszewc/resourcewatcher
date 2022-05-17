@@ -12,6 +12,7 @@ class ProcessWatcherLinuxTest extends Specification {
 
         when:
         def processMemory = processWatcher.getProcessResidentSetSizeMemory(1)
+        print processMemory.KB()
 
         then:
         processMemory != null
@@ -34,6 +35,7 @@ class ProcessWatcherLinuxTest extends Specification {
 
         when:
         def processMemory = processWatcher.getProcessResidentSetSizeWithChildrenMemory(1)
+        print processMemory.KB()
 
         then:
         processMemory != null
@@ -45,6 +47,7 @@ class ProcessWatcherLinuxTest extends Specification {
 
         when:
         def processMemory = processWatcher.getProcessVirtualMemory(1)
+        print processMemory.KB()
 
         then:
         processMemory != null
@@ -56,6 +59,7 @@ class ProcessWatcherLinuxTest extends Specification {
 
         when:
         def processMemory = processWatcher.getProcessVirtualWithChildrenMemory(1)
+        print processMemory.KB()
 
         then:
         processMemory != null
@@ -67,6 +71,7 @@ class ProcessWatcherLinuxTest extends Specification {
 
         when:
         def childrenTree = processWatcher.getChildrenTree(1)
+        print childrenTree
 
         then:
         childrenTree != null
@@ -78,6 +83,7 @@ class ProcessWatcherLinuxTest extends Specification {
 
         when:
         def cpuTime = processWatcher.getProcessCpuTime(1)
+        print cpuTime
 
         then:
         cpuTime != null
@@ -89,6 +95,7 @@ class ProcessWatcherLinuxTest extends Specification {
 
         when:
         def cpuTime = processWatcher.getProcessCpuTime(1)
+        print cpuTime
 
         then:
         cpuTime != null
