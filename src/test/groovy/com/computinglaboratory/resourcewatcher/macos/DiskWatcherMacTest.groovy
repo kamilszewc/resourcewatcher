@@ -6,60 +6,63 @@ import spock.lang.Specification
 
 class DiskWatcherMacTest extends Specification{
 
-    def "gives non null partition available space report"() {
+    def "getUsablePartitionSpace rise an exception when partition does not exist"() {
         given:
         def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
-        def partitionSize = diskWatcher.getAvailablePartitionSpace("/")
-
-        then:
-        partitionSize != null
-    }
-
-    def "getAvailablePartitionSpace rise an exception when partition does not exist"() {
-        given:
-        def diskWatcher = ResourceWatcherFactory.create().diskWatcher
-
-        when:
-        def partitionSize = diskWatcher.getUsedPartitionSpace("dsffd")
+        def partitionSize = diskWatcher.getUsablePartitionSpace("dsffd")
 
         then:
         thrown NoPartitionException
     }
 
-    def "gives non null partition used space report"() {
+    def "getFreePartitionSpace"() {
         given:
         def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
-        def partitionSize = diskWatcher.getUsedPartitionSpace("/")
+        def partitionSize = diskWatcher.getFreePartitionSpace("/")
+        print partitionSize.GB()
 
         then:
         partitionSize != null
     }
 
-    def "getUsedPartitionSpace rise an exception when partition does not exist"() {
+    def "getTotalPartitionSpace"() {
         given:
         def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
-        def partitionSize = diskWatcher.getUsedPartitionSpace("dsffd")
+        def partitionSize = diskWatcher.getTotalPartitionSpace("/")
+        print partitionSize.GB()
 
         then:
-        thrown NoPartitionException
+        partitionSize != null
     }
 
-    def "gives non null list of partitions report"() {
+    def "getUsablePartitionSpace"() {
+        given:
+        def diskWatcher = ResourceWatcherFactory.create().diskWatcher
+
+        when:
+        def partitionSize = diskWatcher.getUsablePartitionSpace("/")
+        print partitionSize.value.GB()
+
+        then:
+        partitionSize != null
+    }
+
+    def "Gives list of partitions"() {
         given:
         def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
         def partitions = diskWatcher.getListOfPartitions()
+        print partitions
 
         then:
         partitions != null
     }
-
 
 }
