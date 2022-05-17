@@ -6,56 +6,83 @@ import spock.lang.Specification
 
 class DiskWatcherLinuxTest extends Specification{
 
-    def "gives non null partition available space report"() {
+    def "getFreePartitionSpace"() {
         given:
         def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
-        def partitionSize = diskWatcher.getAvailablePartitionSpace("/")
+        def partitionSize = diskWatcher.getFreePartitionSpace("/")
+        print partitionSize.GB()
 
         then:
         partitionSize != null
     }
 
-    def "getAvailablePartitionSpace rise an exception when partition does not exist"() {
+    def "getFreePartitionSpace NoPartitionException"() {
         given:
         def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
-        def partitionSize = diskWatcher.getUsedPartitionSpace("dsffd")
+        def partitionSize = diskWatcher.getFreePartitionSpace("dsffd")
 
         then:
         thrown NoPartitionException
     }
 
-    def "gives non null partition used space report"() {
+    def "getUsablePartitionSpace"() {
         given:
         def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
-        def partitionSize = diskWatcher.getUsedPartitionSpace("/")
+        def partitionSize = diskWatcher.getUsablePartitionSpace("/")
+        print partitionSize.GB()
 
         then:
         partitionSize != null
     }
 
-    def "getUsedPartitionSpace rise an exception when partition does not exist"() {
+    def "getUsablePartitionSpace NoPartitionException"() {
         given:
         def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
-        def partitionSize = diskWatcher.getUsedPartitionSpace("dsffd")
+        def partitionSize = diskWatcher.getUsablePartitionSpace("dsffd")
 
         then:
         thrown NoPartitionException
     }
 
-    def "gives non null list of partitions report"() {
+    def "getTotalPartitionSpace"() {
+        given:
+        def diskWatcher = ResourceWatcherFactory.create().diskWatcher
+
+        when:
+        def partitionSize = diskWatcher.getTotalPartitionSpace("/")
+        print partitionSize.GB()
+
+        then:
+        partitionSize != null
+    }
+
+    def "getTotalPartitionSpace NoPartitionException"() {
+        given:
+        def diskWatcher = ResourceWatcherFactory.create().diskWatcher
+
+        when:
+        def partitionSize = diskWatcher.getTotalPartitionSpace("dsffd")
+
+        then:
+        thrown NoPartitionException
+    }
+
+
+    def "getListOfPartitions"() {
         given:
         def diskWatcher = ResourceWatcherFactory.create().diskWatcher
 
         when:
         def partitions = diskWatcher.getListOfPartitions()
+        print partitions
 
         then:
         partitions != null

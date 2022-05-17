@@ -5,56 +5,61 @@ import spock.lang.*
 
 class RamWatcherLinuxTest extends Specification {
 
-    def "gives non null total memory report"() {
+    def "getTotalMemory is not null"() {
         given:
         def systemRamWatcher = ResourceWatcherFactory.create().ramWatcher
 
         when:
         def totalMemory = systemRamWatcher.getTotalMemory()
+        print totalMemory.MB()
 
         then:
         totalMemory != null && totalMemory != 0
     }
 
-    def "gives non null free memory report"() {
+    def "getFreeMemory is not null"() {
         given:
         def systemRamWatcher = ResourceWatcherFactory.create().ramWatcher
 
         when:
         def freeMemory = systemRamWatcher.getFreeMemory()
+        print freeMemory.MB()
 
         then:
         freeMemory != null && freeMemory != 0
     }
 
-    def "gives non null available memory report"() {
+    def "getAvailableMemory is not null"() {
         given:
         def systemRamWatcher = ResourceWatcherFactory.create().ramWatcher
 
         when:
         def availableMemory = systemRamWatcher.getAvailableMemory()
+        print availableMemory.MB()
 
         then:
         availableMemory != null && availableMemory != 0
     }
 
-    def "gives non null cached report"() {
+    def "getCachedMemory is not null"() {
         given:
         def systemRamWatcher = ResourceWatcherFactory.create().ramWatcher
 
         when:
-        def buffers = systemRamWatcher.getCached()
+        def cachedMemory = systemRamWatcher.getCachedMemory()
+        print cachedMemory.MB()
 
         then:
-        buffers != null && buffers != 0
+        cachedMemory != null && cachedMemory != 0
     }
 
-    def "gives non null buffers report"() {
+    def "getBuffers is not null"() {
         given:
         def systemRamWatcher = ResourceWatcherFactory.create().ramWatcher
 
         when:
         def buffers = systemRamWatcher.getBuffers()
+        print buffers.MB()
 
         then:
         buffers != null && buffers != 0

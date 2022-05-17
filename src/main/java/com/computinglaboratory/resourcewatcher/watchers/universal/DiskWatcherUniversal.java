@@ -1,8 +1,8 @@
 package com.computinglaboratory.resourcewatcher.watchers.universal;
 
 import com.computinglaboratory.resourcewatcher.core.Memory;
+import com.computinglaboratory.resourcewatcher.exceptions.NoPartitionException;
 import com.computinglaboratory.resourcewatcher.watchers.interfaces.DiskWatcher;
-import org.codehaus.groovy.runtime.DefaultGroovyMethods;
 
 import java.io.File;
 import java.io.IOError;
@@ -13,24 +13,33 @@ import java.util.stream.Collectors;
 public class DiskWatcherUniversal implements DiskWatcher {
 
     @Override
-    public Memory getFreePartitionSpace(String partition) throws IOError {
+    public Memory getFreePartitionSpace(String partition) throws IOError, NoPartitionException {
 
         File p = new File(partition);
-        return new Memory((Long) DefaultGroovyMethods.intdiv(p.getFreeSpace(), 1024));
+        if (!p.exists()) {
+            throw new NoPartitionException();
+        }
+        return new Memory(p.getFreeSpace() / 1024);
     }
 
     @Override
-    public Memory getTotalPartitionSpace(String partition) throws IOError {
+    public Memory getTotalPartitionSpace(String partition) throws IOError, NoPartitionException {
 
         File p = new File(partition);
-        return new Memory((Long) DefaultGroovyMethods.intdiv(p.getTotalSpace(), 1024));
+        if (!p.exists()) {
+            throw new NoPartitionException();
+        }
+        return new Memory(p.getTotalSpace() / 1024);
     }
 
     @Override
-    public Memory getUsablePartitionSpace(String partition) throws IOError {
+    public Memory getUsablePartitionSpace(String partition) throws IOError, NoPartitionException {
 
         File p = new File(partition);
-        return new Memory((Long) DefaultGroovyMethods.intdiv(p.getUsableSpace(), 1024));
+        if (!p.exists()) {
+            throw new NoPartitionException();
+        }
+        return new Memory(p.getUsableSpace() / 1024);
     }
 
     @Override

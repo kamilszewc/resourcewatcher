@@ -6,6 +6,9 @@ import com.computinglaboratory.resourcewatcher.watchers.interfaces.RamWatcher;
 
 import java.io.IOError;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class RamWatcherLinux implements RamWatcher {
     @Override
@@ -15,7 +18,8 @@ public class RamWatcherLinux implements RamWatcher {
         String[] lines = result.split("\n");
         for (String line : lines) {
             if (line.split(":")[0].equals("MemTotal")) {
-                Long memory = Long.valueOf(line.split(" ")[-2]);
+                String[] lineElements = line.split(" ");
+                Long memory = Long.valueOf(lineElements[lineElements.length - 2]);
                 return new Memory(memory);
             }
         }
@@ -30,7 +34,8 @@ public class RamWatcherLinux implements RamWatcher {
         String[] lines = result.split("\n");
         for (String line : lines) {
             if (line.split(":")[0].equals("MemFree")) {
-                Long memory = Long.valueOf(line.split(" ")[-2]);
+                String[] lineElements = line.split(" ");
+                Long memory = Long.valueOf(lineElements[lineElements.length - 2]);
                 return new Memory(memory);
             }
         }
@@ -45,7 +50,8 @@ public class RamWatcherLinux implements RamWatcher {
         String[] lines = result.split("\n");
         for (String line : lines) {
             if (line.split(":")[0].equals("MemAvailable")) {
-                Long memory = Long.valueOf(line.split(" ")[-2]);
+                String[] lineElements = line.split(" ");
+                Long memory = Long.valueOf(lineElements[lineElements.length - 2]);
                 return new Memory(memory);
             }
         }
@@ -60,7 +66,8 @@ public class RamWatcherLinux implements RamWatcher {
         String[] lines = result.split("\n");
         for (String line : lines) {
             if (line.split(":")[0].equals("Buffers")) {
-                Long memory = Long.valueOf(line.split(" ")[-2]);
+                String[] lineElements = line.split(" ");
+                Long memory = Long.valueOf(lineElements[lineElements.length - 2]);
                 return new Memory(memory);
             }
         }
@@ -69,13 +76,14 @@ public class RamWatcherLinux implements RamWatcher {
     }
 
     @Override
-    public Memory getCached() throws IOError, IOException {
+    public Memory getCachedMemory() throws IOError, IOException {
 
         String result = ProcessCommand.call("cat /proc/meminfo");
         String[] lines = result.split("\n");
         for (String line : lines) {
             if (line.split(":")[0].equals("Cached")) {
-                Long memory = Long.valueOf(line.split(" ")[-2]);
+                String[] lineElements = line.split(" ");
+                Long memory = Long.valueOf(lineElements[lineElements.length - 2]);
                 return new Memory(memory);
             }
         }

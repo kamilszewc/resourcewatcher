@@ -14,5 +14,5 @@ public interface RamWatcher {
 
     public abstract Memory getBuffers() throws IOError, IOException;
 
-    public abstract Memory getCached() throws IOError, IOException;
+    public abstract Memory getCachedMemory() throws IOError, IOException;
 }

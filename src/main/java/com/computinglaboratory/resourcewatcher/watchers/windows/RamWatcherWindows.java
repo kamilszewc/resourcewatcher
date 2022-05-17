@@ -27,7 +27,7 @@ public class RamWatcherWindows implements RamWatcher {
     }
 
     @Override
-    public Memory getCached() throws IOError {
+    public Memory getCachedMemory() throws IOError {
         return null;
     }
 

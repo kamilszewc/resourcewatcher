@@ -21,6 +21,7 @@ public class ProcessCommand {
         String line = null;
         while ((line = bufferedReader.readLine()) != null) {
             stringBuilder.append(line);
+            stringBuilder.append("\n");
         }
 
         return stringBuilder.toString();
