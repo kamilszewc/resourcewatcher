@@ -11,6 +11,7 @@ class SystemProcessesWatcherMacTest extends Specification {
 
         when:
         def numberOfProcesses = systemProcessesWatcher.getNumberOfProcesses()
+        print numberOfProcesses
 
         then:
         numberOfProcesses != null

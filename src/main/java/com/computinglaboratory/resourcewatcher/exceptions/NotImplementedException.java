@@ -1,6 +1,6 @@
 package com.computinglaboratory.resourcewatcher.exceptions;
 
-public class NotImplementedException extends Exception {
+public class NotImplementedException extends RuntimeException {
 
     public NotImplementedException() {
     }

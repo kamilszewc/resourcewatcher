@@ -1,6 +1,8 @@
 package com.computinglaboratory.resourcewatcher.watchers.macos;
 
+import com.computinglaboratory.resourcewatcher.exceptions.NotImplementedException;
 import com.computinglaboratory.resourcewatcher.watchers.interfaces.*;
+import com.computinglaboratory.resourcewatcher.watchers.linux.RamWatcherLinux;
 import com.computinglaboratory.resourcewatcher.watchers.universal.DiskWatcherUniversal;
 
 public class ResourceWatcherMac implements ResourceWatcher {
@@ -17,7 +19,7 @@ public class ResourceWatcherMac implements ResourceWatcher {
 
     @Override
     public NvidiaCudaWatcher getNvidiaCudaWatcher() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
@@ -27,11 +29,11 @@ public class ResourceWatcherMac implements ResourceWatcher {
 
     @Override
     public RamWatcher getRamWatcher() {
-        return null;
+        return new RamWatcherMac();
     }
 
     @Override
     public SystemProcessesWatcher getSystemProcessesWatcher() {
-        return null;
+        return new SystemProcessesWatcherMac();
     }
 }

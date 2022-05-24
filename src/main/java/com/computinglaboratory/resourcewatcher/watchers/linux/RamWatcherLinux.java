@@ -6,6 +6,8 @@ import com.computinglaboratory.resourcewatcher.watchers.interfaces.RamWatcher;
 
 import java.io.IOError;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.lang.management.OperatingSystemMXBean;
 
 public class RamWatcherLinux implements RamWatcher {
     @Override
@@ -17,6 +19,9 @@ public class RamWatcherLinux implements RamWatcher {
             if (line.split(":")[0].equals("MemTotal")) {
                 String[] lineElements = line.split(" ");
                 Long memory = Long.valueOf(lineElements[lineElements.length - 2]);
+
+                System.out.println(memory);
+
                 return new Memory(memory);
             }
         }
