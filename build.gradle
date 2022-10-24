@@ -6,8 +6,8 @@ plugins {
     id 'signing'
 }
 
-group 'com.computinglaboratory'
-version '3.0'
+group 'io.github.kamilszewc.resourcewatcher'
+version '3.1'
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
@@ -19,8 +19,8 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 
     // Testing
-    implementation 'org.codehaus.groovy:groovy-all:3.0.10'
-    testImplementation 'org.spockframework:spock-core:2.1-groovy-3.0'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.13'
+    testImplementation 'org.spockframework:spock-core:2.3-groovy-3.0'
 }
 
 test {
@@ -61,7 +61,7 @@ publishing {
             from components.java
             pom {
                 name = 'Resource Watcher'
-                description = 'Groovy-based Linux, Mac, Windows resources watcher (cpu, gpu, ram, disk, ...)'
+                description = 'Java-based Linux, Mac, Windows resources watcher (cpu, gpu, ram, disk, ...)'
                 url = 'https://github.com/computinglaboratory/resourcewatcher'
                 licenses {
                     license {
@@ -77,9 +77,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = 'scm:git:git://github.com/computinglaboratory/resourcewatcher.git'
-                    developerConnection = 'scm:git:https://github.com/computinglaboratory/resourcewatcher.git'
-                    url = 'https://github.com/computinglaboratory/resourcewatcher.git'
+                    connection = 'scm:git:git://github.com/kamilszewc/resourcewatcher.git'
+                    developerConnection = 'scm:git:https://github.com/kamilszewc/resourcewatcher.git'
+                    url = 'https://github.com/kamilszewc/resourcewatcher.git'
                 }
             }
         }
