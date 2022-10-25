@@ -20,7 +20,7 @@ Usage with maven:
 
 ```xml
 <dependency>
-    <groupId>io.github.kamilszewc.resourcewatcher</groupId>
+    <groupId>io.github.kamilszewc</groupId>
     <artifactId>resourcewatcher</artifactId>
     <version>3.1</version>
 </dependency>
