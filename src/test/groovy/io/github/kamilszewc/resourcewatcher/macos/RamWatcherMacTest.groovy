@@ -35,33 +35,9 @@ class RamWatcherMacTest extends Specification {
 
         when:
         def availableMemory = systemRamWatcher.getAvailableMemory()
-        print availableMemory.MB()
+        print availableMemory.KB()
 
         then:
         availableMemory != null && availableMemory != 0
-    }
-
-    def "getCachedMemory is not null"() {
-        given:
-        def systemRamWatcher = ResourceWatcherFactory.create().ramWatcher
-
-        when:
-        def cachedMemory = systemRamWatcher.getCachedMemory()
-        print cachedMemory.MB()
-
-        then:
-        cachedMemory != null && cachedMemory != 0
-    }
-
-    def "getBuffers is not null"() {
-        given:
-        def systemRamWatcher = ResourceWatcherFactory.create().ramWatcher
-
-        when:
-        def buffers = systemRamWatcher.getBuffers()
-        print buffers.MB()
-
-        then:
-        buffers != null && buffers != 0
     }
 }

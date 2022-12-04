@@ -1,5 +1,6 @@
 package io.github.kamilszewc.resourcewatcher.watchers.windows;
 
+import io.github.kamilszewc.resourcewatcher.exceptions.NotImplementedException;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.*;
 import io.github.kamilszewc.resourcewatcher.watchers.universal.DiskWatcherUniversal;
 
@@ -12,26 +13,26 @@ public class ResourceWatcherWindows implements ResourceWatcher {
 
     @Override
     public NetworkWatcher getNetworkWatcher() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public NvidiaCudaWatcher getNvidiaCudaWatcher() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public ProcessWatcher getProcessWatcher() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public RamWatcher getRamWatcher() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public SystemProcessesWatcher getSystemProcessesWatcher() {
-        return null;
+        throw new NotImplementedException();
     }
 }

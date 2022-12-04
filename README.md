@@ -8,7 +8,7 @@ The library is written in Java and tested with Spock framework.
 
 It was tested with:
 - Ubuntu 18.04, 20.04, 22.04
-- MacOS 12
+- MacOS 12, 13
 
 Windows platform is still not developed
 
@@ -22,14 +22,14 @@ Usage with maven:
 <dependency>
     <groupId>io.github.kamilszewc</groupId>
     <artifactId>resourcewatcher</artifactId>
-    <version>3.1</version>
+    <version>3.3</version>
 </dependency>
 ```
 
 Usage with gradle:
 
 ```groovy
-implementation 'io.github.kamilszewc:resourcewatcher:3.1'
+implementation 'io.github.kamilszewc:resourcewatcher:3.3'
 ```
 
 ## Usage

@@ -8,16 +8,6 @@ import java.io.IOError;
 import java.io.IOException;
 
 public class NvidiaCudaWatcherLinux implements NvidiaCudaWatcher {
-    @Override
-    public Boolean isNvidiaSmiAvailable() throws IOError {
-
-        try {
-            String result = ProcessCommand.call("cat /proc/meminfo");
-            return true;
-        } catch (Exception ex) {
-            return false;
-        }
-    }
 
     @Override
     public Memory getUsedMemory(Integer gpuId) throws IOError, IOException {

@@ -6,7 +6,6 @@ import java.io.IOError;
 import java.io.IOException;
 
 public interface NvidiaCudaWatcher {
-    public abstract Boolean isNvidiaSmiAvailable() throws IOError;
 
     public abstract Memory getUsedMemory(Integer gpuId) throws IOError, IOException;
 

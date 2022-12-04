@@ -21,14 +21,4 @@ public class RamWatcherWindows implements RamWatcher {
         return null;
     }
 
-    @Override
-    public Memory getBuffers() throws IOError {
-        return null;
-    }
-
-    @Override
-    public Memory getCachedMemory() throws IOError {
-        return null;
-    }
-
 }

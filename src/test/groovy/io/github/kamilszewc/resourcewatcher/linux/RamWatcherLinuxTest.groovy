@@ -41,27 +41,5 @@ class RamWatcherLinuxTest extends Specification {
         availableMemory != null && availableMemory != 0
     }
 
-    def "getCachedMemory is not null"() {
-        given:
-        def systemRamWatcher = ResourceWatcherFactory.create().ramWatcher
 
-        when:
-        def cachedMemory = systemRamWatcher.getCachedMemory()
-        print cachedMemory.MB()
-
-        then:
-        cachedMemory != null && cachedMemory != 0
-    }
-
-    def "getBuffers is not null"() {
-        given:
-        def systemRamWatcher = ResourceWatcherFactory.create().ramWatcher
-
-        when:
-        def buffers = systemRamWatcher.getBuffers()
-        print buffers.MB()
-
-        then:
-        buffers != null && buffers != 0
-    }
 }
