@@ -1,31 +1,32 @@
 package io.github.kamilszewc.resourcewatcher.core;
 
 public class Bandwidth {
-    public double Kbs() {
+
+    public double getBs() {
+        return value;
+    }
+
+    public double getKbs() {
         return value / 1024;
     }
 
-    public double Mbs() {
-        return Kbs() / 1024;
+    public double getMbs() {
+        return getKbs() / 1024;
     }
 
-    public double Gbs() {
-        return Mbs() / 1024;
+    public double getGbs() {
+        return getMbs() / 1024;
     }
 
-    public double Tbs() {
-        return Tbs() / 1024;
+    public double getTbs() {
+        return getTbs() / 1024;
     }
 
     public Bandwidth(double value) {
         this.value = value;
     }
 
-    public double getValue() {
-        return value;
-    }
-
-    public void setValue(double value) {
+    public void setBs(double value) {
         this.value = value;
     }
 

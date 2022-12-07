@@ -3,15 +3,18 @@ package io.github.kamilszewc.resourcewatcher.watchers.interfaces;
 import io.github.kamilszewc.resourcewatcher.exceptions.NotImplementedException;
 
 public interface ResourceWatcher {
-    public abstract DiskWatcher getDiskWatcher();
 
-    public abstract NetworkWatcher getNetworkWatcher();
+    CpuWatcher getCpuWatcher();
 
-    public abstract NvidiaCudaWatcher getNvidiaCudaWatcher() throws NotImplementedException;
+    DiskWatcher getDiskWatcher();
 
-    public abstract ProcessWatcher getProcessWatcher();
+    NetworkWatcher getNetworkWatcher();
 
-    public abstract RamWatcher getRamWatcher();
+    NvidiaCudaWatcher getNvidiaCudaWatcher() throws NotImplementedException;
 
-    public abstract SystemProcessesWatcher getSystemProcessesWatcher();
+    ProcessWatcher getProcessWatcher();
+
+    RamWatcher getRamWatcher();
+
+    SystemProcessesWatcher getSystemProcessesWatcher();
 }

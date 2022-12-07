@@ -1,35 +1,34 @@
 package io.github.kamilszewc.resourcewatcher.core;
 
 public class Memory {
-    public long KB() {
-        return value;
+
+    public long getB() { return value; }
+
+    public long getKB() {
+        return getB() / 1024;
     }
 
-    public long MB() {
-        return KB() / 1024;
+    public long getMB() {
+        return getKB() / 1024;
     }
 
-    public long GB() {
-        return MB() / 1024;
+    public long getGB() {
+        return getMB() / 1024;
     }
 
-    public long TB() {
-        return GB() / 1024;
+    public long getTB() {
+        return getGB() / 1024;
     }
 
-    public long PB() {
-        return TB() / 1024;
+    public long getPB() {
+        return getTB() / 1024;
     }
 
     public Memory(Long value) {
         this.value = value;
     }
 
-    public long getValue() {
-        return value;
-    }
-
-    public void setValue(long value) {
+    public void setB(long value) {
         this.value = value;
     }
 

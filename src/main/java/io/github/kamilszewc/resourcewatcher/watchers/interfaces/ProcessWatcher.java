@@ -9,17 +9,17 @@ import java.time.Duration;
 import java.util.Set;
 
 public interface ProcessWatcher {
-    public abstract Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
 
-    public abstract Memory getProcessVirtualMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Memory getProcessVirtualMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
 
-    public abstract Set<Long> getChildrenTree(final Long processId) throws IOError, IOException, NoProcessFoundException;
+    Set<Long> getChildrenTree(final Long processId) throws IOError, IOException, NoProcessFoundException;
 
-    public abstract Memory getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Memory getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
 
-    public abstract Memory getProcessVirtualWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Memory getProcessVirtualWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
 
-    public abstract Duration getProcessCpuTime(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Duration getProcessCpuTime(Long processId) throws IOError, IOException, NoProcessFoundException;
 
-    public abstract Duration getProcessCpuTimeWithChildren(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Duration getProcessCpuTimeWithChildren(Long processId) throws IOError, IOException, NoProcessFoundException;
 }

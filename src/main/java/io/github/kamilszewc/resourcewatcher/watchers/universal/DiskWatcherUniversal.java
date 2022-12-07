@@ -19,7 +19,7 @@ public class DiskWatcherUniversal implements DiskWatcher {
         if (!p.exists()) {
             throw new NoPartitionException();
         }
-        return new Memory(p.getFreeSpace() / 1024);
+        return new Memory(p.getFreeSpace());
     }
 
     @Override
@@ -29,7 +29,7 @@ public class DiskWatcherUniversal implements DiskWatcher {
         if (!p.exists()) {
             throw new NoPartitionException();
         }
-        return new Memory(p.getTotalSpace() / 1024);
+        return new Memory(p.getTotalSpace());
     }
 
     @Override
@@ -39,7 +39,7 @@ public class DiskWatcherUniversal implements DiskWatcher {
         if (!p.exists()) {
             throw new NoPartitionException();
         }
-        return new Memory(p.getUsableSpace() / 1024);
+        return new Memory(p.getUsableSpace());
     }
 
     @Override

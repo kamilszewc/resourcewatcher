@@ -6,9 +6,9 @@ import java.io.IOError;
 import java.io.IOException;
 
 public interface RamWatcher {
-    public abstract Memory getTotalMemory() throws IOError, IOException;
+    Memory getTotalMemory() throws IOError, IOException;
 
-    public abstract Memory getFreeMemory() throws IOError, IOException;
+    Memory getFreeMemory() throws IOError, IOException;
 
-    public abstract Memory getAvailableMemory() throws IOError, IOException;
+    Memory getAvailableMemory() throws IOError, IOException;
 }

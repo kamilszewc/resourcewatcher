@@ -13,7 +13,7 @@ class ProcessWatcherMacTest extends Specification {
 
         when:
         def processMemory = processWatcher.getProcessResidentSetSizeMemory(1)
-        print processMemory.KB()
+        print processMemory.getKB()
 
         then:
         processMemory != null
@@ -36,7 +36,7 @@ class ProcessWatcherMacTest extends Specification {
 
         when:
         def processMemory = processWatcher.getProcessResidentSetSizeWithChildrenMemory(305)
-        print processMemory.KB()
+        print processMemory.getKB()
 
         then:
         processMemory != null
@@ -48,7 +48,7 @@ class ProcessWatcherMacTest extends Specification {
 
         when:
         def processMemory = processWatcher.getProcessVirtualMemory(305)
-        print processMemory.KB()
+        print processMemory.getKB()
 
         then:
         processMemory != null
@@ -60,7 +60,7 @@ class ProcessWatcherMacTest extends Specification {
 
         when:
         def processMemory = processWatcher.getProcessVirtualWithChildrenMemory(305)
-        print processMemory.KB()
+        print processMemory.getKB()
 
         then:
         processMemory != null

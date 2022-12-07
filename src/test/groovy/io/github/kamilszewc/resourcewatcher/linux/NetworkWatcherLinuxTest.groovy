@@ -16,8 +16,8 @@ class NetworkWatcherLinuxTest extends Specification {
         def speed = networkWatcher.getInterfaceTransmitSpeed("wlp5s0")
 
         then:
-        println speed.value.Mbs()
-        speed.value.Kbs() != null
+        println speed.getMbs()
+        speed.getKbs() != null
     }
 
     def "returns not null receive values for lo interface"() {
@@ -28,7 +28,7 @@ class NetworkWatcherLinuxTest extends Specification {
         def speed = networkWatcher.getInterfaceReceiveSpeed("wlp5s0")
 
         then:
-        println speed.value.Mbs()
-        speed.value.Kbs() != null
+        println speed.getMbs()
+        speed.getKbs() != null
     }
 }

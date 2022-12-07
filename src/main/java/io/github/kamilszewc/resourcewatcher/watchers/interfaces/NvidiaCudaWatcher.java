@@ -7,17 +7,17 @@ import java.io.IOException;
 
 public interface NvidiaCudaWatcher {
 
-    public abstract Memory getUsedMemory(Integer gpuId) throws IOError, IOException;
+    Memory getUsedMemory(Integer gpuId) throws IOError, IOException;
 
-    public abstract Integer getNumberOfGpus() throws IOError, IOException;
+    Integer getNumberOfGpus() throws IOError, IOException;
 
-    public abstract Memory getFreeMemory(Integer gpuId) throws IOError, IOException;
+    Memory getFreeMemory(Integer gpuId) throws IOError, IOException;
 
-    public abstract Memory getTotalMemory(Integer gpuId) throws IOError, IOException;
+    Memory getTotalMemory(Integer gpuId) throws IOError, IOException;
 
-    public abstract Integer getTemperature(Integer gpuId) throws IOError, IOException;
+    Integer getTemperature(Integer gpuId) throws IOError, IOException;
 
-    public abstract Integer getUtilization(Integer gpuId) throws IOError, IOException;
+    Integer getUtilization(Integer gpuId) throws IOError, IOException;
 
-    public abstract String getName(Integer gpuId) throws IOError, IOException;
+    String getName(Integer gpuId) throws IOError, IOException;
 }

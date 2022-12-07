@@ -8,6 +8,11 @@ import io.github.kamilszewc.resourcewatcher.watchers.universal.DiskWatcherUniver
 public class ResourceWatcherMac implements ResourceWatcher {
 
     @Override
+    public CpuWatcher getCpuWatcher() {
+        return new CpuWatcherMac();
+    }
+
+    @Override
     public DiskWatcher getDiskWatcher() {
         return new DiskWatcherUniversal();
     }

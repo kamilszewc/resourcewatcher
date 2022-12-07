@@ -6,7 +6,7 @@ import io.github.kamilszewc.resourcewatcher.exceptions.NoNetworkInterfaceExcepti
 import java.io.IOException;
 
 public interface NetworkWatcher {
-    public abstract Bandwidth getInterfaceReceiveSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException;
+    Bandwidth getInterfaceReceiveSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException;
 
-    public abstract Bandwidth getInterfaceTransmitSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException;
+    Bandwidth getInterfaceTransmitSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException;
 }

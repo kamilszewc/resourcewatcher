@@ -6,6 +6,11 @@ import io.github.kamilszewc.resourcewatcher.watchers.universal.DiskWatcherUniver
 public class ResourceWatcherLinux implements ResourceWatcher {
 
     @Override
+    public CpuWatcher getCpuWatcher() {
+        return new CpuWatcherLinux();
+    }
+
+    @Override
     public DiskWatcher getDiskWatcher() {
         return new DiskWatcherUniversal();
     }

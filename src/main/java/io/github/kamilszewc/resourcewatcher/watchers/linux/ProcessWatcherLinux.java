@@ -18,7 +18,7 @@ public class ProcessWatcherLinux implements ProcessWatcher {
         String[] lines = result.split("\n");
         try {
             Long value = Long.valueOf(lines[1].trim());
-            return new Memory(value);
+            return new Memory(value * 1024);
         } catch (Exception ex) {
             throw new NoProcessFoundException();
         }
@@ -31,7 +31,7 @@ public class ProcessWatcherLinux implements ProcessWatcher {
         String[] lines = result.split("\n");
         try {
             Long value = Long.valueOf(lines[1].trim());
-            return new Memory(value);
+            return new Memory(value * 1024);
         } catch (Exception ex) {
             throw new NoProcessFoundException();
         }
@@ -63,10 +63,10 @@ public class ProcessWatcherLinux implements ProcessWatcher {
 
         Long value = 0L;
         for (Long ps : childrenProcesses) {
-            value += getProcessResidentSetSizeMemory(ps).KB();
+            value += getProcessResidentSetSizeMemory(ps).getKB();
         }
 
-        return new Memory(value);
+        return new Memory(value * 1024);
     }
 
     @Override
@@ -76,10 +76,10 @@ public class ProcessWatcherLinux implements ProcessWatcher {
 
         Long value = 0L;
         for (Long ps : childrenProcesses) {
-            value += getProcessVirtualMemory(ps).KB();
+            value += getProcessVirtualMemory(ps).getKB();
         }
 
-        return new Memory(value);
+        return new Memory(value * 1024);
     }
 
     @Override

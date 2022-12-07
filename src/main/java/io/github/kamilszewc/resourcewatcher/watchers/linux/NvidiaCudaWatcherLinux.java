@@ -15,7 +15,7 @@ public class NvidiaCudaWatcherLinux implements NvidiaCudaWatcher {
         String result = ProcessCommand.call("nvidia-smi --query-gpu=memory.used --format=csv -i " + gpuId);
         String line = result.split("\n")[1];
         Long value = Long.valueOf(line.split(" ")[0].trim()) * 1024;
-        return new Memory(value);
+        return new Memory(value * 1024);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class NvidiaCudaWatcherLinux implements NvidiaCudaWatcher {
         String[] lines = result.split("\n");
         String line = lines[1];
         Long value = Long.valueOf(line.split(" ")[0].trim()) * 1024;
-        return new Memory(value);
+        return new Memory(value * 1024);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class NvidiaCudaWatcherLinux implements NvidiaCudaWatcher {
         String[] lines = result.split("\n");
         String line = lines[1];
         Long value = Long.valueOf(line.split(" ")[0].trim()) * 1024;
-        return new Memory(value);
+        return new Memory(value * 1024);
     }
 
     @Override

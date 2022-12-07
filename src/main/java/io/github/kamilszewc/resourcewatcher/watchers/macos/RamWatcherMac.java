@@ -56,7 +56,7 @@ public class RamWatcherMac implements RamWatcher {
         String result = ProcessCommand.call("sysctl hw.memsize");
         String[] split = result.split(": ");
         Long value = Long.valueOf(split[1].trim());
-        return new Memory(value / 1024);
+        return new Memory(value);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class RamWatcherMac implements RamWatcher {
 
         var vmStat = getPageStatistics();
         Long value = vmStat.getFree() * getPageSize();
-        return new Memory(value / 1024);
+        return new Memory(value);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class RamWatcherMac implements RamWatcher {
 
         var vmStat = getPageStatistics();
         Long value = (vmStat.getFree() + vmStat.getInactive()) * getPageSize();
-        return new Memory(value / 1024);
+        return new Memory(value);
     }
 
 }

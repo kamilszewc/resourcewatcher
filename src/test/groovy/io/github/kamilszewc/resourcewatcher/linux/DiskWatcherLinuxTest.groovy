@@ -13,7 +13,7 @@ class DiskWatcherLinuxTest extends Specification{
 
         when:
         def partitionSize = diskWatcher.getFreePartitionSpace("/")
-        print partitionSize.GB()
+        print partitionSize.getGB()
 
         then:
         partitionSize != null
@@ -36,7 +36,7 @@ class DiskWatcherLinuxTest extends Specification{
 
         when:
         def partitionSize = diskWatcher.getUsablePartitionSpace("/")
-        print partitionSize.GB()
+        print partitionSize.getGB()
 
         then:
         partitionSize != null
@@ -59,7 +59,7 @@ class DiskWatcherLinuxTest extends Specification{
 
         when:
         def partitionSize = diskWatcher.getTotalPartitionSpace("/")
-        print partitionSize.GB()
+        print partitionSize.getGB()
 
         then:
         partitionSize != null

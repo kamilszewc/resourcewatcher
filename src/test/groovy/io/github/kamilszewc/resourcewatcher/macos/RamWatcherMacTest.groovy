@@ -11,7 +11,7 @@ class RamWatcherMacTest extends Specification {
 
         when:
         def totalMemory = systemRamWatcher.getTotalMemory()
-        print totalMemory.MB()
+        print totalMemory.getMB()
 
         then:
         totalMemory != null && totalMemory != 0
@@ -23,7 +23,7 @@ class RamWatcherMacTest extends Specification {
 
         when:
         def freeMemory = systemRamWatcher.getFreeMemory()
-        print freeMemory.MB()
+        print freeMemory.getMB()
 
         then:
         freeMemory != null && freeMemory != 0
@@ -35,7 +35,7 @@ class RamWatcherMacTest extends Specification {
 
         when:
         def availableMemory = systemRamWatcher.getAvailableMemory()
-        print availableMemory.KB()
+        print availableMemory.getKB()
 
         then:
         availableMemory != null && availableMemory != 0

@@ -18,9 +18,7 @@ public class RamWatcherLinux implements RamWatcher {
                 String[] lineElements = line.split(" ");
                 Long memory = Long.valueOf(lineElements[lineElements.length - 2]);
 
-                System.out.println(memory);
-
-                return new Memory(memory);
+                return new Memory(memory * 1024);
             }
         }
 
@@ -36,7 +34,7 @@ public class RamWatcherLinux implements RamWatcher {
             if (line.split(":")[0].equals("MemFree")) {
                 String[] lineElements = line.split(" ");
                 Long memory = Long.valueOf(lineElements[lineElements.length - 2]);
-                return new Memory(memory);
+                return new Memory(memory * 1024);
             }
         }
 
@@ -52,7 +50,7 @@ public class RamWatcherLinux implements RamWatcher {
             if (line.split(":")[0].equals("MemAvailable")) {
                 String[] lineElements = line.split(" ");
                 Long memory = Long.valueOf(lineElements[lineElements.length - 2]);
-                return new Memory(memory);
+                return new Memory(memory * 1024);
             }
         }
 
