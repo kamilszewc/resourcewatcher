@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Set;
 
+/**
+ * The class allows to get an information about the specific processes in the system.
+ */
 public interface ProcessWatcher {
     Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
 

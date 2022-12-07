@@ -5,6 +5,9 @@ import io.github.kamilszewc.resourcewatcher.core.Memory;
 import java.io.IOError;
 import java.io.IOException;
 
+/**
+ * The class allows to get an information about the NVIDIA CUDA in the system.
+ */
 public interface NvidiaCudaWatcher {
 
     Memory getUsedMemory(Integer gpuId) throws IOError, IOException;

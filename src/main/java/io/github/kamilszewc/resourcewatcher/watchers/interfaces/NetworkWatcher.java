@@ -5,6 +5,9 @@ import io.github.kamilszewc.resourcewatcher.exceptions.NoNetworkInterfaceExcepti
 
 import java.io.IOException;
 
+/**
+ * The class allows to get an information about the network interfaces in the system.
+ */
 public interface NetworkWatcher {
     Bandwidth getInterfaceReceiveSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException;
 

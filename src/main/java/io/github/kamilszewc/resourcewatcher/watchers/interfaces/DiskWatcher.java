@@ -6,6 +6,9 @@ import io.github.kamilszewc.resourcewatcher.exceptions.NoPartitionException;
 import java.io.IOError;
 import java.util.List;
 
+/**
+ * The class allows to get an information about the disk store in the system.
+ */
 public interface DiskWatcher {
     Memory getFreePartitionSpace(String partition) throws IOError, NoPartitionException;
 
