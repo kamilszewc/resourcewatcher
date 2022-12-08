@@ -12,11 +12,11 @@ import lombok.ToString;
 public class CpuInfo {
     private String name;
     private String vendor;
-    private int numberOfCores;
-    private int numberOfThreads;
-    private int numberOfCoresPerSocket;
-    private int numberOfThreadsPerSocket;
-    private int numberOfSockets;
-    private int frequency;
+    private Integer numberOfCores;
+    private Integer numberOfThreads;
+    private Integer numberOfCoresPerSocket;
+    private Integer numberOfThreadsPerSocket;
+    private Integer numberOfSockets;
+    private Integer frequency;
 
 }
