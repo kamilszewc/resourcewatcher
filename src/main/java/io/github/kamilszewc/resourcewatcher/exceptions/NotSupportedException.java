@@ -1,11 +1,21 @@
 package io.github.kamilszewc.resourcewatcher.exceptions;
 
+/**
+ * Exception indicating that given functionality is not supported
+ */
 public class NotSupportedException extends RuntimeException {
 
+    /**
+     * NotSupportedException exception constructor
+     */
     public NotSupportedException() {
     }
 
-    public NotSupportedException(String s) {
-        super(s);
+    /**
+     * NotSupportedException exception constructor
+     * @param message message
+     */
+    public NotSupportedException(String message) {
+        super(message);
     }
 }
