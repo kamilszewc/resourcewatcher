@@ -30,6 +30,19 @@ public class NetworkWatcherLinux implements NetworkWatcher {
     }
 
     @Override
+    public List<String> getListOfInterfaces() throws IOException {
+
+        String result = ProcessCommand.call("cat /proc/net/dev");
+        List<String> lines = Arrays.stream(result.split("\n")).collect(Collectors.toList());
+        List<String> interfaces = lines.stream()
+                .filter(line -> line.contains(":"))
+                .map(line -> line.split(":")[0].strip())
+                .collect(Collectors.toList());
+
+        return interfaces;
+    }
+
+    @Override
     public Bandwidth getInterfaceReceiveSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException {
         Long bytesFirst = getInterfaceProcNetDevInfo(interfaceName, 1);
         long timeFirst = System.currentTimeMillis();

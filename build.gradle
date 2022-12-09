@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'io.github.kamilszewc'
-version '4.0'
+version '4.2'
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
@@ -25,7 +25,7 @@ dependencies {
 
     // Testing
     implementation 'org.codehaus.groovy:groovy-all:3.0.13'
-    implementation 'org.projectlombok:lombok:1.18.22'
+    implementation 'org.projectlombok:lombok:1.18.24'
     testImplementation 'org.spockframework:spock-core:2.3-groovy-3.0'
 }
 
