@@ -1,6 +1,8 @@
 package io.github.kamilszewc.resourcewatcher.watchers.interfaces;
 
+import io.github.kamilszewc.resourcewatcher.ResourceWatcherFactory;
 import io.github.kamilszewc.resourcewatcher.exceptions.NotImplementedException;
+import io.github.kamilszewc.resourcewatcher.exceptions.UnknownOperatingSystemException;
 
 /**
  * The class allows to get different types of resource watchers.
@@ -49,4 +51,13 @@ public interface ResourceWatcher {
      * @return SystemProcessesWatcher object
      */
     SystemProcessesWatcher getSystemProcessesWatcher();
+
+    /**
+     * Automatically detects the OS and produces the right ResourceWatcher object
+     * @return ResourceWatcher object for detected OS
+     * @throws UnknownOperatingSystemException
+     */
+     static ResourceWatcher create() throws UnknownOperatingSystemException {
+        return ResourceWatcherFactory.create();
+    }
 }
