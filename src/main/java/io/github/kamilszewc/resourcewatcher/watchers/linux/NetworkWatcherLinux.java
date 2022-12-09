@@ -1,6 +1,7 @@
 package io.github.kamilszewc.resourcewatcher.watchers.linux;
 
 import io.github.kamilszewc.resourcewatcher.core.Bandwidth;
+import io.github.kamilszewc.resourcewatcher.core.Memory;
 import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
 import io.github.kamilszewc.resourcewatcher.exceptions.NoNetworkInterfaceException;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.NetworkWatcher;
@@ -66,6 +67,18 @@ public class NetworkWatcherLinux implements NetworkWatcher {
         Double speed = Double.valueOf(bytesSecond - bytesFirst) * 1000 / (timeSecond - timeFirst);
 
         return new Bandwidth(speed);
+    }
+
+    @Override
+    public Memory getInterfaceReceivedData(String interfaceName) throws NoNetworkInterfaceException, IOException {
+        Long bytes = getInterfaceProcNetDevInfo(interfaceName, 1);
+        return new Memory(bytes);
+    }
+
+    @Override
+    public Memory getInterfaceTransmittedData(String interfaceName) throws NoNetworkInterfaceException, IOException {
+        Long bytes = getInterfaceProcNetDevInfo(interfaceName, 9);
+        return new Memory(bytes);
     }
 
 }
