@@ -12,6 +12,16 @@ import java.util.Set;
  * The class allows to get an information about the specific processes in the system.
  */
 public interface ProcessWatcher {
+
+    Memory getProcessProportionalSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+
+    Memory getProcessProportionalSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+
+    Memory getProcessUniqueSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+
+    Memory getProcessUniqueSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+
+
     Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
 
     Memory getProcessVirtualMemory(Long processId) throws IOError, IOException, NoProcessFoundException;

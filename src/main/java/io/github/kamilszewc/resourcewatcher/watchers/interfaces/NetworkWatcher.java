@@ -25,7 +25,7 @@ public interface NetworkWatcher {
      * @throws NoNetworkInterfaceException
      * @throws IOException
      */
-    Bandwidth getInterfaceReceiveSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException;
+    Bandwidth getInterfaceReceiveSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException, InterruptedException;
 
     /**
      * Returns transmit speed of given network interface
@@ -34,5 +34,5 @@ public interface NetworkWatcher {
      * @throws NoNetworkInterfaceException
      * @throws IOException
      */
-    Bandwidth getInterfaceTransmitSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException;
+    Bandwidth getInterfaceTransmitSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException, InterruptedException;
 }

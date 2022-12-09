@@ -43,9 +43,10 @@ public class NetworkWatcherLinux implements NetworkWatcher {
     }
 
     @Override
-    public Bandwidth getInterfaceReceiveSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException {
+    public Bandwidth getInterfaceReceiveSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException, InterruptedException {
         Long bytesFirst = getInterfaceProcNetDevInfo(interfaceName, 1);
         long timeFirst = System.currentTimeMillis();
+        Thread.sleep(20);
         Long bytesSecond = getInterfaceProcNetDevInfo(interfaceName, 1);
         long timeSecond = System.currentTimeMillis();
 
@@ -55,9 +56,10 @@ public class NetworkWatcherLinux implements NetworkWatcher {
     }
 
     @Override
-    public Bandwidth getInterfaceTransmitSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException {
+    public Bandwidth getInterfaceTransmitSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException, InterruptedException {
         Long bytesFirst = getInterfaceProcNetDevInfo(interfaceName, 9);
         long timeFirst = System.currentTimeMillis();
+        Thread.sleep(20);
         Long bytesSecond = getInterfaceProcNetDevInfo(interfaceName, 9);
         long timeSecond = System.currentTimeMillis();
 

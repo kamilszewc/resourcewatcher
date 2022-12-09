@@ -1,6 +1,8 @@
 package io.github.kamilszewc.resourcewatcher.watchers.windows;
 
 import io.github.kamilszewc.resourcewatcher.core.Memory;
+import io.github.kamilszewc.resourcewatcher.exceptions.NoProcessFoundException;
+import io.github.kamilszewc.resourcewatcher.exceptions.NotImplementedException;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.ProcessWatcher;
 
 import java.io.IOError;
@@ -9,6 +11,27 @@ import java.time.Duration;
 import java.util.Set;
 
 public class ProcessWatcherWindows implements ProcessWatcher {
+
+    @Override
+    public Memory getProcessProportionalSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public Memory getProcessProportionalSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public Memory getProcessUniqueSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public Memory getProcessUniqueSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+        throw new NotImplementedException();
+    }
+
     @Override
     public Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException {
         return null;

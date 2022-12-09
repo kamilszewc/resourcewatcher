@@ -3,6 +3,8 @@ package io.github.kamilszewc.resourcewatcher.linux
 
 import io.github.kamilszewc.resourcewatcher.ResourceWatcherFactory
 import io.github.kamilszewc.resourcewatcher.exceptions.NoProcessFoundException
+import io.github.kamilszewc.resourcewatcher.watchers.linux.ProcessWatcherLinux
+import io.github.kamilszewc.resourcewatcher.watchers.linux.ResourceWatcherLinux
 import spock.lang.Specification
 
 class ProcessWatcherLinuxTest extends Specification {
@@ -61,6 +63,30 @@ class ProcessWatcherLinuxTest extends Specification {
         when:
         def processMemory = processWatcher.getProcessVirtualWithChildrenMemory(1)
         print processMemory.getKB()
+
+        then:
+        processMemory != null
+    }
+
+    def "gives non null process pss memory report"() {
+        given:
+        def processWatcher = new  ResourceWatcherLinux().processWatcher as ProcessWatcherLinux;
+
+        when:
+        def processMemory = processWatcher.getProcessProportionalSetSizeMemory(1);
+        println  "Proportional single " + processMemory.getKB()
+
+        def processMemoryWithChildren = processWatcher.getProcessProportionalSetSizeWithChildrenMemory(1);
+        println "Proportional tree " + processMemoryWithChildren.getKB()
+
+        processMemoryWithChildren = processWatcher.getProcessUniqueSetSizeWithChildrenMemory(1);
+        println "Unique tree " + processMemoryWithChildren.getKB()
+
+        processMemoryWithChildren = processWatcher.getProcessResidentSetSizeWithChildrenMemory(1);
+        println "Resident tree " + processMemoryWithChildren.getKB()
+
+        processMemoryWithChildren = processWatcher.getProcessVirtualWithChildrenMemory(1);
+        println "Virtual tree " + processMemoryWithChildren.getKB()
 
         then:
         processMemory != null

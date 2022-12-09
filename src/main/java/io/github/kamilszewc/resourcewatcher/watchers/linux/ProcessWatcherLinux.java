@@ -9,8 +9,66 @@ import java.io.IOError;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProcessWatcherLinux implements ProcessWatcher {
+
+    private Long getSmapValue(Long processId, String key) throws IOException {
+
+        String result = ProcessCommand.call("cat /proc/" + processId + "/smaps");
+        List<String> lines = Arrays.stream(result.split("\n")).collect(Collectors.toList());
+        List<Long> values = lines.stream()
+                .filter(entry -> entry.contains(key))
+                .map(entry -> entry.split(":")[1].strip())
+                .map(entry -> entry.split(" ")[0])
+                .map(entry -> Long.valueOf(entry))
+                .collect(Collectors.toList());
+
+        return values.stream().reduce(0l, Long::sum);
+    }
+
+    @Override
+    public Memory getProcessProportionalSetSizeMemory(Long processId) throws IOException {
+
+        Long value = getSmapValue(processId, "Pss");
+
+        return new Memory(value * 1024);
+    }
+
+    @Override
+    public Memory getProcessProportionalSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+        Set<Long> childrenProcesses = getChildrenTree(processId);
+
+        Long value = 0L;
+        for (Long ps : childrenProcesses) {
+            value += getProcessProportionalSetSizeMemory(ps).getKB();
+        }
+
+        return new Memory(value * 1024);
+    }
+
+    @Override
+    public Memory getProcessUniqueSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+        Long valuePrivateClean = getSmapValue(processId, "Private_Clean");
+        Long valuePrivateDirty = getSmapValue(processId, "Private_Dirty");
+        Long value = valuePrivateClean + valuePrivateDirty;
+
+        return new Memory(value * 1024);
+    }
+
+    @Override
+    public Memory getProcessUniqueSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+        Set<Long> childrenProcesses = getChildrenTree(processId);
+
+        Long value = 0L;
+        for (Long ps : childrenProcesses) {
+            value += getProcessUniqueSetSizeMemory(ps).getKB();
+        }
+
+        return new Memory(value * 1024);
+    }
+
+
     @Override
     public Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
 
