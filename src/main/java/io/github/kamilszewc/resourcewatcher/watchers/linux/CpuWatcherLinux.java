@@ -17,8 +17,6 @@ public class CpuWatcherLinux implements CpuWatcher {
         String result = ProcessCommand.call("lscpu");
         String[] lines = result.split("\n");
 
-        System.out.println(Arrays.stream(lines).collect(Collectors.toList()));
-
         for (String line : lines) {
             String[] element = line.split(":");
             System.out.println(Arrays.stream(element).collect(Collectors.toList()));
