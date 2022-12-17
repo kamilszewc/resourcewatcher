@@ -8,6 +8,7 @@ The library is written in Java and tested with Spock framework.
 
 It was tested with:
 - Ubuntu 18.04, 20.04, 22.04
+- OpenSUSE 15
 - Fedora 37
 - MacOS 12, 13
 
