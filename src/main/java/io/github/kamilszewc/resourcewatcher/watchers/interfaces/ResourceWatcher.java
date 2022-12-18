@@ -50,7 +50,7 @@ public interface ResourceWatcher {
      * Returns the SystemProcessesWatcher object
      * @return SystemProcessesWatcher object
      */
-    SystemProcessesWatcher getSystemProcessesWatcher();
+    SystemWatcher getSystemWatcher();
 
     /**
      * Automatically detects the OS and produces the right ResourceWatcher object

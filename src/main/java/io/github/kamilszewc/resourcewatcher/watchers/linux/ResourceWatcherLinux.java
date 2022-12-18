@@ -36,7 +36,7 @@ public class ResourceWatcherLinux implements ResourceWatcher {
     }
 
     @Override
-    public SystemProcessesWatcher getSystemProcessesWatcher() {
-        return new SystemProcessesWatcherLinux();
+    public SystemWatcher getSystemWatcher() {
+        return new SystemWatcherLinux();
     }
 }

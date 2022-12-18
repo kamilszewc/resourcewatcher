@@ -1,12 +1,12 @@
 package io.github.kamilszewc.resourcewatcher.watchers.macos;
 
 import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
-import io.github.kamilszewc.resourcewatcher.watchers.interfaces.SystemProcessesWatcher;
+import io.github.kamilszewc.resourcewatcher.watchers.interfaces.SystemWatcher;
 
 import java.io.IOError;
 import java.io.IOException;
 
-public class SystemProcessesWatcherMac implements SystemProcessesWatcher {
+public class SystemWatcherMac implements SystemWatcher {
     @Override
     public Integer getNumberOfProcesses() throws IOError, IOException {
 

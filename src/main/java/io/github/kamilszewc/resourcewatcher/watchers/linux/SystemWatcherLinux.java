@@ -1,12 +1,12 @@
 package io.github.kamilszewc.resourcewatcher.watchers.linux;
 
 import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
-import io.github.kamilszewc.resourcewatcher.watchers.interfaces.SystemProcessesWatcher;
+import io.github.kamilszewc.resourcewatcher.watchers.interfaces.SystemWatcher;
 
 import java.io.IOError;
 import java.io.IOException;
 
-public class SystemProcessesWatcherLinux implements SystemProcessesWatcher {
+public class SystemWatcherLinux implements SystemWatcher {
     @Override
     public Integer getNumberOfProcesses() throws IOError, IOException {
 
@@ -21,4 +21,8 @@ public class SystemProcessesWatcherLinux implements SystemProcessesWatcher {
         return sum;
     }
 
+    public String getKernelVersion() {
+
+        return "";
+    }
 }

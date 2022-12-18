@@ -2,7 +2,6 @@ package io.github.kamilszewc.resourcewatcher.watchers.windows;
 
 import io.github.kamilszewc.resourcewatcher.exceptions.NotImplementedException;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.*;
-import io.github.kamilszewc.resourcewatcher.watchers.linux.CpuWatcherLinux;
 import io.github.kamilszewc.resourcewatcher.watchers.universal.DiskWatcherUniversal;
 
 public class ResourceWatcherWindows implements ResourceWatcher {
@@ -38,7 +37,7 @@ public class ResourceWatcherWindows implements ResourceWatcher {
     }
 
     @Override
-    public SystemProcessesWatcher getSystemProcessesWatcher() {
+    public SystemWatcher getSystemWatcher() {
         throw new NotImplementedException();
     }
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * The class allows to get an information about the system processes in the system.
  */
-public interface SystemProcessesWatcher {
+public interface SystemWatcher {
 
     /**
      * Gets the number of processes running in the OS

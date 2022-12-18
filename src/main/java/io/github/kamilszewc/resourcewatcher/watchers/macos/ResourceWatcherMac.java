@@ -38,7 +38,7 @@ public class ResourceWatcherMac implements ResourceWatcher {
     }
 
     @Override
-    public SystemProcessesWatcher getSystemProcessesWatcher() {
-        return new SystemProcessesWatcherMac();
+    public SystemWatcher getSystemWatcher() {
+        return new SystemWatcherMac();
     }
 }
