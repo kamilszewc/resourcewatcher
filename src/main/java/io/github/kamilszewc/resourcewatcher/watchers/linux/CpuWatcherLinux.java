@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class CpuWatcherLinux implements CpuWatcher {
 
     private String getLsCpuInfo(String variable) throws IOException {
-        String result = ProcessCommand.call("lscpu");
+        String result = ProcessCommand.call("lscpu", Map.of("LANG", "en_US.UTF-8"));
         String[] lines = result.split("\n");
 
         for (String line : lines) {

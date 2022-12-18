@@ -4,15 +4,25 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Map;
 
 public class ProcessCommand {
 
     static public String call(String command) throws IOException {
+        return call(command, null);
+    }
+
+    static public String call(String command, Map<String, String> envVariables) throws IOException {
 
         String[] splitCommand = command.split(" ");
         ProcessBuilder processBuilder = new ProcessBuilder(splitCommand);
+        if (envVariables != null) {
+            var env = processBuilder.environment();
+            envVariables.forEach((key, value) -> {
+                env.put(key, value);
+            });
+        }
         Process process = processBuilder.start();
-
         InputStream inputStream = process.getInputStream();
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
