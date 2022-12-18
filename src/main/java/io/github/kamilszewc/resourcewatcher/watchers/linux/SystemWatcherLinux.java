@@ -3,8 +3,14 @@ package io.github.kamilszewc.resourcewatcher.watchers.linux;
 import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.SystemWatcher;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOError;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SystemWatcherLinux implements SystemWatcher {
     @Override
@@ -21,8 +27,49 @@ public class SystemWatcherLinux implements SystemWatcher {
         return sum;
     }
 
-    public String getKernelVersion() {
+    public String getKernelReleaseVersion() throws IOException {
+        return ProcessCommand.call("uname -r").trim();
+    }
 
-        return "";
+    public String getKernelVersion() throws IOException {
+        return ProcessCommand.call("uname -v").trim();
+    }
+
+    public String getNodeName() throws IOException {
+        return ProcessCommand.call("uname -n").trim();
+    }
+
+    public String getSystemName() throws IOException {
+        return getSystemIdentificationData().get("NAME");
+    }
+
+    public String getSystemVersion() throws IOException {
+        return getSystemIdentificationData().get("VERSION");
+    }
+
+    public String getSystemId() throws IOException {
+        return getSystemIdentificationData().get("ID");
+    }
+
+    public Map<String, String> getSystemIdentificationData() throws IOException {
+        Path filePath;
+        if (Files.exists(Path.of("/etc/os-release"))) {
+            filePath = Path.of("/etc/os-release");
+        } else if (Files.exists(Path.of("/usr/lib/os-release"))) {
+            filePath = Path.of("/usr/lib/os-release");
+        } else {
+            throw new IOException("Can not get information from os-release file");
+        }
+
+        Map<String, String> keyValue = new HashMap<>();
+
+        String data = Files.readString(filePath);
+        String[] dataLines = data.split("\n");
+        for (String line : dataLines) {
+            String[] var = line.split("=");
+            keyValue.put(var[0].trim(), var[1].trim());
+        }
+
+        return keyValue;
     }
 }
