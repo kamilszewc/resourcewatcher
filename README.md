@@ -7,7 +7,7 @@ Simple to use JVM library for watching linux/windows/mac resources like cpu-usag
 The library is written in Java and tested with Spock framework.
 
 It was tested with:
-- Ubuntu 18.04, 20.04, 22.04
+- Ubuntu 18.04, 20.04, 22.04, 22.10
 - OpenSUSE 15
 - Fedora 37
 - MacOS 12, 13
