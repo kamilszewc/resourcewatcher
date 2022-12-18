@@ -5,6 +5,8 @@ import io.github.kamilszewc.resourcewatcher.watchers.interfaces.SystemWatcher;
 
 import java.io.IOError;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SystemWatcherMac implements SystemWatcher {
     @Override
@@ -31,16 +33,27 @@ public class SystemWatcherMac implements SystemWatcher {
 
     @Override
     public String getSystemName() throws IOException {
-        return null;
+        return getSystemIdentificationData().get("ProductName");
     }
 
     @Override
     public String getSystemVersion() throws IOException {
-        return null;
+        return getSystemIdentificationData().get("ProductVersion");
     }
 
     @Override
     public String getSystemId() throws IOException {
-        return null;
+        return getSystemIdentificationData().get("ProductName");
+    }
+
+    public Map<String, String> getSystemIdentificationData() throws IOException {
+        Map<String, String> identificationData = new HashMap<>();
+        String data = ProcessCommand.call("sw_vers");
+        String[] lines = data.split("\n");
+        for (String line : lines) {
+            String[] info = line.split(":");
+            identificationData.put(info[0].trim(), info[1].trim());
+        }
+        return identificationData;
     }
 }

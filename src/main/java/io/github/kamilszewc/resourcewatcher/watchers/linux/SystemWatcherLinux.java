@@ -3,8 +3,6 @@ package io.github.kamilszewc.resourcewatcher.watchers.linux;
 import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.SystemWatcher;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOError;
 import java.io.IOException;
 import java.nio.file.Files;
