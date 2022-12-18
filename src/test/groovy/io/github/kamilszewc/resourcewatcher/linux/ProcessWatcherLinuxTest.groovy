@@ -104,7 +104,7 @@ class ProcessWatcherLinuxTest extends Specification {
         childrenTree != null
     }
 
-    def "getProcessCpuTime gives non null duration"() {
+    def "getProcessCpuTime gives non null time in sec"() {
         given:
         def processWatcher = ResourceWatcherFactory.create().processWatcher
 
@@ -121,7 +121,7 @@ class ProcessWatcherLinuxTest extends Specification {
         def processWatcher = ResourceWatcherFactory.create().processWatcher
 
         when:
-        def cpuTime = processWatcher.getProcessCpuTime(1)
+        def cpuTime = processWatcher.getProcessCpuTimeWithChildren(1)
         print cpuTime
 
         then:

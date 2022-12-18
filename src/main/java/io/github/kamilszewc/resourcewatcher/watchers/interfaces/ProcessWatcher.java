@@ -32,7 +32,7 @@ public interface ProcessWatcher {
 
     Memory getProcessVirtualWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
 
-    Duration getProcessCpuTime(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Long getProcessCpuTime(Long processId) throws IOError, IOException, NoProcessFoundException;
 
-    Duration getProcessCpuTimeWithChildren(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Long getProcessCpuTimeWithChildren(Long processId) throws IOError, IOException, NoProcessFoundException;
 }

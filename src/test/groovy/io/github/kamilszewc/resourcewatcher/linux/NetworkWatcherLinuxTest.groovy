@@ -43,4 +43,28 @@ class NetworkWatcherLinuxTest extends Specification {
         println speed.getMbs()
         speed.getKbs() != null
     }
+
+    def "returns non null transmit data for lo interface"() {
+        given:
+        NetworkWatcher networkWatcher = ResourceWatcherFactory.create().networkWatcher
+
+        when:
+        def data = networkWatcher.getInterfaceTransmittedData("lo")
+
+        then:
+        println data.getB()
+        data.getB() != null
+    }
+
+    def "returns not null receive data for lo interface"() {
+        given:
+        NetworkWatcher networkWatcher = ResourceWatcherFactory.create().networkWatcher
+
+        when:
+        def data = networkWatcher.getInterfaceReceivedData("lo")
+
+        then:
+        println data.getB()
+        data.getB() != null
+    }
 }

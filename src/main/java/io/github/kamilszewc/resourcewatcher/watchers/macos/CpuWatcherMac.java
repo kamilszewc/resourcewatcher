@@ -32,7 +32,7 @@ public class CpuWatcherMac implements CpuWatcher {
         int numberOfSockets = Integer.valueOf(getSysCtlInfo("hw.packages"));
         int numberOfThreadsPerSocket = numberOfThreads / numberOfSockets;
 
-        int frequency = Integer.valueOf(getSysCtlInfo("hw.tbfrequency"));
+        Float frequency = Float.valueOf(getSysCtlInfo("hw.tbfrequency"));
 
 
         CpuInfo cpuInfo = CpuInfo.builder()

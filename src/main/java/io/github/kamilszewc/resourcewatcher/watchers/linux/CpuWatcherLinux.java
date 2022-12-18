@@ -8,18 +8,32 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
 public class CpuWatcherLinux implements CpuWatcher {
 
     private String getLsCpuInfo(String variable) throws IOException {
-        String result = ProcessCommand.call("lscpu", Map.of("LANG", "en_US.UTF-8"));
+        String result = ProcessCommand.call("lscpu", Map.of("LANG", "C"));
         String[] lines = result.split("\n");
 
         for (String line : lines) {
             String[] element = line.split(":");
-            System.out.println(Arrays.stream(element).collect(Collectors.toList()));
+            if (element[0].trim().equals(variable)) {
+                return element[1].trim();
+            }
+        }
+
+        return null;
+    }
+
+    private String getCatCpuInfo(String variable) throws IOException {
+        String result = ProcessCommand.call("cat /proc/cpuinfo");
+        String[] lines = result.split("\n");
+
+        for (String line : lines) {
+            String[] element = line.split(":");
             if (element[0].trim().equals(variable)) {
                 return element[1].trim();
             }
@@ -47,10 +61,12 @@ public class CpuWatcherLinux implements CpuWatcher {
 
         Integer numberOfThreadsPerSocket = numberOfThreads / numberOfSockets;
 
+        Float frequency = Float.valueOf(getCatCpuInfo("cpu MHz"));
+
         CpuInfo cpuInfo = CpuInfo.builder()
                 .name(getLsCpuInfo("Model name"))
                 .vendor(getLsCpuInfo("Vendor ID"))
-                .frequency(null)
+                .frequency(frequency)
                 .numberOfSockets(numberOfSockets)
                 .numberOfCores(numberOfCores)
                 .numberOfThreads(numberOfThreads)

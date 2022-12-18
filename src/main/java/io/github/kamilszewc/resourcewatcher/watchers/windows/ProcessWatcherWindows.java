@@ -58,12 +58,12 @@ public class ProcessWatcherWindows implements ProcessWatcher {
     }
 
     @Override
-    public Duration getProcessCpuTime(Long processId) throws IOError {
+    public Long getProcessCpuTime(Long processId) throws IOError {
         return null;
     }
 
     @Override
-    public Duration getProcessCpuTimeWithChildren(Long processId) throws IOError {
+    public Long getProcessCpuTimeWithChildren(Long processId) throws IOError {
         return null;
     }
 

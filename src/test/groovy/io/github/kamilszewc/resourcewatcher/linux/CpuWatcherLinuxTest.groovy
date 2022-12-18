@@ -16,6 +16,7 @@ class CpuWatcherLinuxTest extends Specification {
 
         then:
         cpuInfo.name != "Apple M1"
+
     }
 
 }

@@ -104,25 +104,28 @@ public class ProcessWatcherMac implements ProcessWatcher {
     }
 
     @Override
-    public Duration getProcessCpuTime(Long processId) throws IOError, IOException {
+    public Long getProcessCpuTime(Long processId) throws IOError, IOException {
 
         String result = ProcessCommand.call("ps -o time " + processId);
         String[] lines = result.split("\n");
         System.out.println(lines[1].trim());
-        Duration duration = Duration.parse(lines[1].trim());
-
-        return duration;
+        String[] elements = lines[1].trim().split(":");
+        int hours = Integer.valueOf(elements[0]);
+        int minutes = Integer.valueOf(elements[1]);
+        int seconds = Integer.valueOf(elements[2]);
+        return hours * 3600L + minutes * 60L + seconds;
     }
 
     @Override
-    public Duration getProcessCpuTimeWithChildren(Long processId) throws IOError, IOException {
+    public Long getProcessCpuTimeWithChildren(Long processId) throws IOError, IOException {
 
         Set<Long> childrenProcesses = getChildrenTree(processId);
-        Duration duration = Duration.ZERO;
-        for (Long ps : childrenProcesses) {
-            // TODO
+        Long totalTime = 0L;
+        for (Long childrenProcess : childrenProcesses) {
+            totalTime += getProcessCpuTime(childrenProcess);
         }
-        return duration;
+
+        return totalTime;
     }
 
 }
