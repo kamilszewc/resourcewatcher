@@ -11,7 +11,11 @@ public class CpuWatcherMac implements CpuWatcher {
     private String getSysCtlInfo(String variable) throws IOException {
         String result = ProcessCommand.call("sysctl " + variable);
         String[] split = result.split(": ");
-        return split[1].trim();
+        try {
+            return split[1].trim();
+        } catch (Exception ex) {
+            throw new IOException("Wrong command: sysctl " + variable);
+        }
     }
 
     @Override
@@ -32,8 +36,12 @@ public class CpuWatcherMac implements CpuWatcher {
         int numberOfSockets = Integer.valueOf(getSysCtlInfo("hw.packages"));
         int numberOfThreadsPerSocket = numberOfThreads / numberOfSockets;
 
-        Float frequency = Float.valueOf(getSysCtlInfo("hw.tbfrequency"));
-
+        Float frequency;
+        if (name.startsWith("Apple M")) {
+            frequency = 3200.0f;
+        } else {
+            frequency = Float.valueOf(getSysCtlInfo("hw.cpufrequency")) / 1000;
+        }
 
         CpuInfo cpuInfo = CpuInfo.builder()
                 .name(name)
