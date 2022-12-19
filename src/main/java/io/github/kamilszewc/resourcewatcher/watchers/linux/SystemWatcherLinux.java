@@ -65,7 +65,9 @@ public class SystemWatcherLinux implements SystemWatcher {
         String[] dataLines = data.split("\n");
         for (String line : dataLines) {
             String[] var = line.split("=");
-            keyValue.put(var[0].trim(), var[1].trim());
+            String key = var[0].trim();
+            String value = var[1].substring(1, var[1].length()-1);
+            keyValue.put(key, value);
         }
 
         return keyValue;
