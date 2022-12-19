@@ -57,4 +57,34 @@ public class RamWatcherLinux implements RamWatcher {
         throw new IOException();
     }
 
+
+    public Memory getBuffers() throws IOError, IOException {
+
+        String result = ProcessCommand.call("cat /proc/meminfo");
+        String[] lines = result.split("\n");
+        for (String line : lines) {
+            if (line.split(":")[0].equals("Buffers")) {
+                String[] lineElements = line.split(" ");
+                Long memory = Long.valueOf(lineElements[lineElements.length - 2]);
+                return new Memory(memory * 1024);
+            }
+        }
+
+        throw new IOException();
+    }
+
+    public Memory getCachedMemory() throws IOError, IOException {
+
+        String result = ProcessCommand.call("cat /proc/meminfo");
+        String[] lines = result.split("\n");
+        for (String line : lines) {
+            if (line.split(":")[0].equals("Cached")) {
+                String[] lineElements = line.split(" ");
+                Long memory = Long.valueOf(lineElements[lineElements.length - 2]);
+                return new Memory(memory * 1024);
+            }
+        }
+
+        throw new IOException();
+    }
 }
