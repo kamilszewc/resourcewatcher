@@ -17,6 +17,7 @@ public class CpuInfo {
     private Integer numberOfCoresPerSocket;
     private Integer numberOfThreadsPerSocket;
     private Integer numberOfSockets;
+    private Integer numberOfThreadsPerCore;
     private Float frequency;
 
 }

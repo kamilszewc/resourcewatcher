@@ -72,6 +72,7 @@ public class CpuWatcherLinux implements CpuWatcher {
                 .numberOfThreads(numberOfThreads)
                 .numberOfCoresPerSocket(numberOfCoresPerSocket)
                 .numberOfThreadsPerSocket(numberOfThreadsPerSocket)
+                .numberOfThreadsPerCore(numberOfThreadsPerCore)
                 .build();
 
         return cpuInfo;

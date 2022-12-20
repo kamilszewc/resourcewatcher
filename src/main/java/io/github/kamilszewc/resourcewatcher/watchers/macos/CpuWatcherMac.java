@@ -35,6 +35,7 @@ public class CpuWatcherMac implements CpuWatcher {
         int numberOfThreads = Integer.valueOf(getSysCtlInfo("machdep.cpu.thread_count"));
         int numberOfSockets = Integer.valueOf(getSysCtlInfo("hw.packages"));
         int numberOfThreadsPerSocket = numberOfThreads / numberOfSockets;
+        int numberOfThreadsPerCore = numberOfThreadsPerSocket / numberOfCores;
 
         Float frequency;
         if (name.startsWith("Apple M")) {
@@ -51,6 +52,7 @@ public class CpuWatcherMac implements CpuWatcher {
                 .numberOfThreadsPerSocket(numberOfThreadsPerSocket)
                 .numberOfCoresPerSocket(numberOfCoresPerSocket)
                 .numberOfSockets(numberOfSockets)
+                .numberOfThreadsPerCore(numberOfThreadsPerCore)
                 .frequency(frequency)
                 .build();
 

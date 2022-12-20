@@ -8,7 +8,7 @@ public class ResourceWatcherWindows implements ResourceWatcher {
 
     @Override
     public CpuWatcher getCpuWatcher() {
-        throw new NotImplementedException();
+        return new CpuWatcherWindows();
     }
 
     @Override
