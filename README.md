@@ -11,8 +11,7 @@ It was tested with:
 - OpenSUSE 15
 - Fedora 37
 - MacOS 12, 13
-
-Windows platform is still not developed
+- Windows 11 (not fully implemented)
 
 ## Installation
 
@@ -24,14 +23,14 @@ Usage with maven:
 <dependency>
     <groupId>io.github.kamilszewc</groupId>
     <artifactId>resourcewatcher</artifactId>
-    <version>4.13</version>
+    <version>4.15</version>
 </dependency>
 ```
 
 Usage with gradle:
 
 ```groovy
-implementation 'io.github.kamilszewc:resourcewatcher:4.13'
+implementation 'io.github.kamilszewc:resourcewatcher:4.15'
 ```
 
 ## Usage
