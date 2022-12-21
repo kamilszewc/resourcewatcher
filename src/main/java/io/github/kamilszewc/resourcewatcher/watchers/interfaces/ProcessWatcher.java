@@ -13,47 +13,6 @@ import java.util.Set;
 public interface ProcessWatcher {
 
     /**
-     * Returns information about process Proportional Set Size (PSS) memory.
-     * @param processId Process id
-     * @return Memory object
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
-     */
-    Memory getProcessProportionalSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
-
-    /**
-     * Returns information about Proportional Set Size (PPS) memory of a process and its all tree (recursively).
-     * @param processId Process id
-     * @return Memory object
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
-     */
-    Memory getProcessProportionalSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
-
-    /**
-     * Returns information about process Unique Set Size (USS) memory.
-     * @param processId Process id
-     * @return Memory object
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
-     */
-    Memory getProcessUniqueSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
-
-    /**
-     * Returns information about Unique Set Size (USS) memory of a process and its all tree (recursively).
-     * @param processId Process id
-     * @return Memory object
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
-     */
-    Memory getProcessUniqueSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
-
-
-    /**
      * Returns information about process Resident Set Size (RSS) memory.
      * @param processId Process id
      * @return Memory object

@@ -26,7 +26,14 @@ public class ProcessWatcherLinux implements ProcessWatcher {
         return values.stream().reduce(0l, Long::sum);
     }
 
-    @Override
+    /**
+     * Returns information about process Proportional Set Size (PSS) memory.
+     * @param processId Process id
+     * @return Memory object
+     * @throws IOError
+     * @throws IOException
+     * @throws NoProcessFoundException
+     */
     public Memory getProcessProportionalSetSizeMemory(Long processId) throws IOException {
 
         Long value = getSmapValue(processId, "Pss");
@@ -34,7 +41,14 @@ public class ProcessWatcherLinux implements ProcessWatcher {
         return new Memory(value * 1024);
     }
 
-    @Override
+    /**
+     * Returns information about Proportional Set Size (PPS) memory of a process and its all tree (recursively).
+     * @param processId Process id
+     * @return Memory object
+     * @throws IOError
+     * @throws IOException
+     * @throws NoProcessFoundException
+     */
     public Memory getProcessProportionalSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
         Set<Long> childrenProcesses = getChildrenTree(processId);
 
@@ -46,7 +60,14 @@ public class ProcessWatcherLinux implements ProcessWatcher {
         return new Memory(value * 1024);
     }
 
-    @Override
+    /**
+     * Returns information about process Unique Set Size (USS) memory.
+     * @param processId Process id
+     * @return Memory object
+     * @throws IOError
+     * @throws IOException
+     * @throws NoProcessFoundException
+     */
     public Memory getProcessUniqueSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
         Long valuePrivateClean = getSmapValue(processId, "Private_Clean");
         Long valuePrivateDirty = getSmapValue(processId, "Private_Dirty");
@@ -55,7 +76,14 @@ public class ProcessWatcherLinux implements ProcessWatcher {
         return new Memory(value * 1024);
     }
 
-    @Override
+    /**
+     * Returns information about Unique Set Size (USS) memory of a process and its all tree (recursively).
+     * @param processId Process id
+     * @return Memory object
+     * @throws IOError
+     * @throws IOException
+     * @throws NoProcessFoundException
+     */
     public Memory getProcessUniqueSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
         Set<Long> childrenProcesses = getChildrenTree(processId);
 

@@ -11,25 +11,6 @@ import java.io.IOException;
 import java.util.*;
 
 public class ProcessWatcherMac implements ProcessWatcher {
-    @Override
-    public Memory getProcessProportionalSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public Memory getProcessProportionalSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public Memory getProcessUniqueSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public Memory getProcessUniqueSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
-        throw new NotImplementedException();
-    }
 
     @Override
     public Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {

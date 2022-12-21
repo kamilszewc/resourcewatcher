@@ -28,7 +28,7 @@ public class ResourceWatcherWindows implements ResourceWatcher {
 
     @Override
     public ProcessWatcher getProcessWatcher() {
-        throw new NotImplementedException();
+        return new ProcessWatcherWindows();
     }
 
     @Override
