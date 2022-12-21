@@ -38,6 +38,6 @@ public class ResourceWatcherWindows implements ResourceWatcher {
 
     @Override
     public SystemWatcher getSystemWatcher() {
-        throw new NotImplementedException();
+        return new SystemWatcherWindows();
     }
 }
