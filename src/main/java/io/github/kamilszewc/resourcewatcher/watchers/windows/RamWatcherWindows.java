@@ -4,7 +4,6 @@ import io.github.kamilszewc.resourcewatcher.core.Memory;
 import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.RamWatcher;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.Arrays;
 

@@ -1,13 +1,7 @@
 package io.github.kamilszewc.resourcewatcher.watchers.interfaces;
 
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
-
 import java.io.IOError;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * The class allows to get an information about the system processes in the system.

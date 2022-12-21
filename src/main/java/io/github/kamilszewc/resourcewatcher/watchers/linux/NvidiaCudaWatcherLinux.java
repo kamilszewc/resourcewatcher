@@ -52,8 +52,7 @@ public class NvidiaCudaWatcherLinux implements NvidiaCudaWatcher {
         String result = ProcessCommand.call("nvidia-smi --query-gpu=memory.total --format=csv -i " + gpuId);
         String[] lines = result.split("\n");
         String line = lines[1];
-        Integer value = Integer.valueOf(line.split(" ")[0].trim());
-        return value;
+        return Integer.valueOf(line.split(" ")[0].trim());
     }
 
     @Override
@@ -62,8 +61,7 @@ public class NvidiaCudaWatcherLinux implements NvidiaCudaWatcher {
         String result = ProcessCommand.call("nvidia-smi --query-gpu=utilization.gpu --format=csv -i " + gpuId);
         String[] lines = result.split("\n");
         String line = lines[1];
-        Integer value = Integer.valueOf(line.split(" ")[0].trim());
-        return value;
+        return Integer.valueOf(line.split(" ")[0].trim());
     }
 
     @Override

@@ -35,15 +35,20 @@ public class NetworkWatcherLinux implements NetworkWatcher {
 
         String result = ProcessCommand.call("cat /proc/net/dev");
         List<String> lines = Arrays.stream(result.split("\n")).collect(Collectors.toList());
-        List<String> interfaces = lines.stream()
+
+        return lines.stream()
                 .filter(line -> line.contains(":"))
                 .map(line -> line.split(":")[0].strip())
                 .collect(Collectors.toList());
-
-        return interfaces;
     }
 
-    @Override
+    /**
+     * Returns receive speed of given network interface
+     * @param interfaceName the name of the network interface
+     * @return Bandwidth object
+     * @throws NoNetworkInterfaceException
+     * @throws IOException
+     */
     public Bandwidth getInterfaceReceiveSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException, InterruptedException {
         Long bytesFirst = getInterfaceProcNetDevInfo(interfaceName, 1);
         long timeFirst = System.currentTimeMillis();
@@ -56,7 +61,13 @@ public class NetworkWatcherLinux implements NetworkWatcher {
         return new Bandwidth(speed);
     }
 
-    @Override
+    /**
+     * Returns transmit speed of given network interface
+     * @param interfaceName the name of the network interface
+     * @return Bandwidth object
+     * @throws NoNetworkInterfaceException
+     * @throws IOException
+     */
     public Bandwidth getInterfaceTransmitSpeed(String interfaceName) throws NoNetworkInterfaceException, IOException, InterruptedException {
         Long bytesFirst = getInterfaceProcNetDevInfo(interfaceName, 9);
         long timeFirst = System.currentTimeMillis();
@@ -69,13 +80,25 @@ public class NetworkWatcherLinux implements NetworkWatcher {
         return new Bandwidth(speed);
     }
 
-    @Override
+    /**
+     * Returns receive data size of network interface
+     * @param interfaceName the name of the network interface
+     * @return Memory object
+     * @throws NoNetworkInterfaceException
+     * @throws IOException
+     */
     public Memory getInterfaceReceivedData(String interfaceName) throws NoNetworkInterfaceException, IOException {
         Long bytes = getInterfaceProcNetDevInfo(interfaceName, 1);
         return new Memory(bytes);
     }
 
-    @Override
+    /**
+     * Returns transmitted data size of network interface
+     * @param interfaceName the name of the network interface
+     * @return Memory object
+     * @throws NoNetworkInterfaceException
+     * @throws IOException
+     */
     public Memory getInterfaceTransmittedData(String interfaceName) throws NoNetworkInterfaceException, IOException {
         Long bytes = getInterfaceProcNetDevInfo(interfaceName, 9);
         return new Memory(bytes);

@@ -6,8 +6,6 @@ import io.github.kamilszewc.resourcewatcher.watchers.interfaces.SystemWatcher;
 import java.io.IOError;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class SystemWatcherWindows implements SystemWatcher {
 

@@ -7,19 +7,17 @@ import io.github.kamilszewc.resourcewatcher.watchers.interfaces.CpuWatcher;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CpuWatcherWindows implements CpuWatcher {
 
     private List<String> getWmicInfo(String variable) throws IOException {
         String result = ProcessCommand.call("wmic cpu get " + variable);
-        List<String> lines = Arrays.stream(result.split("\n"))
+        return Arrays.stream(result.split("\n"))
                 .filter(line -> !line.isBlank())
                 .map(String::trim)
                 .skip(1)
                 .collect(Collectors.toList());
-        return lines;
     }
 
     @Override
@@ -35,7 +33,7 @@ public class CpuWatcherWindows implements CpuWatcher {
         Integer numberOfThreads = numberOfCores * numberOfThreadsPerCore;
         Integer numberOfThreadsPerSocket = numberOfCoresPerSocket * numberOfThreadsPerCore;
 
-        CpuInfo cpuInfo = CpuInfo.builder()
+        return CpuInfo.builder()
                 .name(name)
                 .vendor(vendor)
                 .frequency(frequency)
@@ -46,7 +44,5 @@ public class CpuWatcherWindows implements CpuWatcher {
                 .numberOfThreadsPerSocket(numberOfThreadsPerSocket)
                 .numberOfThreadsPerCore(numberOfThreadsPerCore)
                 .build();
-
-        return cpuInfo;
     }
 }

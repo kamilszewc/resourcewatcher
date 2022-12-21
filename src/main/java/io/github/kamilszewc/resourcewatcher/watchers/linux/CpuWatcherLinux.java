@@ -5,11 +5,7 @@ import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.CpuWatcher;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 public class CpuWatcherLinux implements CpuWatcher {
@@ -63,7 +59,7 @@ public class CpuWatcherLinux implements CpuWatcher {
 
         Float frequency = Float.valueOf(getCatCpuInfo("cpu MHz"));
 
-        CpuInfo cpuInfo = CpuInfo.builder()
+        return CpuInfo.builder()
                 .name(getLsCpuInfo("Model name"))
                 .vendor(getLsCpuInfo("Vendor ID"))
                 .frequency(frequency)
@@ -74,7 +70,5 @@ public class CpuWatcherLinux implements CpuWatcher {
                 .numberOfThreadsPerSocket(numberOfThreadsPerSocket)
                 .numberOfThreadsPerCore(numberOfThreadsPerCore)
                 .build();
-
-        return cpuInfo;
     }
 }

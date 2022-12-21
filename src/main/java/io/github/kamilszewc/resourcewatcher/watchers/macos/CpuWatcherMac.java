@@ -44,7 +44,7 @@ public class CpuWatcherMac implements CpuWatcher {
             frequency = Float.valueOf(getSysCtlInfo("hw.cpufrequency")) / 1000;
         }
 
-        CpuInfo cpuInfo = CpuInfo.builder()
+        return CpuInfo.builder()
                 .name(name)
                 .vendor(vendor)
                 .numberOfCores(numberOfCores)
@@ -55,7 +55,5 @@ public class CpuWatcherMac implements CpuWatcher {
                 .numberOfThreadsPerCore(numberOfThreadsPerCore)
                 .frequency(frequency)
                 .build();
-
-        return cpuInfo;
     }
 }

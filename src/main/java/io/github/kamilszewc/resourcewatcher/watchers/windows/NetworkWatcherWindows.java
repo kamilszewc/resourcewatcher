@@ -1,38 +1,27 @@
 package io.github.kamilszewc.resourcewatcher.watchers.windows;
 
-import io.github.kamilszewc.resourcewatcher.core.Bandwidth;
-import io.github.kamilszewc.resourcewatcher.core.Memory;
-import io.github.kamilszewc.resourcewatcher.exceptions.NoNetworkInterfaceException;
-import io.github.kamilszewc.resourcewatcher.exceptions.NotImplementedException;
+import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.NetworkWatcher;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NetworkWatcherWindows implements NetworkWatcher {
+
+    private List<String> getWmicInfo(String variable) throws IOException {
+        String result = ProcessCommand.call("wmic nic get " + variable);
+        return Arrays.stream(result.split("\n"))
+                .filter(line -> !line.isBlank())
+                .map(String::trim)
+                .skip(1)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public List<String> getListOfInterfaces() throws IOException {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public Bandwidth getInterfaceReceiveSpeed(String interfaceName) throws NoNetworkInterfaceException {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public Bandwidth getInterfaceTransmitSpeed(String interfaceName) throws NoNetworkInterfaceException {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public Memory getInterfaceReceivedData(String interfaceName) throws NoNetworkInterfaceException, IOException {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public Memory getInterfaceTransmittedData(String interfaceName) throws NoNetworkInterfaceException, IOException {
-        throw new NotImplementedException();
+        return getWmicInfo("name");
     }
 
 }

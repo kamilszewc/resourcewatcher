@@ -7,7 +7,6 @@ import io.github.kamilszewc.resourcewatcher.watchers.interfaces.ProcessWatcher;
 
 import java.io.IOError;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
 

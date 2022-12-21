@@ -18,7 +18,7 @@ public class ResourceWatcherWindows implements ResourceWatcher {
 
     @Override
     public NetworkWatcher getNetworkWatcher() {
-        throw new NotImplementedException();
+        return new NetworkWatcherWindows();
     }
 
     @Override

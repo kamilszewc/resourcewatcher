@@ -5,7 +5,6 @@ import io.github.kamilszewc.resourcewatcher.exceptions.NoProcessFoundException;
 
 import java.io.IOError;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Set;
 
 /**
