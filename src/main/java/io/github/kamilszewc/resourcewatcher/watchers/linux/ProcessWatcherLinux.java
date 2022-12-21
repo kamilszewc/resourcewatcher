@@ -30,9 +30,7 @@ public class ProcessWatcherLinux implements ProcessWatcher {
      * Returns information about process Proportional Set Size (PSS) memory.
      * @param processId Process id
      * @return Memory object
-     * @throws IOError
      * @throws IOException
-     * @throws NoProcessFoundException
      */
     public Memory getProcessProportionalSetSizeMemory(Long processId) throws IOException {
 
