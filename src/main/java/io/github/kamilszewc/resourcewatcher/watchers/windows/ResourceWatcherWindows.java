@@ -33,7 +33,7 @@ public class ResourceWatcherWindows implements ResourceWatcher {
 
     @Override
     public RamWatcher getRamWatcher() {
-        throw new NotImplementedException();
+        return new RamWatcherWindows();
     }
 
     @Override
