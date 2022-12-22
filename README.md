@@ -11,7 +11,7 @@ It was tested with:
 - OpenSUSE 15
 - Fedora 37
 - MacOS 12, 13
-- Windows 11 (not fully implemented)
+- Windows 11
 
 ## Installation
 
