@@ -30,7 +30,7 @@ public interface ResourceWatcher {
     /**
      * Returns the NetworkWatcher object
      * @return NetworkWatcher object
-     * @throws NotImplementedException
+     * @throws NotImplementedException if the method is not implemented
      */
     NvidiaCudaWatcher getNvidiaCudaWatcher() throws NotImplementedException;
 
@@ -55,7 +55,7 @@ public interface ResourceWatcher {
     /**
      * Automatically detects the OS and produces the right ResourceWatcher object
      * @return ResourceWatcher object for detected OS
-     * @throws UnknownOperatingSystemException
+     * @throws UnknownOperatingSystemException if operating system is unknown
      */
      static ResourceWatcher create() throws UnknownOperatingSystemException {
         return ResourceWatcherFactory.create();

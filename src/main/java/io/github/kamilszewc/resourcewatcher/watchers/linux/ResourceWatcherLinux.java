@@ -3,6 +3,9 @@ package io.github.kamilszewc.resourcewatcher.watchers.linux;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.*;
 import io.github.kamilszewc.resourcewatcher.watchers.universal.DiskWatcherUniversal;
 
+/**
+ * ResourceWatcher class - Linux specialization
+ */
 public class ResourceWatcherLinux implements ResourceWatcher {
 
     @Override

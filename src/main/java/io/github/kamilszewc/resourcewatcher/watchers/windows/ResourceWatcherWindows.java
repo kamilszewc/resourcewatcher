@@ -4,6 +4,9 @@ import io.github.kamilszewc.resourcewatcher.exceptions.NotImplementedException;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.*;
 import io.github.kamilszewc.resourcewatcher.watchers.universal.DiskWatcherUniversal;
 
+/**
+ * ResourceWatcher class - Windows specialization
+ */
 public class ResourceWatcherWindows implements ResourceWatcher {
 
     @Override

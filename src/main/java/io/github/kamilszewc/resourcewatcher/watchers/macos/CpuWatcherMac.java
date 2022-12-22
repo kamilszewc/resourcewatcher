@@ -1,15 +1,18 @@
 package io.github.kamilszewc.resourcewatcher.watchers.macos;
 
 import io.github.kamilszewc.resourcewatcher.core.CpuInfo;
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
+import io.github.kamilszewc.resourcewatcher.core.CommandCaller;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.CpuWatcher;
 
 import java.io.IOException;
 
+/**
+ * CpuWatcher - MacOS specialization
+ */
 public class CpuWatcherMac implements CpuWatcher {
 
     private String getSysCtlInfo(String variable) throws IOException {
-        String result = ProcessCommand.call("sysctl " + variable);
+        String result = CommandCaller.call("sysctl " + variable);
         String[] split = result.split(": ");
         try {
             return split[1].trim();

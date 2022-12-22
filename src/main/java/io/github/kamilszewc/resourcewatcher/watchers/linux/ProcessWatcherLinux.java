@@ -1,20 +1,22 @@
 package io.github.kamilszewc.resourcewatcher.watchers.linux;
 
 import io.github.kamilszewc.resourcewatcher.core.Memory;
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
+import io.github.kamilszewc.resourcewatcher.core.CommandCaller;
 import io.github.kamilszewc.resourcewatcher.exceptions.NoProcessFoundException;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.ProcessWatcher;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * ProcessWatcher class - Linux specialization
+ */
 public class ProcessWatcherLinux implements ProcessWatcher {
 
     private Long getSmapValue(Long processId, String key) throws IOException {
 
-        String result = ProcessCommand.call("cat /proc/" + processId + "/smaps");
+        String result = CommandCaller.call("cat /proc/" + processId + "/smaps");
         List<String> lines = Arrays.stream(result.split("\n")).collect(Collectors.toList());
         List<Long> values = lines.stream()
                 .filter(entry -> entry.contains(key))
@@ -30,7 +32,7 @@ public class ProcessWatcherLinux implements ProcessWatcher {
      * Returns information about process Proportional Set Size (PSS) memory.
      * @param processId Process id
      * @return Memory object
-     * @throws IOException
+     * @throws IOException if can not get information from os
      */
     public Memory getProcessProportionalSetSizeMemory(Long processId) throws IOException {
 
@@ -43,11 +45,10 @@ public class ProcessWatcherLinux implements ProcessWatcher {
      * Returns information about Proportional Set Size (PPS) memory of a process and its all tree (recursively).
      * @param processId Process id
      * @return Memory object
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
+     * @throws IOException if can not get information from os
+     * @throws NoProcessFoundException if no process found
      */
-    public Memory getProcessProportionalSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+    public Memory getProcessProportionalSetSizeWithChildrenMemory(Long processId) throws IOException, NoProcessFoundException {
         Set<Long> childrenProcesses = getChildrenTree(processId);
 
         Long value = 0L;
@@ -62,11 +63,10 @@ public class ProcessWatcherLinux implements ProcessWatcher {
      * Returns information about process Unique Set Size (USS) memory.
      * @param processId Process id
      * @return Memory object
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
+     * @throws IOException if can not get information from os
+     * @throws NoProcessFoundException if no process found
      */
-    public Memory getProcessUniqueSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+    public Memory getProcessUniqueSetSizeMemory(Long processId) throws IOException, NoProcessFoundException {
         Long valuePrivateClean = getSmapValue(processId, "Private_Clean");
         Long valuePrivateDirty = getSmapValue(processId, "Private_Dirty");
         Long value = valuePrivateClean + valuePrivateDirty;
@@ -78,11 +78,10 @@ public class ProcessWatcherLinux implements ProcessWatcher {
      * Returns information about Unique Set Size (USS) memory of a process and its all tree (recursively).
      * @param processId Process id
      * @return Memory object
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
+     * @throws IOException if can not get information from os
+     * @throws NoProcessFoundException if no process found
      */
-    public Memory getProcessUniqueSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+    public Memory getProcessUniqueSetSizeWithChildrenMemory(Long processId) throws IOException, NoProcessFoundException {
         Set<Long> childrenProcesses = getChildrenTree(processId);
 
         Long value = 0L;
@@ -95,9 +94,9 @@ public class ProcessWatcherLinux implements ProcessWatcher {
 
 
     @Override
-    public Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+    public Memory getProcessResidentSetSizeMemory(Long processId) throws IOException, NoProcessFoundException {
 
-        String result = ProcessCommand.call("ps -o rss " + processId);
+        String result = CommandCaller.call("ps -o rss " + processId);
         String[] lines = result.split("\n");
         try {
             Long value = Long.valueOf(lines[1].trim());
@@ -108,9 +107,9 @@ public class ProcessWatcherLinux implements ProcessWatcher {
     }
 
     @Override
-    public Memory getProcessVirtualMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+    public Memory getProcessVirtualMemory(Long processId) throws IOException, NoProcessFoundException {
 
-        String result = ProcessCommand.call("ps -o vsz " + processId);
+        String result = CommandCaller.call("ps -o vsz " + processId);
         String[] lines = result.split("\n");
         try {
             Long value = Long.valueOf(lines[1].trim());
@@ -121,9 +120,9 @@ public class ProcessWatcherLinux implements ProcessWatcher {
     }
 
     @Override
-    public Set<Long> getChildrenTree(final Long processId) throws IOError, IOException {
+    public Set<Long> getChildrenTree(final Long processId) throws IOException {
 
-        String result = ProcessCommand.call("pgrep -P " + processId);
+        String result = CommandCaller.call("pgrep -P " + processId);
         String[] lines = result.split("\n");
 
         Set<Long> processIds = new HashSet<>();
@@ -141,7 +140,7 @@ public class ProcessWatcherLinux implements ProcessWatcher {
     }
 
     @Override
-    public Memory getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+    public Memory getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOException, NoProcessFoundException {
         Set<Long> childrenProcesses = getChildrenTree(processId);
 
         Long value = 0L;
@@ -153,7 +152,7 @@ public class ProcessWatcherLinux implements ProcessWatcher {
     }
 
     @Override
-    public Memory getProcessVirtualWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+    public Memory getProcessVirtualWithChildrenMemory(Long processId) throws IOException, NoProcessFoundException {
 
         Set<Long> childrenProcesses = getChildrenTree(processId);
 
@@ -165,10 +164,15 @@ public class ProcessWatcherLinux implements ProcessWatcher {
         return new Memory(value * 1024);
     }
 
-    @Override
-    public Long getProcessCpuTime(Long processId) throws IOError, IOException {
+    /**
+     * Returns cpu time of process (in seconds)
+     * @param processId Process id
+     * @return Time in seconds
+     * @throws IOException if can not get information from os
+     */
+    public Long getProcessCpuTime(Long processId) throws IOException {
 
-        String result = ProcessCommand.call("ps -o time " + processId);
+        String result = CommandCaller.call("ps -o time " + processId);
         String[] lines = result.split("\n");
         String[] elements = lines[1].trim().split(":");
         int hours = Integer.valueOf(elements[0]);
@@ -177,8 +181,13 @@ public class ProcessWatcherLinux implements ProcessWatcher {
         return hours * 3600L + minutes * 60L + seconds;
     }
 
-    @Override
-    public Long getProcessCpuTimeWithChildren(Long processId) throws IOError, IOException {
+    /**
+     * Returns cpu time of a process (in seconds) and its all tree (recursively).
+     * @param processId Process id
+     * @return Time in seconds
+     * @throws IOException if can not get information from os
+     */
+    public Long getProcessCpuTimeWithChildren(Long processId) throws IOException {
 
         Set<Long> childrenProcesses = getChildrenTree(processId);
         Long totalTime = 0L;

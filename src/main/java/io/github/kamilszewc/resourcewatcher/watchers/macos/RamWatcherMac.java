@@ -1,15 +1,17 @@
 package io.github.kamilszewc.resourcewatcher.watchers.macos;
 
 import io.github.kamilszewc.resourcewatcher.core.Memory;
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
+import io.github.kamilszewc.resourcewatcher.core.CommandCaller;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.RamWatcher;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.IOError;
 import java.io.IOException;
 
+/**
+ * RamWatcher class - MacOS specialization
+ */
 public class RamWatcherMac implements RamWatcher {
 
     private int getPageSize() {
@@ -27,7 +29,7 @@ public class RamWatcherMac implements RamWatcher {
 
     private PageStatistics getPageStatistics() throws IOException {
 
-        String result = ProcessCommand.call("vm_stat");
+        String result = CommandCaller.call("vm_stat");
         String[] split = result.split("\n");
 
         PageStatistics pageStatistics = new PageStatistics();
@@ -49,16 +51,16 @@ public class RamWatcherMac implements RamWatcher {
     }
 
     @Override
-    public Memory getTotalMemory() throws IOError, IOException {
+    public Memory getTotalMemory() throws IOException {
 
-        String result = ProcessCommand.call("sysctl hw.memsize");
+        String result = CommandCaller.call("sysctl hw.memsize");
         String[] split = result.split(": ");
         Long value = Long.valueOf(split[1].trim());
         return new Memory(value);
     }
 
     @Override
-    public Memory getFreeMemory() throws IOError, IOException {
+    public Memory getFreeMemory() throws IOException {
 
         var vmStat = getPageStatistics();
         Long value = vmStat.getFree() * getPageSize();
@@ -66,7 +68,7 @@ public class RamWatcherMac implements RamWatcher {
     }
 
     @Override
-    public Memory getAvailableMemory() throws IOError, IOException {
+    public Memory getAvailableMemory() throws IOException {
 
         var vmStat = getPageStatistics();
         Long value = (vmStat.getFree() + vmStat.getInactive()) * getPageSize();

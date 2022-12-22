@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'io.github.kamilszewc'
-version '4.17'
+version '4.18'
 sourceCompatibility = '11'
 targetCompatibility = '11'
 

@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * Class that represents the information about CPU and the topology
+ */
 @Builder
 @Getter
 @AllArgsConstructor

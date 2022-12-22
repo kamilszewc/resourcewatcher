@@ -1,21 +1,22 @@
 package io.github.kamilszewc.resourcewatcher.watchers.macos;
 
 import io.github.kamilszewc.resourcewatcher.core.Memory;
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
+import io.github.kamilszewc.resourcewatcher.core.CommandCaller;
 import io.github.kamilszewc.resourcewatcher.exceptions.NoProcessFoundException;
-import io.github.kamilszewc.resourcewatcher.exceptions.NotImplementedException;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.ProcessWatcher;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * ProcessWatcher class - MacOS specialization
+ */
 public class ProcessWatcherMac implements ProcessWatcher {
 
     @Override
-    public Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+    public Memory getProcessResidentSetSizeMemory(Long processId) throws IOException, NoProcessFoundException {
 
-        String result = ProcessCommand.call("ps -o rss " + processId);
+        String result = CommandCaller.call("ps -o rss " + processId);
         String[] lines = result.split("\n");
         try {
             Long value = Long.valueOf(lines[1].trim());
@@ -26,9 +27,9 @@ public class ProcessWatcherMac implements ProcessWatcher {
     }
 
     @Override
-    public Memory getProcessVirtualMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+    public Memory getProcessVirtualMemory(Long processId) throws IOException, NoProcessFoundException {
 
-        String result = ProcessCommand.call("ps -o vsz " + processId);
+        String result = CommandCaller.call("ps -o vsz " + processId);
         String[] lines = result.split("\n");
         try {
             Long value = Long.valueOf(lines[1].trim());
@@ -39,9 +40,9 @@ public class ProcessWatcherMac implements ProcessWatcher {
     }
 
     @Override
-    public Set<Long> getChildrenTree(final Long processId) throws IOError, IOException {
+    public Set<Long> getChildrenTree(final Long processId) throws IOException {
 
-        String result = ProcessCommand.call("pgrep -P " + processId);
+        String result = CommandCaller.call("pgrep -P " + processId);
         String[] lines = result.split("\n");
 
         Set<Long> processIds = new HashSet<>();
@@ -59,7 +60,7 @@ public class ProcessWatcherMac implements ProcessWatcher {
     }
 
     @Override
-    public Memory getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+    public Memory getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOException, NoProcessFoundException {
         Set<Long> childrenProcesses = getChildrenTree(processId);
 
         Long value = 0L;
@@ -71,7 +72,7 @@ public class ProcessWatcherMac implements ProcessWatcher {
     }
 
     @Override
-    public Memory getProcessVirtualWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException {
+    public Memory getProcessVirtualWithChildrenMemory(Long processId) throws IOException, NoProcessFoundException {
 
         Set<Long> childrenProcesses = getChildrenTree(processId);
 
@@ -83,10 +84,15 @@ public class ProcessWatcherMac implements ProcessWatcher {
         return new Memory(value * 1024);
     }
 
-    @Override
-    public Long getProcessCpuTime(Long processId) throws IOError, IOException {
+    /**
+     * Returns cpu time of process (in seconds)
+     * @param processId Process id
+     * @return Time in seconds
+     * @throws IOException if can not get information from os
+     */
+    public Long getProcessCpuTime(Long processId) throws IOException {
 
-        String result = ProcessCommand.call("ps -o time " + processId);
+        String result = CommandCaller.call("ps -o time " + processId);
         String[] lines = result.split("\n");
         System.out.println(lines[1].trim());
         String[] elements = lines[1].trim().split(":");
@@ -96,8 +102,13 @@ public class ProcessWatcherMac implements ProcessWatcher {
         return hours * 3600L + minutes * 60L + seconds;
     }
 
-    @Override
-    public Long getProcessCpuTimeWithChildren(Long processId) throws IOError, IOException {
+    /**
+     * Returns cpu time of a process (in seconds) and its all tree (recursively).
+     * @param processId Process id
+     * @return Time in seconds
+     * @throws IOException if can not get information from os
+     */
+    public Long getProcessCpuTimeWithChildren(Long processId) throws IOException {
 
         Set<Long> childrenProcesses = getChildrenTree(processId);
         Long totalTime = 0L;

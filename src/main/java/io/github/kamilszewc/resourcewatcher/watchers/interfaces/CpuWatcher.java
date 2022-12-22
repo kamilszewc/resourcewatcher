@@ -12,7 +12,7 @@ public interface CpuWatcher {
     /**
      * Get information about CPU
      * @return CpuInfo object
-     * @throws IOException
+     * @throws IOException if can not get information from os
      */
     CpuInfo getCpuInfo() throws IOException;
 }

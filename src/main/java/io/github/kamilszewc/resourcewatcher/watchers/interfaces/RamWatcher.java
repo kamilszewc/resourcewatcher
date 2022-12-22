@@ -2,7 +2,6 @@ package io.github.kamilszewc.resourcewatcher.watchers.interfaces;
 
 import io.github.kamilszewc.resourcewatcher.core.Memory;
 
-import java.io.IOError;
 import java.io.IOException;
 
 /**
@@ -13,24 +12,21 @@ public interface RamWatcher {
     /**
      * Get the total memory in the OS
      * @return total memory
-     * @throws IOError
-     * @throws IOException
+     * @throws IOException if can not get information from os
      */
-    Memory getTotalMemory() throws IOError, IOException;
+    Memory getTotalMemory() throws IOException;
 
     /**
      * Get the free memory in the OS
      * @return free memory
-     * @throws IOError
-     * @throws IOException
+     * @throws IOException if can not get information from os
      */
-    Memory getFreeMemory() throws IOError, IOException;
+    Memory getFreeMemory() throws IOException;
 
     /**
      * Get the available memory in the OS
      * @return available memory
-     * @throws IOError
-     * @throws IOException
+     * @throws IOException if can not get information from os
      */
-    Memory getAvailableMemory() throws IOError, IOException;
+    Memory getAvailableMemory() throws IOException;
 }

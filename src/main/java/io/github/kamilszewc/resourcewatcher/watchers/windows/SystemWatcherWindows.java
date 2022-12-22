@@ -1,16 +1,18 @@
 package io.github.kamilszewc.resourcewatcher.watchers.windows;
 
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
+import io.github.kamilszewc.resourcewatcher.core.CommandCaller;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.SystemWatcher;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * SystemWatcher class - Windows implementation
+ */
 public class SystemWatcherWindows implements SystemWatcher {
 
     private String getWmicInfo(String variable) throws IOException {
-        String result = ProcessCommand.call("wmic os get " + variable);
+        String result = CommandCaller.call("wmic os get " + variable);
         return Arrays.stream(result.split("\n"))
                 .filter(line -> !line.isBlank())
                 .map(String::trim)
@@ -20,7 +22,7 @@ public class SystemWatcherWindows implements SystemWatcher {
     }
 
     @Override
-    public Integer getNumberOfProcesses() throws IOError, IOException {
+    public Integer getNumberOfProcesses() throws IOException {
         return Integer.valueOf(getWmicInfo("numberofprocesses"));
     }
 

@@ -1,20 +1,22 @@
 package io.github.kamilszewc.resourcewatcher.watchers.linux;
 
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
+import io.github.kamilszewc.resourcewatcher.core.CommandCaller;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.SystemWatcher;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * SystemWatcher class - Linux specialization
+ */
 public class SystemWatcherLinux implements SystemWatcher {
     @Override
-    public Integer getNumberOfProcesses() throws IOError, IOException {
+    public Integer getNumberOfProcesses() throws IOException {
 
-        String result = ProcessCommand.call("ps -eo nlwp");
+        String result = CommandCaller.call("ps -eo nlwp");
         String[] lines = result.split("\n");
         int sum = 0;
         for (int i=1; i< lines.length; i++) {
@@ -26,15 +28,15 @@ public class SystemWatcherLinux implements SystemWatcher {
     }
 
     public String getKernelReleaseVersion() throws IOException {
-        return ProcessCommand.call("uname -r").trim();
+        return CommandCaller.call("uname -r").trim();
     }
 
     public String getKernelVersion() throws IOException {
-        return ProcessCommand.call("uname -v").trim();
+        return CommandCaller.call("uname -v").trim();
     }
 
     public String getNodeName() throws IOException {
-        return ProcessCommand.call("uname -n").trim();
+        return CommandCaller.call("uname -n").trim();
     }
 
     public String getSystemName() throws IOException {
@@ -49,6 +51,11 @@ public class SystemWatcherLinux implements SystemWatcher {
         return getSystemIdentificationData().get("ID");
     }
 
+    /**
+     * Return the system identification data
+     * @return map of key-value records identifying os
+     * @throws IOException if information from os can not be achieved
+     */
     public Map<String, String> getSystemIdentificationData() throws IOException {
         Path filePath;
         if (Files.exists(Path.of("/etc/os-release"))) {

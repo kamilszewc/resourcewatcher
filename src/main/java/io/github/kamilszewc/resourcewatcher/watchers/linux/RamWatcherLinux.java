@@ -1,17 +1,19 @@
 package io.github.kamilszewc.resourcewatcher.watchers.linux;
 
 import io.github.kamilszewc.resourcewatcher.core.Memory;
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
+import io.github.kamilszewc.resourcewatcher.core.CommandCaller;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.RamWatcher;
 
-import java.io.IOError;
 import java.io.IOException;
 
+/**
+ * RamWatcher class - Linux specialization
+ */
 public class RamWatcherLinux implements RamWatcher {
     @Override
-    public Memory getTotalMemory() throws IOError, IOException {
+    public Memory getTotalMemory() throws IOException {
 
-        String result = ProcessCommand.call("cat /proc/meminfo");
+        String result = CommandCaller.call("cat /proc/meminfo");
         String[] lines = result.split("\n");
         for (String line : lines) {
             if (line.split(":")[0].equals("MemTotal")) {
@@ -26,9 +28,9 @@ public class RamWatcherLinux implements RamWatcher {
     }
 
     @Override
-    public Memory getFreeMemory() throws IOError, IOException {
+    public Memory getFreeMemory() throws IOException {
 
-        String result = ProcessCommand.call("cat /proc/meminfo");
+        String result = CommandCaller.call("cat /proc/meminfo");
         String[] lines = result.split("\n");
         for (String line : lines) {
             if (line.split(":")[0].equals("MemFree")) {
@@ -42,9 +44,9 @@ public class RamWatcherLinux implements RamWatcher {
     }
 
     @Override
-    public Memory getAvailableMemory() throws IOError, IOException {
+    public Memory getAvailableMemory() throws IOException {
 
-        String result = ProcessCommand.call("cat /proc/meminfo");
+        String result = CommandCaller.call("cat /proc/meminfo");
         String[] lines = result.split("\n");
         for (String line : lines) {
             if (line.split(":")[0].equals("MemAvailable")) {
@@ -58,9 +60,14 @@ public class RamWatcherLinux implements RamWatcher {
     }
 
 
-    public Memory getBuffers() throws IOError, IOException {
+    /**
+     * Returns buffers memory
+     * @return buffers memory
+     * @throws IOException if can not get information from os
+     */
+    public Memory getBuffers() throws IOException {
 
-        String result = ProcessCommand.call("cat /proc/meminfo");
+        String result = CommandCaller.call("cat /proc/meminfo");
         String[] lines = result.split("\n");
         for (String line : lines) {
             if (line.split(":")[0].equals("Buffers")) {
@@ -73,9 +80,14 @@ public class RamWatcherLinux implements RamWatcher {
         throw new IOException();
     }
 
-    public Memory getCachedMemory() throws IOError, IOException {
+    /**
+     * Returns cached memory
+     * @return cached memory
+     * @throws IOException if can not get information from os
+     */
+    public Memory getCachedMemory() throws IOException {
 
-        String result = ProcessCommand.call("cat /proc/meminfo");
+        String result = CommandCaller.call("cat /proc/meminfo");
         String[] lines = result.split("\n");
         for (String line : lines) {
             if (line.split(":")[0].equals("Cached")) {

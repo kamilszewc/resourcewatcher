@@ -11,7 +11,7 @@ public interface NetworkWatcher {
     /**
      * Returns a list of network interfaces
      * @return list of network interfaces
-     * @throws IOException
+     * @throws IOException if can not get information from os
      */
     List<String> getListOfInterfaces() throws IOException;
 }

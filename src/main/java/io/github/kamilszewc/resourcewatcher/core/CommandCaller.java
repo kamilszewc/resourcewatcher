@@ -6,12 +6,28 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Map;
 
-public class ProcessCommand {
+/**
+ * Core class that simplifies the OS system calling.
+ */
+public class CommandCaller {
 
+    /**
+     * Call command
+     * @param command os command
+     * @return command response
+     * @throws IOException if can not get information from os
+     */
     static public String call(String command) throws IOException {
         return call(command, null);
     }
 
+    /**
+     * Call command with specific environmental variables
+     * @param command os command
+     * @param envVariables map of environmental variables (key, value)
+     * @return command response
+     * @throws IOException if can not get information from os
+     */
     static public String call(String command, Map<String, String> envVariables) throws IOException {
 
         String[] splitCommand = command.split(" ");

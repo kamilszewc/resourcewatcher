@@ -1,34 +1,36 @@
 package io.github.kamilszewc.resourcewatcher.watchers.macos;
 
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
+import io.github.kamilszewc.resourcewatcher.core.CommandCaller;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.SystemWatcher;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * SystemWatcher class - MacOS specialization
+ */
 public class SystemWatcherMac implements SystemWatcher {
     @Override
-    public Integer getNumberOfProcesses() throws IOError, IOException {
+    public Integer getNumberOfProcesses() throws IOException {
 
-        String result = ProcessCommand.call("ps -e");
+        String result = CommandCaller.call("ps -e");
         String[] lines = result.split("\n");
         return lines.length - 1;
     }
 
     @Override
     public String getKernelReleaseVersion() throws IOException {
-        return ProcessCommand.call("uname -r").trim();
+        return CommandCaller.call("uname -r").trim();
     }
 
     public String getKernelVersion() throws IOException {
-        return ProcessCommand.call("uname -v").trim();
+        return CommandCaller.call("uname -v").trim();
     }
 
     @Override
     public String getNodeName() throws IOException {
-        return ProcessCommand.call("uname -n").trim();
+        return CommandCaller.call("uname -n").trim();
     }
 
     @Override
@@ -46,9 +48,14 @@ public class SystemWatcherMac implements SystemWatcher {
         return getSystemIdentificationData().get("ProductName");
     }
 
+    /**
+     * Return the system identification data
+     * @return map of key-value records identifying os
+     * @throws IOException if information from os can not be achieved
+     */
     public Map<String, String> getSystemIdentificationData() throws IOException {
         Map<String, String> identificationData = new HashMap<>();
-        String data = ProcessCommand.call("sw_vers");
+        String data = CommandCaller.call("sw_vers");
         String[] lines = data.split("\n");
         for (String line : lines) {
             String[] info = line.split(":");

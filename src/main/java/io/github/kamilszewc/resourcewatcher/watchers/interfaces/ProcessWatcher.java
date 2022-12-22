@@ -3,7 +3,6 @@ package io.github.kamilszewc.resourcewatcher.watchers.interfaces;
 import io.github.kamilszewc.resourcewatcher.core.Memory;
 import io.github.kamilszewc.resourcewatcher.exceptions.NoProcessFoundException;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.Set;
 
@@ -16,69 +15,45 @@ public interface ProcessWatcher {
      * Returns information about process Resident Set Size (RSS) memory.
      * @param processId Process id
      * @return Memory object
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
+     * @throws IOException if can not get information from os
+     * @throws NoProcessFoundException if no process found
      */
-    Memory getProcessResidentSetSizeMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Memory getProcessResidentSetSizeMemory(Long processId) throws IOException, NoProcessFoundException;
 
     /**
      * Returns information about process Virtual Memory.
      * @param processId Process id
      * @return Memory object
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
+     * @throws IOException if can not get information from os
+     * @throws NoProcessFoundException if no process found
      */
-    Memory getProcessVirtualMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Memory getProcessVirtualMemory(Long processId) throws IOException, NoProcessFoundException;
 
     /**
      * Returns a set of children processes for given parent process (recursively)
      * @param processId Process id
      * @return Set of process ids
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
+     * @throws IOException if can not get information from os
+     * @throws NoProcessFoundException if no process found
      */
-    Set<Long> getChildrenTree(final Long processId) throws IOError, IOException, NoProcessFoundException;
+    Set<Long> getChildrenTree(final Long processId) throws IOException, NoProcessFoundException;
 
     /**
      * Returns information about Resident Set Size (RSS) memory of a process and its all children (recursively).
      * @param processId Process id
      * @return Memory object
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
+     * @throws IOException if can not get information from os
+     * @throws NoProcessFoundException if no process found
      */
-    Memory getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Memory getProcessResidentSetSizeWithChildrenMemory(Long processId) throws IOException, NoProcessFoundException;
 
     /**
      * Returns information about Virtual Memory of a process and its all tree (recursively).
      * @param processId Process id
      * @return Memory object
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
+     * @throws IOException if can not get information from os
+     * @throws NoProcessFoundException if no process found
      */
-    Memory getProcessVirtualWithChildrenMemory(Long processId) throws IOError, IOException, NoProcessFoundException;
+    Memory getProcessVirtualWithChildrenMemory(Long processId) throws IOException, NoProcessFoundException;
 
-    /**
-     * Returns cpu time of process (in seconds)
-     * @param processId Process id
-     * @return Time in seconds
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
-     */
-    Long getProcessCpuTime(Long processId) throws IOError, IOException, NoProcessFoundException;
-
-    /**
-     * Returns cpu time of a process (in seconds) and its all tree (recursively).
-     * @param processId Process id
-     * @return Time in seconds
-     * @throws IOError
-     * @throws IOException
-     * @throws NoProcessFoundException
-     */
-    Long getProcessCpuTimeWithChildren(Long processId) throws IOError, IOException, NoProcessFoundException;
 }

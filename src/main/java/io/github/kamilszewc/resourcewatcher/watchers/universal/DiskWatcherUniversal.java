@@ -5,15 +5,17 @@ import io.github.kamilszewc.resourcewatcher.exceptions.NoPartitionException;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.DiskWatcher;
 
 import java.io.File;
-import java.io.IOError;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * DiskWatcher class - universal for all OSes
+ */
 public class DiskWatcherUniversal implements DiskWatcher {
 
     @Override
-    public Memory getFreePartitionSpace(String partition) throws IOError, NoPartitionException {
+    public Memory getFreePartitionSpace(String partition) throws NoPartitionException {
 
         File p = new File(partition);
         if (!p.exists()) {
@@ -23,7 +25,7 @@ public class DiskWatcherUniversal implements DiskWatcher {
     }
 
     @Override
-    public Memory getTotalPartitionSpace(String partition) throws IOError, NoPartitionException {
+    public Memory getTotalPartitionSpace(String partition) throws NoPartitionException {
 
         File p = new File(partition);
         if (!p.exists()) {
@@ -33,7 +35,7 @@ public class DiskWatcherUniversal implements DiskWatcher {
     }
 
     @Override
-    public Memory getUsablePartitionSpace(String partition) throws IOError, NoPartitionException {
+    public Memory getUsablePartitionSpace(String partition) throws NoPartitionException {
 
         File p = new File(partition);
         if (!p.exists()) {
@@ -43,7 +45,7 @@ public class DiskWatcherUniversal implements DiskWatcher {
     }
 
     @Override
-    public List<String> getListOfPartitions() throws IOError {
+    public List<String> getListOfPartitions() {
 
         return Arrays.stream(File.listRoots()).map(File::toString).collect(Collectors.toList());
     }

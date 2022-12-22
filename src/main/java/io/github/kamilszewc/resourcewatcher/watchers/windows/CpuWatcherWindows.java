@@ -1,7 +1,7 @@
 package io.github.kamilszewc.resourcewatcher.watchers.windows;
 
 import io.github.kamilszewc.resourcewatcher.core.CpuInfo;
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
+import io.github.kamilszewc.resourcewatcher.core.CommandCaller;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.CpuWatcher;
 
 import java.io.IOException;
@@ -9,10 +9,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * CpuWatcher - Windows specialization
+ */
 public class CpuWatcherWindows implements CpuWatcher {
 
     private List<String> getWmicInfo(String variable) throws IOException {
-        String result = ProcessCommand.call("wmic cpu get " + variable);
+        String result = CommandCaller.call("wmic cpu get " + variable);
         return Arrays.stream(result.split("\n"))
                 .filter(line -> !line.isBlank())
                 .map(String::trim)

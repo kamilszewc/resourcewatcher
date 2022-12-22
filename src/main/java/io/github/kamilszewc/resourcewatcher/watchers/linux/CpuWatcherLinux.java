@@ -1,17 +1,19 @@
 package io.github.kamilszewc.resourcewatcher.watchers.linux;
 
 import io.github.kamilszewc.resourcewatcher.core.CpuInfo;
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
+import io.github.kamilszewc.resourcewatcher.core.CommandCaller;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.CpuWatcher;
 
 import java.io.IOException;
 import java.util.Map;
 
-
+/**
+ * CpuWatcher - Linux specialization
+ */
 public class CpuWatcherLinux implements CpuWatcher {
 
     private String getLsCpuInfo(String variable) throws IOException {
-        String result = ProcessCommand.call("lscpu", Map.of("LANG", "C"));
+        String result = CommandCaller.call("lscpu", Map.of("LANG", "C"));
         String[] lines = result.split("\n");
 
         for (String line : lines) {
@@ -25,7 +27,7 @@ public class CpuWatcherLinux implements CpuWatcher {
     }
 
     private String getCatCpuInfo(String variable) throws IOException {
-        String result = ProcessCommand.call("cat /proc/cpuinfo");
+        String result = CommandCaller.call("cat /proc/cpuinfo");
         String[] lines = result.split("\n");
 
         for (String line : lines) {

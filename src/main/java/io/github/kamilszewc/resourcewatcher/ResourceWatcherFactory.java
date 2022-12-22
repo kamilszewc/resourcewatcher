@@ -15,7 +15,7 @@ public class ResourceWatcherFactory {
     /**
      * Creates the ResourceWatcher object for detected OS
      * @return ResourceWatcher object
-     * @throws UnknownOperatingSystemException
+     * @throws UnknownOperatingSystemException if operating system is unknown
      */
     public static ResourceWatcher create() throws UnknownOperatingSystemException {
 
@@ -37,7 +37,7 @@ public class ResourceWatcherFactory {
     /**
      * Creates the ResourceWatcher object for detected OS
      * @return ResourceWatcher object
-     * @throws UnknownOperatingSystemException
+     * @throws UnknownOperatingSystemException if operating system is unknown
      */
     public static ResourceWatcher createResourceWatcher() throws UnknownOperatingSystemException {
         return create();

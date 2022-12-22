@@ -1,12 +1,10 @@
 package io.github.kamilszewc.resourcewatcher.watchers.windows;
 
 import io.github.kamilszewc.resourcewatcher.core.Memory;
-import io.github.kamilszewc.resourcewatcher.core.ProcessCommand;
+import io.github.kamilszewc.resourcewatcher.core.CommandCaller;
 import io.github.kamilszewc.resourcewatcher.exceptions.NoProcessFoundException;
-import io.github.kamilszewc.resourcewatcher.exceptions.NotImplementedException;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.ProcessWatcher;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -14,11 +12,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * ProcessWatcher class - Windows specialization
+ */
 public class ProcessWatcherWindows implements ProcessWatcher {
 
     private String getWmicInfo(Long processId, String variable) throws IOException, NoProcessFoundException {
         String command = "wmic process where \"processID=" + processId + "\"" + " get " + variable;
-        String result = ProcessCommand.call(command);
+        String result = CommandCaller.call(command);
         if (result.isBlank()) {
             throw new NoProcessFoundException();
         }
@@ -47,7 +48,7 @@ public class ProcessWatcherWindows implements ProcessWatcher {
 
     @Override
     public Set<Long> getChildrenTree(Long processId) throws NoProcessFoundException, IOException {
-        String result = ProcessCommand.call("wmic process where \"ParentProcessId=" + processId +"\" get ProcessId");
+        String result = CommandCaller.call("wmic process where \"ParentProcessId=" + processId +"\" get ProcessId");
         if (result.trim().isEmpty()) {
             throw new NoProcessFoundException();
         }

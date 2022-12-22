@@ -5,6 +5,9 @@ import io.github.kamilszewc.resourcewatcher.exceptions.NotSupportedException;
 import io.github.kamilszewc.resourcewatcher.watchers.interfaces.*;
 import io.github.kamilszewc.resourcewatcher.watchers.universal.DiskWatcherUniversal;
 
+/**
+ * ResourceWatcher class - MacOS specialization
+ */
 public class ResourceWatcherMac implements ResourceWatcher {
 
     @Override
