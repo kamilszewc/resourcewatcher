@@ -9,24 +9,20 @@ import io.github.kamilszewc.resourcewatcher.watchers.interfaces.ProcessWatcher;
 import java.io.IOError;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ProcessWatcherWindows implements ProcessWatcher {
 
-    private boolean checkIfProcessExist(Long processId) throws NoProcessFoundException {
-        String command = "wmic process where \"processID=" + processId + "\"" + " get caption";
-        try {
-            String result = ProcessCommand.call(command);
-            return true;
-        } catch (Exception ex) {
-            throw new NoProcessFoundException();
-        }
-    }
-
-    private String getWmicInfo(Long processId, String variable) throws IOException {
+    private String getWmicInfo(Long processId, String variable) throws IOException, NoProcessFoundException {
         String command = "wmic process where \"processID=" + processId + "\"" + " get " + variable;
         String result = ProcessCommand.call(command);
+        if (result.isBlank()) {
+            throw new NoProcessFoundException();
+        }
+
         return Arrays.stream(result.split("\n"))
                 .filter(line -> !line.isBlank())
                 .map(String::trim)
@@ -37,46 +33,66 @@ public class ProcessWatcherWindows implements ProcessWatcher {
 
     @Override
     public Memory getProcessResidentSetSizeMemory(Long processId) throws IOException, NoProcessFoundException {
-        checkIfProcessExist(processId);
+
         Long memory = Long.valueOf(getWmicInfo(processId, "workingsetsize"));
         return new Memory(memory);
     }
 
     @Override
     public Memory getProcessVirtualMemory(Long processId) throws IOException, NoProcessFoundException {
-        checkIfProcessExist(processId);
+
         Long memory = Long.valueOf(getWmicInfo(processId, "virtualsize"));
         return new Memory(memory);
     }
 
     @Override
     public Set<Long> getChildrenTree(Long processId) throws NoProcessFoundException, IOException {
-        checkIfProcessExist(processId);
-        return null;
+        String result = ProcessCommand.call("wmic process where \"ParentProcessId=" + processId +"\" get ProcessId");
+        if (result.trim().isEmpty()) {
+            throw new NoProcessFoundException();
+        }
+
+        List<Long> values = Arrays.stream(result.split("\n"))
+                .skip(1)
+                .map(String::trim)
+                .filter(element -> !element.isBlank())
+                .map(Long::valueOf)
+                .collect(Collectors.toList());
+
+        Set<Long> processIds = new HashSet<>();
+        processIds.add(processId);
+        processIds.addAll(values);
+
+        for (Long value : values) {
+            try {
+                Set<Long> subtree = getChildrenTree(value);
+                processIds.addAll(subtree);
+            } catch (NoProcessFoundException ex) {
+                continue;
+            }
+        }
+
+        return processIds;
     }
 
     @Override
     public Memory getProcessResidentSetSizeWithChildrenMemory(Long processId) throws NoProcessFoundException, IOException {
-        checkIfProcessExist(processId);
-        return null;
+        Set<Long> processIds = getChildrenTree(processId);
+        Long memory = 0L;
+        for (Long id: processIds) {
+            memory += getProcessResidentSetSizeMemory(id).getB();
+        }
+        return new Memory(memory);
     }
 
     @Override
     public Memory getProcessVirtualWithChildrenMemory(Long processId) throws NoProcessFoundException, IOException {
-        checkIfProcessExist(processId);
-        return null;
-    }
-
-    @Override
-    public Long getProcessCpuTime(Long processId) throws NoProcessFoundException, IOException {
-        checkIfProcessExist(processId);
-        return null;
-    }
-
-    @Override
-    public Long getProcessCpuTimeWithChildren(Long processId) throws NoProcessFoundException, IOException {
-        checkIfProcessExist(processId);
-        return null;
+        Set<Long> processIds = getChildrenTree(processId);
+        Long memory = 0L;
+        for (Long id: processIds) {
+            memory += getProcessVirtualMemory(id).getB();
+        }
+        return new Memory(memory);
     }
 
 }

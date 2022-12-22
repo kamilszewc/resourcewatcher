@@ -28,54 +28,66 @@ class ProcessWatcherWindowsTest extends Specification {
         then:
         thrown NoProcessFoundException
     }
-//
-//    def "gives non null process with children rss memory report"() {
-//        given:
-//        def processWatcher = ResourceWatcherFactory.create().processWatcher
-//
-//        when:
-//        def processMemory = processWatcher.getProcessResidentSetSizeWithChildrenMemory(1)
-//        print processMemory.getKB()
-//
-//        then:
-//        processMemory != null
-//    }
-//
-//    def "gives non null process vsz memory report"() {
-//        given:
-//        def processWatcher = ResourceWatcherFactory.create().processWatcher
-//
-//        when:
-//        def processMemory = processWatcher.getProcessVirtualMemory(1)
-//        print processMemory.getKB()
-//
-//        then:
-//        processMemory != null
-//    }
-//
-//    def "gives non null process with children vsz memory report"() {
-//        given:
-//        def processWatcher = ResourceWatcherFactory.create().processWatcher
-//
-//        when:
-//        def processMemory = processWatcher.getProcessVirtualWithChildrenMemory(1)
-//        print processMemory.getKB()
-//
-//        then:
-//        processMemory != null
-//    }
-//
-//
-//    def "gives non null children tree report"() {
-//        given:
-//        def processWatcher = ResourceWatcherFactory.create().processWatcher
-//
-//        when:
-//        def childrenTree = processWatcher.getChildrenTree(1)
-//        print childrenTree
-//
-//        then:
-//        childrenTree != null
-//    }
+
+    def "gives non null process with children rss memory report"() {
+        given:
+        def processWatcher = ResourceWatcherFactory.create().processWatcher
+
+        when:
+        def processMemory = processWatcher.getProcessResidentSetSizeWithChildrenMemory(4)
+        print processMemory.getKB()
+
+        then:
+        processMemory != null
+    }
+
+    def "gives non null process vsz memory report"() {
+        given:
+        def processWatcher = ResourceWatcherFactory.create().processWatcher
+
+        when:
+        def processMemory = processWatcher.getProcessVirtualMemory(0)
+        print processMemory.getKB()
+
+        then:
+        processMemory != null
+    }
+
+    def "gives non null process with children vsz memory report"() {
+        given:
+        def processWatcher = ResourceWatcherFactory.create().processWatcher
+
+        when:
+        def processMemory = processWatcher.getProcessVirtualWithChildrenMemory(4)
+        print processMemory.getKB()
+
+        then:
+        processMemory != null
+    }
+
+
+    def "gives non null children tree report"() {
+        given:
+        def processWatcher = ResourceWatcherFactory.create().processWatcher
+
+        when:
+        def childrenTree = processWatcher.getChildrenTree(4)
+        print childrenTree
+
+        then:
+        childrenTree != null
+    }
+
+    def "rises NoProcessFoundException when getting children tree report of non existing process"() {
+        given:
+        def processWatcher = ResourceWatcherFactory.create().processWatcher
+
+        when:
+        def childrenTree = processWatcher.getChildrenTree(34543654645)
+        println childrenTree
+
+        then:
+        thrown NoProcessFoundException
+    }
 
 }
