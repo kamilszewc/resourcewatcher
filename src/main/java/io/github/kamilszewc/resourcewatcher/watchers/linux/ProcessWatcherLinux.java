@@ -14,6 +14,11 @@ import java.util.stream.Collectors;
  */
 public class ProcessWatcherLinux implements ProcessWatcher {
 
+    /**
+     * Constructor
+     */
+    public ProcessWatcherLinux() {}
+
     private Long getSmapValue(Long processId, String key) throws IOException {
 
         String result = CommandCaller.call("cat /proc/" + processId + "/smaps");

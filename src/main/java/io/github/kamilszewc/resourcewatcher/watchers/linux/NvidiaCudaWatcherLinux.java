@@ -11,6 +11,10 @@ import java.io.IOException;
  */
 public class NvidiaCudaWatcherLinux implements NvidiaCudaWatcher {
 
+    /**
+     * Constructor
+     */
+    public NvidiaCudaWatcherLinux() {}
     @Override
     public Memory getUsedMemory(Integer gpuId) throws IOException {
 

@@ -13,6 +13,11 @@ import java.util.stream.Collectors;
  */
 public class NetworkWatcherWindows implements NetworkWatcher {
 
+    /**
+     * Constructor
+     */
+    public NetworkWatcherWindows() {}
+
     private List<String> getWmicInfo(String variable) throws IOException {
         String result = CommandCaller.call("wmic nic get " + variable);
         return Arrays.stream(result.split("\n"))

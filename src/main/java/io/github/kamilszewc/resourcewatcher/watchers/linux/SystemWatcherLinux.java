@@ -13,6 +13,13 @@ import java.util.Map;
  * SystemWatcher class - Linux specialization
  */
 public class SystemWatcherLinux implements SystemWatcher {
+
+    /**
+     * Constructor
+     */
+    public SystemWatcherLinux() {
+    }
+
     @Override
     public Integer getNumberOfProcesses() throws IOException {
 

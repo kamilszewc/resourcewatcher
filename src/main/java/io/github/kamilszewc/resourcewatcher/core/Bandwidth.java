@@ -5,6 +5,8 @@ package io.github.kamilszewc.resourcewatcher.core;
  */
 public class Bandwidth {
 
+
+
     /**
      * Returns a transfer in bytes per second
      * @return transfer in bytes per second

@@ -14,6 +14,11 @@ import java.io.IOException;
  */
 public class RamWatcherMac implements RamWatcher {
 
+    /**
+     * Constructor
+     */
+    public RamWatcherMac() {}
+
     private int getPageSize() {
         return 16384;
     }

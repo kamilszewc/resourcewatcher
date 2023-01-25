@@ -9,6 +9,11 @@ import io.github.kamilszewc.resourcewatcher.watchers.universal.DiskWatcherUniver
  */
 public class ResourceWatcherWindows implements ResourceWatcher {
 
+    /**
+     * Constructor
+     */
+    public ResourceWatcherWindows() {}
+
     @Override
     public CpuWatcher getCpuWatcher() {
         return new CpuWatcherWindows();

@@ -17,6 +17,11 @@ import java.util.stream.Collectors;
  */
 public class ProcessWatcherWindows implements ProcessWatcher {
 
+    /**
+     * Constructor
+     */
+    public ProcessWatcherWindows() {}
+
     private String getWmicInfo(Long processId, String variable) throws IOException, NoProcessFoundException {
         String command = "wmic process where \"processID=" + processId + "\"" + " get " + variable;
         String result = CommandCaller.call(command);

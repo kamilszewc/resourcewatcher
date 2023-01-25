@@ -13,6 +13,11 @@ import org.apache.commons.lang3.SystemUtils;
 public class ResourceWatcherFactory {
 
     /**
+     * Constructor
+     */
+    public ResourceWatcherFactory() {}
+
+    /**
      * Creates the ResourceWatcher object for detected OS
      * @return ResourceWatcher object
      * @throws UnknownOperatingSystemException if operating system is unknown

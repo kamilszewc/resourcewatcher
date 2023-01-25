@@ -11,6 +11,11 @@ import java.io.IOException;
  */
 public class CpuWatcherMac implements CpuWatcher {
 
+    /**
+     * Constructor
+     */
+    public CpuWatcherMac() {}
+
     private String getSysCtlInfo(String variable) throws IOException {
         String result = CommandCaller.call("sysctl " + variable);
         String[] split = result.split(": ");

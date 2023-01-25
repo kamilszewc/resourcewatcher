@@ -12,6 +12,12 @@ import java.util.Map;
 public class CommandCaller {
 
     /**
+     * Constructor
+     */
+    CommandCaller() {
+    }
+
+    /**
      * Call command
      * @param command os command
      * @return command response

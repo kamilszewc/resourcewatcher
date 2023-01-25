@@ -14,6 +14,11 @@ import java.util.stream.Collectors;
  */
 public class DiskWatcherUniversal implements DiskWatcher {
 
+    /**
+     * Constructor
+     */
+    public DiskWatcherUniversal() {}
+
     @Override
     public Memory getFreePartitionSpace(String partition) throws NoPartitionException {
 

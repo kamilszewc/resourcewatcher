@@ -12,6 +12,11 @@ import java.util.Map;
  */
 public class CpuWatcherLinux implements CpuWatcher {
 
+    /**
+     * Constructor
+     */
+    public CpuWatcherLinux() {}
+
     private String getLsCpuInfo(String variable) throws IOException {
         String result = CommandCaller.call("lscpu", Map.of("LANG", "C"));
         String[] lines = result.split("\n");

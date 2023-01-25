@@ -13,6 +13,11 @@ import java.util.*;
  */
 public class ProcessWatcherMac implements ProcessWatcher {
 
+    /**
+     * Constructor
+     */
+    public ProcessWatcherMac() {}
+
     @Override
     public Memory getProcessResidentSetSizeMemory(Long processId) throws IOException, NoProcessFoundException {
 

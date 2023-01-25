@@ -14,6 +14,11 @@ import java.util.stream.Collectors;
  */
 public class CpuWatcherWindows implements CpuWatcher {
 
+    /**
+     * Constructor
+     */
+    public CpuWatcherWindows() {}
+
     private List<String> getWmicInfo(String variable) throws IOException {
         String result = CommandCaller.call("wmic cpu get " + variable);
         return Arrays.stream(result.split("\n"))

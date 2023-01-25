@@ -10,6 +10,12 @@ import java.io.IOException;
  * RamWatcher class - Linux specialization
  */
 public class RamWatcherLinux implements RamWatcher {
+
+    /**
+     * Constructor
+     */
+    public RamWatcherLinux() {}
+
     @Override
     public Memory getTotalMemory() throws IOException {
 

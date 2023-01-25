@@ -10,6 +10,11 @@ import io.github.kamilszewc.resourcewatcher.watchers.universal.DiskWatcherUniver
  */
 public class ResourceWatcherMac implements ResourceWatcher {
 
+    /**
+     * Constructor
+     */
+    public ResourceWatcherMac() {}
+
     @Override
     public CpuWatcher getCpuWatcher() {
         return new CpuWatcherMac();

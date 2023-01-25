@@ -8,6 +8,11 @@ import io.github.kamilszewc.resourcewatcher.watchers.universal.DiskWatcherUniver
  */
 public class ResourceWatcherLinux implements ResourceWatcher {
 
+    /**
+     * Constructor
+     */
+    public ResourceWatcherLinux() {}
+
     @Override
     public CpuWatcher getCpuWatcher() {
         return new CpuWatcherLinux();

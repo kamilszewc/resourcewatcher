@@ -23,4 +23,9 @@ public class CpuInfo {
     private Integer numberOfThreadsPerCore;
     private Float frequency;
 
+    /**
+     * Constructor
+     */
+    public CpuInfo() {}
+
 }

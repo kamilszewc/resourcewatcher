@@ -11,6 +11,12 @@ import java.util.Arrays;
  */
 public class SystemWatcherWindows implements SystemWatcher {
 
+    /**
+     * Constructor
+     */
+    SystemWatcherWindows() {
+    }
+
     private String getWmicInfo(String variable) throws IOException {
         String result = CommandCaller.call("wmic os get " + variable);
         return Arrays.stream(result.split("\n"))

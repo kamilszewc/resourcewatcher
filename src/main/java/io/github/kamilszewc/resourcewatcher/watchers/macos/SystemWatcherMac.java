@@ -11,6 +11,13 @@ import java.util.Map;
  * SystemWatcher class - MacOS specialization
  */
 public class SystemWatcherMac implements SystemWatcher {
+
+    /**
+     * Constructor
+     */
+    SystemWatcherMac() {
+    }
+
     @Override
     public Integer getNumberOfProcesses() throws IOException {
 

@@ -17,6 +17,12 @@ import java.util.stream.Collectors;
  * NetworkWatcher class - Linux specialization
  */
 public class NetworkWatcherLinux implements NetworkWatcher {
+
+    /**
+     * Constructor
+     */
+    public NetworkWatcherLinux() {}
+
     private Long getInterfaceProcNetDevInfo(final String interfaceName, final int idx) throws NoNetworkInterfaceException, IOException {
 
         String result = CommandCaller.call("cat /proc/net/dev");
