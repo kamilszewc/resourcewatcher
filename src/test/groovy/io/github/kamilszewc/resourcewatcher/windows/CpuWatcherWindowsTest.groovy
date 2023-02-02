@@ -16,7 +16,7 @@ class CpuWatcherWindowsTest extends Specification {
 
         then:
         cpuInfo.name != "Apple M1"
-
+        cpuInfo.name == "12th Gen Intel(R) Core(TM) i7-1255U"
     }
 
 }
