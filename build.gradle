@@ -4,6 +4,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'signing'
+    id 'org.sonatype.gradle.plugins.scan' version '2.5.5'
 }
 
 group 'io.github.kamilszewc'
@@ -98,3 +99,8 @@ signing {
     sign configurations.archives
 }
 
+ossIndexAudit {
+    allConfigurations = false
+    useCache = false
+    outputFormat = 'DEFAULT'
+}
