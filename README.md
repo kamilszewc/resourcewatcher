@@ -21,16 +21,16 @@ Usage with maven:
 
 ```xml
 <dependency>
-    <groupId>io.github.kamilszewc</groupId>
+    <groupId>com.computinglaboratory</groupId>
     <artifactId>resourcewatcher</artifactId>
-    <version>4.19</version>
+    <version>5.0</version>
 </dependency>
 ```
 
 Usage with gradle:
 
 ```groovy
-implementation 'io.github.kamilszewc:resourcewatcher:4.19'
+implementation 'com.computinglaboratory:resourcewatcher:5.0'
 ```
 
 ## Usage

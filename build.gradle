@@ -7,8 +7,8 @@ plugins {
     id 'org.sonatype.gradle.plugins.scan' version '2.5.5'
 }
 
-group 'io.github.kamilszewc'
-version '4.20'
+group 'com.computinglaboratory'
+version '5.0'
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+    // Apache commons
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 
     // Lombok
@@ -24,8 +25,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     // Testing
-    testImplementation 'org.apache.groovy:groovy-all:4.0.8'
-    testImplementation 'org.spockframework:spock-core:2.3-groovy-4.0'
+    testImplementation 'org.apache.groovy:groovy-all:3.0.15'
+    testImplementation 'org.spockframework:spock-core:2.3-groovy-3.0'
 
     // Fixing vulnerability
     implementation 'org.testng:testng:7.7.0'
