@@ -1,7 +1,6 @@
 package com.computinglaboratory.resourcewatcher.watchers.linux;
 
 import com.computinglaboratory.resourcewatcher.watchers.interfaces.*;
-import io.github.kamilszewc.resourcewatcher.watchers.interfaces.*;
 import com.computinglaboratory.resourcewatcher.watchers.universal.DiskWatcherUniversal;
 
 /**

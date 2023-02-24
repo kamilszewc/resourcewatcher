@@ -3,7 +3,6 @@ package com.computinglaboratory.resourcewatcher.watchers.macos;
 import com.computinglaboratory.resourcewatcher.exceptions.NotImplementedException;
 import com.computinglaboratory.resourcewatcher.exceptions.NotSupportedException;
 import com.computinglaboratory.resourcewatcher.watchers.interfaces.*;
-import io.github.kamilszewc.resourcewatcher.watchers.interfaces.*;
 import com.computinglaboratory.resourcewatcher.watchers.universal.DiskWatcherUniversal;
 
 /**

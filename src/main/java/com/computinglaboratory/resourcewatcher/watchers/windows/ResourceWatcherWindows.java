@@ -3,7 +3,6 @@ package com.computinglaboratory.resourcewatcher.watchers.windows;
 import com.computinglaboratory.resourcewatcher.watchers.interfaces.*;
 import com.computinglaboratory.resourcewatcher.watchers.universal.DiskWatcherUniversal;
 import com.computinglaboratory.resourcewatcher.exceptions.NotImplementedException;
-import io.github.kamilszewc.resourcewatcher.watchers.interfaces.*;
 
 /**
  * ResourceWatcher class - Windows specialization
