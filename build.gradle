@@ -92,12 +92,53 @@ publishing {
                 }
             }
         }
+
+//        relocation(MavenPublication) {
+//            from components.java
+//            pom {
+//                groupId = 'io.github.kamilszewc'
+//                artifactId = 'resourcewatcher'
+//                version = '5.0'
+//
+//                name = 'Resource Watcher'
+//                description = 'Java-based Linux, Mac, Windows resources watcher (cpu, gpu, ram, disk, ...)'
+//                url = 'https://github.com/kamilszewc/resourcewatcher'
+//                licenses {
+//                    license {
+//                        name = 'The Apache License, Version 2.0'
+//                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id = 'kszewc'
+//                        name = "Kamil Szewc"
+//                        email = 'kamil.szewc@gmail.com'
+//                    }
+//                }
+//                scm {
+//                    connection = 'scm:git:git://github.com/kamilszewc/resourcewatcher.git'
+//                    developerConnection = 'scm:git:https://github.com/kamilszewc/resourcewatcher.git'
+//                    url = 'https://github.com/kamilszewc/resourcewatcher.git'
+//                }
+//
+//                distributionManagement {
+//                    relocation {
+//                        groupId = 'com.computinglaboratory'
+//                        artifactId = 'resourcewatcher'
+//                        version = '5.0'
+//                        message = 'Project moved to com.computinglaboratory:resourcewatcher'
+//                    }
+//                }
+//            }
+//        }
     }
 }
 
 signing {
     sign publishing.publications.mavenJava
     sign configurations.archives
+//    sign publishing.publications.relocation
 }
 
 ossIndexAudit {
