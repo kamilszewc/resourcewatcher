@@ -48,4 +48,13 @@ public class ResourceWatcherFactory {
         return create();
     }
 
+
+    /**
+     * Returns the type of operating system.
+     * @return OperatingSystem object
+     */
+    public static ResourceWatcher.OperatingSystem getOperatingSystem() {
+        return ResourceWatcher.getOperatingSystem();
+    }
+
 }

@@ -3,11 +3,36 @@ package com.computinglaboratory.resourcewatcher.watchers.interfaces;
 import com.computinglaboratory.resourcewatcher.ResourceWatcherFactory;
 import com.computinglaboratory.resourcewatcher.exceptions.NotImplementedException;
 import com.computinglaboratory.resourcewatcher.exceptions.UnknownOperatingSystemException;
+import org.apache.commons.lang3.SystemUtils;
 
 /**
  * The class allows to get different types of resource watchers.
  */
 public interface ResourceWatcher {
+
+    /**
+     * Describes the Operating System type
+     */
+    enum OperatingSystem {WINDOWS, LINUX, MACOS, UNKNOWN};
+
+    /**
+     * Returns the type of operating system
+     * @return OperatingSystem object
+     */
+    static OperatingSystem getOperatingSystem() {
+        if (SystemUtils.IS_OS_LINUX) {
+            return OperatingSystem.LINUX;
+
+        } else if (SystemUtils.IS_OS_MAC) {
+            return OperatingSystem.MACOS;
+
+        } else if (SystemUtils.IS_OS_WINDOWS) {
+            return OperatingSystem.WINDOWS;
+
+        } else {
+            return OperatingSystem.UNKNOWN;
+        }
+    }
 
     /**
      * Returns the CpuWatcher object
