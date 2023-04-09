@@ -25,11 +25,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
 
     // Testing
-    testImplementation 'org.codehaus.groovy:groovy-all:3.0.16'
-    testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-3.0'
-
-    // Fixing vulnerability
-    implementation 'org.testng:testng:7.7.0'
+    testImplementation 'org.apache.groovy:groovy-all:4.0.11'
+    testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
 }
 
 test {
