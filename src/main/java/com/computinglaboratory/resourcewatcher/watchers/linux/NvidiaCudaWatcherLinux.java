@@ -53,9 +53,18 @@ public class NvidiaCudaWatcherLinux implements NvidiaCudaWatcher {
     }
 
     @Override
+    public Integer getMemoryTemperature(Integer gpuId) throws IOException {
+
+        String result = CommandCaller.call("nvidia-smi --query-gpu=temperature.memory --format=csv -i " + gpuId);
+        String[] lines = result.split("\n");
+        String line = lines[1];
+        return Integer.valueOf(line.split(" ")[0].trim());
+    }
+
+    @Override
     public Integer getTemperature(Integer gpuId) throws IOException {
 
-        String result = CommandCaller.call("nvidia-smi --query-gpu=memory.total --format=csv -i " + gpuId);
+        String result = CommandCaller.call("nvidia-smi --query-gpu=temperature.gpu --format=csv -i " + gpuId);
         String[] lines = result.split("\n");
         String line = lines[1];
         return Integer.valueOf(line.split(" ")[0].trim());

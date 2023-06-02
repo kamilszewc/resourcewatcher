@@ -41,6 +41,14 @@ public interface NvidiaCudaWatcher {
     Memory getTotalMemory(Integer gpuId) throws IOException;
 
     /**
+     * Get memory temperature of the specific gpu
+     * @param gpuId the id of the gpu
+     * @return memory temperature
+     * @throws IOException if can not get information from os
+     */
+    Integer getMemoryTemperature(Integer gpuId) throws IOException;
+
+    /**
      * Get temperature of the specific gpu
      * @param gpuId the id of the gpu
      * @return temperature
