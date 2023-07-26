@@ -78,6 +78,12 @@ public interface ResourceWatcher {
     SystemWatcher getSystemWatcher();
 
     /**
+     * Returns the FilesWatcher object
+     * @return FilesWatcher object
+     */
+    FilesWatcher getFilesWatcher();
+
+    /**
      * Automatically detects the OS and produces the right ResourceWatcher object
      * @return ResourceWatcher object for detected OS
      * @throws UnknownOperatingSystemException if operating system is unknown

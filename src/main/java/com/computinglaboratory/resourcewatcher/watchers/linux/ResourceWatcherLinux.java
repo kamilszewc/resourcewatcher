@@ -1,5 +1,6 @@
 package com.computinglaboratory.resourcewatcher.watchers.linux;
 
+import com.computinglaboratory.resourcewatcher.exceptions.NotImplementedException;
 import com.computinglaboratory.resourcewatcher.watchers.interfaces.*;
 import com.computinglaboratory.resourcewatcher.watchers.universal.DiskWatcherUniversal;
 
@@ -47,4 +48,7 @@ public class ResourceWatcherLinux implements ResourceWatcher {
     public SystemWatcher getSystemWatcher() {
         return new SystemWatcherLinux();
     }
+
+    @Override
+    public FilesWatcher getFilesWatcher() { throw new NotImplementedException(); }
 }

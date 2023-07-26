@@ -49,4 +49,7 @@ public class ResourceWatcherMac implements ResourceWatcher {
     public SystemWatcher getSystemWatcher() {
         return new SystemWatcherMac();
     }
+
+    @Override
+    public FilesWatcher getFilesWatcher() { return new FilesWatcherMac(); }
 }

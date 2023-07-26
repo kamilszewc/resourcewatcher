@@ -4,6 +4,8 @@ import com.computinglaboratory.resourcewatcher.watchers.interfaces.*;
 import com.computinglaboratory.resourcewatcher.watchers.universal.DiskWatcherUniversal;
 import com.computinglaboratory.resourcewatcher.exceptions.NotImplementedException;
 
+import java.nio.file.Files;
+
 /**
  * ResourceWatcher class - Windows specialization
  */
@@ -48,4 +50,7 @@ public class ResourceWatcherWindows implements ResourceWatcher {
     public SystemWatcher getSystemWatcher() {
         return new SystemWatcherWindows();
     }
+
+    @Override
+    public FilesWatcher getFilesWatcher() { throw new NotImplementedException(); }
 }
