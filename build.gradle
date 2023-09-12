@@ -4,13 +4,17 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'signing'
-    id 'org.sonatype.gradle.plugins.scan' version '2.5.5'
+    id 'org.sonatype.gradle.plugins.scan' version '2.6.0'
 }
 
 group 'com.computinglaboratory'
-version '5.5'
-sourceCompatibility = '11'
-targetCompatibility = '11'
+version '5.6'
+java {
+    withJavadocJar()
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 repositories {
     mavenCentral()
@@ -21,11 +25,11 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 
     // Lombok
-    compileOnly 'org.projectlombok:lombok:1.18.26'
-    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
 
     // Testing
-    testImplementation 'org.apache.groovy:groovy-all:4.0.11'
+    testImplementation 'org.apache.groovy:groovy-all:4.0.13'
     testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
 }
 
@@ -33,10 +37,6 @@ test {
     useJUnitPlatform()
 }
 
-java {
-    withJavadocJar()
-    withSourcesJar()
-}
 
 artifacts {
     archives javadocJar, sourcesJar
@@ -68,7 +68,7 @@ publishing {
             pom {
                 name = 'Resource Watcher'
                 description = 'Java-based Linux, Mac, Windows resources watcher (cpu, gpu, ram, disk, ...)'
-                url = 'https://github.com/computinglaboratory/resourcewatcher'
+                url = 'https://github.com/kamilszewc/resourcewatcher'
                 licenses {
                     license {
                         name = 'The Apache License, Version 2.0'
