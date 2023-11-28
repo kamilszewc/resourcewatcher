@@ -1,7 +1,7 @@
 /**
  * Resource Watcher module
  */
-module com.computinglaboratory.resourcewatcher {
+module io.github.kamilszewc.resourcewatcher {
     requires lombok;
     requires org.apache.commons.lang3;
 
