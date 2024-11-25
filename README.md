@@ -8,6 +8,7 @@ The library is written in Java and tested with Spock framework.
 
 It was tested with:
 - Ubuntu 18.04, 20.04, 22.04, 22.10, 23.04, 23.10
+- Debian 12
 - OpenSUSE 15
 - Fedora 37
 - MacOS 12, 13, 14
@@ -21,9 +22,9 @@ Usage with maven:
 
 ```xml
 <dependency>
-    <groupId>io.github.kamilszec</groupId>
+    <groupId>io.github.kamilszewc</groupId>
     <artifactId>resourcewatcher</artifactId>
-    <version>5.10</version>
+    <version>5.13</version>
 </dependency>
 ```
 

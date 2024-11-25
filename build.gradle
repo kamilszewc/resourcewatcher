@@ -8,7 +8,7 @@ plugins {
 }
 
 group 'io.github.kamilszewc'
-version '5.12'
+version '5.13'
 java {
     withJavadocJar()
     withSourcesJar()

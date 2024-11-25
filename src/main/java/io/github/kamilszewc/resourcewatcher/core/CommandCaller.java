@@ -21,7 +21,7 @@ public class CommandCaller {
      * Call command
      * @param command os command
      * @return command response
-     * @throws IOException if can not get information from os
+     * @throws IOException risen when can not get information from os
      */
     static public String call(String command) throws IOException {
         return call(command, null);
@@ -32,7 +32,7 @@ public class CommandCaller {
      * @param command os command
      * @param envVariables map of environmental variables (key, value)
      * @return command response
-     * @throws IOException if can not get information from os
+     * @throws IOException risen when can not get information from os
      */
     static public String call(String command, Map<String, String> envVariables) throws IOException {
 
@@ -40,9 +40,7 @@ public class CommandCaller {
         ProcessBuilder processBuilder = new ProcessBuilder(splitCommand);
         if (envVariables != null) {
             var env = processBuilder.environment();
-            envVariables.forEach((key, value) -> {
-                env.put(key, value);
-            });
+            env.putAll(envVariables);
         }
         Process process = processBuilder.start();
         InputStream inputStream = process.getInputStream();
