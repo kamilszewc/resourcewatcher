@@ -7,7 +7,7 @@ Simple to use JVM library for watching linux/windows/mac resources like cpu-usag
 The library is written in Java and tested with Spock framework.
 
 It was tested with:
-- Ubuntu 18.04, 20.04, 22.04, 22.10, 23.04, 23.10
+- Ubuntu 18.04, 20.04, 22.04, 22.10, 23.04, 23.10, 24.04
 - Debian 12
 - OpenSUSE 15
 - Fedora 37
@@ -24,14 +24,14 @@ Usage with maven:
 <dependency>
     <groupId>io.github.kamilszewc</groupId>
     <artifactId>resourcewatcher</artifactId>
-    <version>5.13</version>
+    <version>5.14</version>
 </dependency>
 ```
 
 Usage with gradle:
 
 ```groovy
-implementation 'io.github.kamilszewc:resourcewatcher:5.10'
+implementation 'io.github.kamilszewc:resourcewatcher:5.14'
 ```
 
 ## Usage

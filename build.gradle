@@ -4,11 +4,11 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'signing'
-    id 'org.sonatype.gradle.plugins.scan' version '2.8.3'
+    id 'org.sonatype.gradle.plugins.scan' version '3.0.0'
 }
 
 group 'io.github.kamilszewc'
-version '5.13'
+version '5.14'
 java {
     withJavadocJar()
     withSourcesJar()
@@ -29,8 +29,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.36'
 
     // Testing
-    testImplementation 'org.apache.groovy:groovy-all:4.0.24'
-    testImplementation 'org.spockframework:spock-core:2.4-M4-groovy-4.0'
+    testImplementation 'org.apache.groovy:groovy-all:4.0.26'
+    testImplementation 'org.spockframework:spock-core:2.4-M5-groovy-4.0'
 }
 
 test {
