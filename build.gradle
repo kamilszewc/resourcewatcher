@@ -8,7 +8,7 @@ plugins {
 }
 
 group 'io.github.kamilszewc'
-version '5.14'
+version '5.16'
 java {
     withJavadocJar()
     withSourcesJar()
@@ -22,15 +22,15 @@ repositories {
 
 dependencies {
     // Apache commons
-    implementation 'org.apache.commons:commons-lang3:3.17.0'
+    implementation 'org.apache.commons:commons-lang3:3.18.0'
 
     // Lombok
-    compileOnly 'org.projectlombok:lombok:1.18.36'
-    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
 
     // Testing
-    testImplementation 'org.apache.groovy:groovy-all:4.0.26'
-    testImplementation 'org.spockframework:spock-core:2.4-M5-groovy-4.0'
+    testImplementation 'org.apache.groovy:groovy-all:4.0.28'
+    testImplementation 'org.spockframework:spock-core:2.4-M6-groovy-4.0'
 }
 
 test {

@@ -24,7 +24,7 @@ public class ProcessWatcherLinux implements ProcessWatcher {
         String result = CommandCaller.call("cat /proc/" + processId + "/smaps");
         List<String> lines = Arrays.stream(result.split("\n")).collect(Collectors.toList());
         List<Long> values = lines.stream()
-                .filter(entry -> entry.contains(key))
+                .filter(entry -> entry.startsWith(key))
                 .map(entry -> entry.split(":")[1].strip())
                 .map(entry -> entry.split(" ")[0])
                 .map(entry -> Long.valueOf(entry))
@@ -37,7 +37,7 @@ public class ProcessWatcherLinux implements ProcessWatcher {
      * Returns information about process Proportional Set Size (PSS) memory.
      * @param processId Process id
      * @return Memory object
-     * @throws IOException if can not get information from os
+     * @throws IOException risen when can not get information from os
      */
     public Memory getProcessProportionalSetSizeMemory(Long processId) throws IOException {
 
@@ -50,8 +50,8 @@ public class ProcessWatcherLinux implements ProcessWatcher {
      * Returns information about Proportional Set Size (PPS) memory of a process and its all tree (recursively).
      * @param processId Process id
      * @return Memory object
-     * @throws IOException if can not get information from os
-     * @throws NoProcessFoundException if no process found
+     * @throws IOException risen when can not get information from os
+     * @throws NoProcessFoundException risen when no process of requested id is found
      */
     public Memory getProcessProportionalSetSizeWithChildrenMemory(Long processId) throws IOException, NoProcessFoundException {
         Set<Long> childrenProcesses = getChildrenTree(processId);
@@ -68,8 +68,8 @@ public class ProcessWatcherLinux implements ProcessWatcher {
      * Returns information about process Unique Set Size (USS) memory.
      * @param processId Process id
      * @return Memory object
-     * @throws IOException if can not get information from os
-     * @throws NoProcessFoundException if no process found
+     * @throws IOException risen when can not get information from os
+     * @throws NoProcessFoundException risen when no process of requested id is found
      */
     public Memory getProcessUniqueSetSizeMemory(Long processId) throws IOException, NoProcessFoundException {
         Long valuePrivateClean = getSmapValue(processId, "Private_Clean");
@@ -83,8 +83,8 @@ public class ProcessWatcherLinux implements ProcessWatcher {
      * Returns information about Unique Set Size (USS) memory of a process and its all tree (recursively).
      * @param processId Process id
      * @return Memory object
-     * @throws IOException if can not get information from os
-     * @throws NoProcessFoundException if no process found
+     * @throws IOException risen when can not get information from os
+     * @throws NoProcessFoundException risen when no process of requested id is found
      */
     public Memory getProcessUniqueSetSizeWithChildrenMemory(Long processId) throws IOException, NoProcessFoundException {
         Set<Long> childrenProcesses = getChildrenTree(processId);
@@ -173,24 +173,24 @@ public class ProcessWatcherLinux implements ProcessWatcher {
      * Returns cpu time of process (in seconds)
      * @param processId Process id
      * @return Time in seconds
-     * @throws IOException if can not get information from os
+     * @throws IOException risen when can not get information from os
      */
     public Long getProcessCpuTime(Long processId) throws IOException {
 
         String result = CommandCaller.call("ps -o time " + processId);
         String[] lines = result.split("\n");
         String[] elements = lines[1].trim().split(":");
-        int hours = Integer.valueOf(elements[0]);
-        int minutes = Integer.valueOf(elements[1]);
-        int seconds = Integer.valueOf(elements[2]);
+        int hours = Integer.parseInt(elements[0]);
+        int minutes = Integer.parseInt(elements[1]);
+        int seconds = Integer.parseInt(elements[2]);
         return hours * 3600L + minutes * 60L + seconds;
     }
 
     /**
-     * Returns cpu time of a process (in seconds) and its all tree (recursively).
+     * Returns cpu time of a process (in seconds) and it's all tree (recursively).
      * @param processId Process id
      * @return Time in seconds
-     * @throws IOException if can not get information from os
+     * @throws IOException risen when can not get information from os
      */
     public Long getProcessCpuTimeWithChildren(Long processId) throws IOException {
 
