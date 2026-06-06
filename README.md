@@ -24,14 +24,14 @@ Usage with maven:
 <dependency>
     <groupId>io.github.kamilszewc</groupId>
     <artifactId>resourcewatcher</artifactId>
-    <version>5.16</version>
+    <version>5.18.0</version>
 </dependency>
 ```
 
 Usage with gradle:
 
 ```groovy
-implementation 'io.github.kamilszewc:resourcewatcher:5.16'
+implementation 'io.github.kamilszewc:resourcewatcher:5.18.0'
 ```
 
 ## Usage
