@@ -39,19 +39,6 @@ public class NetworkWatcherLinuxTest {
         assertNotNull(speed.getKbs());
     }
 
-//    @Test
-//    public void returnsNotNullReceiveValuesForLoInterface() throws UnknownOperatingSystemException, NoNetworkInterfaceException, IOException, InterruptedException {
-//        // given
-//        NetworkWatcher networkWatcher = ResourceWatcherFactory.create().getNetworkWatcher();
-//
-//        // when
-//        var speed = ((NetworkWatcherLinux)networkWatcher).getInterfaceReceiveSpeed("wlp5s0");
-//
-//        // then
-//        System.out.println(speed.getMbs());
-//        assertNotNull(speed.getKbs());
-//    }
-
     @Test
     public void returnsNonNullTransmitDataForLoInterface() throws UnknownOperatingSystemException, NoNetworkInterfaceException, IOException {
         // given

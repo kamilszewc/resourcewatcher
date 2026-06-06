@@ -16,5 +16,4 @@ class CpuWatcherLinuxTest {
         System.out.println(cpuInfo);
         assertNotNull(cpuInfo);
     }
-
 }
